@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TouPlannerModels\TouPlannerModels.csproj" />
+    <ProjectReference Include="..\TourPlannerBL\TourPlannerBL.csproj" />
+  </ItemGroup>
+
 </Project>

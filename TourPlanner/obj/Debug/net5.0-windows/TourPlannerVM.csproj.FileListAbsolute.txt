@@ -20,3 +20,8 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\To
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\ref\TourPlannerVM.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.genruntimeconfig.cache
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TouPlannerModels.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerBL.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TouPlannerModels.pdb
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerBL.pdb
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.csproj.CopyComplete
