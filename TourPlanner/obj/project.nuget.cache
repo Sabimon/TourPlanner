@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HD0yLylKuLqXe5Xp7CogolU/fbGSavV5D2W+QeNRu96Rmag8Pu8o0xSkdRGPUNKvgGOOdsu/WgVQLYjIiRm21Q==",
+  "dgSpecHash": "GLB9eajwXytO9xy8tq2wU3kzKhtBFnGby1fMNWPALpN1ECJG0P0uHxVDj7/oTDEczPRabyKrv3uoZOS2dxCunQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

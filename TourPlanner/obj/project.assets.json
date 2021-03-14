@@ -1,11 +1,49 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    "net5.0-windows7.0": {
+      "TouPlannerModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/TouPlannerModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TouPlannerModels.dll": {}
+        }
+      },
+      "TourPlannerBL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "TouPlannerModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TourPlannerBL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TourPlannerBL.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "TouPlannerModels/1.0.0": {
+      "type": "project",
+      "path": "../TouPlannerModels/TouPlannerModels.csproj",
+      "msbuildProject": "../TouPlannerModels/TouPlannerModels.csproj"
+    },
+    "TourPlannerBL/1.0.0": {
+      "type": "project",
+      "path": "../TourPlannerBL/TourPlannerBL.csproj",
+      "msbuildProject": "../TourPlannerBL/TourPlannerBL.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    "net5.0-windows7.0": [
+      "TouPlannerModels >= 1.0.0",
+      "TourPlannerBL >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
@@ -13,9 +51,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
-      "projectName": "TourPlanner",
-      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
+      "projectName": "TourPlannerVM",
+      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\obj\\",
       "projectStyle": "PackageReference",
@@ -24,16 +62,23 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
+            },
+            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -43,8 +88,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
         "imports": [
           "net461",
           "net462",
