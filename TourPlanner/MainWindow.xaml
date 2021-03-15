@@ -8,19 +8,53 @@
         Title="MainWindow" Height="450" Width="800" Background="Lavender" >
     
     <Grid>
-        <StackPanel Orientation="Vertical" Grid.Row="1">
+        <StackPanel Orientation="Vertical" Margin="0,0,0,10">
             <TextBlock Text="TourPlanner App" Margin="5" />
             <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Margin="50" Grid.Row="1" Grid.Column="1" Command="{Binding SearchCommand}" Content="Dynamisch"  />
-                <TextBox Margin="50" Grid.Row="1" Grid.Column="0" Text="{Binding SearchName, Mode=TwoWay}"></TextBox>
+                <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" Text="Options" />
+                <TextBlock Margin="5" Grid.Row="1" Grid.Column="1" Text="Files" />
+                <TextBox Margin="5" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding SearchName, Mode=TwoWay}"></TextBox>
+                <Button Margin="5" Grid.Row="2" Grid.Column="4" Command="{Binding SearchCommand}" Content="Search" />
+                <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.RowSpan="12" Grid.ColumnSpan="2" Text="Tours" />
+                <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" />
+                <Button Margin="5" Grid.Row="4" Grid.Column="2" Command="{Binding SearchCommand}" Content="Route" />
+                <Button Margin="5" Grid.Row="4" Grid.Column="3" Command="{Binding SearchCommand}" Content="Description" />
+                <TextBlock Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Text="" />
+                <TextBlock Margin="5" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4" Text="Logs:" />
+                <Button Margin="5" Grid.Row="8" Grid.Column="6" Command="{Binding SearchCommand}" Content="Zoom" />
+                <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Text="Date" />
+                <TextBlock Margin="5" Grid.Row="9" Grid.Column="3" Text="Distance" />
+                <TextBlock Margin="5" Grid.Row="9" Grid.Column="4" Text="Duration" />
             </Grid>
         </StackPanel>
     </Grid>
