@@ -51,7 +51,7 @@ namespace TourPlanner.ViewModels
             this.mediaManager = mediaManager;
             Items = new ObservableCollection<MediaItem>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
-
+            //lol lambda expressions check gar nicht was abgeht
             this.SearchCommand = new RelayCommand(o => {
                 IEnumerable<MediaItem> items = mediaManager.SearchForItems(SearchName, folder);
                 Items.Clear();

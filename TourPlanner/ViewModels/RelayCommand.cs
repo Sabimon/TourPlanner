@@ -11,6 +11,7 @@ namespace TourPlanner.ViewModels
         public RelayCommand(Action<object> execute)
             : this(execute, null)
         {
+            //ich bin mir nicht sicher was hier passiert
         }
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
@@ -42,7 +43,16 @@ namespace TourPlanner.ViewModels
         /// </returns>
         public bool CanExecute(object parameter)
         {
-            return canExecutePredicate == null ? true : canExecutePredicate(parameter);
+            if(canExecutePredicate == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //ich denke dass ist der einfachere Code als die Zeile unten but im note sure
+            //return canExecutePredicate == null ? true : canExecutePredicate(parameter);
         }
 
         public event EventHandler CanExecuteChanged
