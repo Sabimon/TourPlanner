@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        xmlns:viewmodels="clr-namespace:TourPlanner.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FolderViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="Lavender" >
     
     <Grid>
         <StackPanel Orientation="Vertical" Margin="0,0,0,10">
             <TextBlock Text="TourPlanner App" Margin="5" />
-            <Grid Grid.Row="0">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -41,21 +41,23 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="5" Grid.Row="1" Grid.Column="0" Text="Options" />
-                <TextBlock Margin="5" Grid.Row="1" Grid.Column="1" Text="Files" />
+                <Label Margin="5" Grid.Row="1" Grid.Column="0" Content="Options" />
+                <Label Margin="5" Grid.Row="1" Grid.Column="1" Content="Files" />
                 <TextBox Margin="5" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding SearchName, Mode=TwoWay}"></TextBox>
                 <Button Margin="5" Grid.Row="2" Grid.Column="4" Command="{Binding SearchCommand}" Content="Search" />
-                <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.RowSpan="12" Grid.ColumnSpan="2" Text="Tours" />
+                <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Tours" />
+                <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
                 <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" />
                 <Button Margin="5" Grid.Row="4" Grid.Column="2" Command="{Binding SearchCommand}" Content="Route" />
                 <Button Margin="5" Grid.Row="4" Grid.Column="3" Command="{Binding SearchCommand}" Content="Description" />
-                <TextBlock Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="3" Text="" />
-                <TextBlock Margin="5" Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="4" Text="Logs:" />
-                <Button Margin="5" Grid.Row="8" Grid.Column="6" Command="{Binding SearchCommand}" Content="Zoom" />
-                <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Text="Date" />
-                <TextBlock Margin="5" Grid.Row="9" Grid.Column="3" Text="Distance" />
-                <TextBlock Margin="5" Grid.Row="9" Grid.Column="4" Text="Duration" />
+                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
+                <TextBlock Margin="5" Grid.Row="11" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
+                <Button Margin="5" Grid.Row="11" Grid.Column="6" Command="{Binding SearchCommand}" Content="Zoom" />
+                <TextBlock Margin="5" Grid.Row="12" Grid.Column="2" Text="Date" />
+                <TextBlock Margin="5" Grid.Row="12" Grid.Column="3" Text="Distance" />
+                <TextBlock Margin="5" Grid.Row="12" Grid.Column="4" Text="Duration" />
             </Grid>
+            
         </StackPanel>
     </Grid>
 </Window>

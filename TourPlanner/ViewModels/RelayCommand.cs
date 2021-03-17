@@ -43,16 +43,16 @@ namespace TourPlanner.ViewModels
         /// </returns>
         public bool CanExecute(object parameter)
         {
-            if(canExecutePredicate == null)
+            /*if(canExecutePredicate == null)
             {
                 return true;
             }
             else
             {
                 return false;
-            }
+            }*/
             //ich denke dass ist der einfachere Code als die Zeile unten but im note sure
-            //return canExecutePredicate == null ? true : canExecutePredicate(parameter);
+            return canExecutePredicate == null ? true : canExecutePredicate(parameter);
         }
 
         public event EventHandler CanExecuteChanged

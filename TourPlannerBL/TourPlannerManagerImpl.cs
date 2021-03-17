@@ -8,11 +8,9 @@ namespace TourPlannerBL {
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
             // usually querying the disk, or from a DB, or ...
             return new List<MediaItem>() {
-                new MediaItem() { Name = "Item1" },
-                new MediaItem() { Name = "Item2" },
-                new MediaItem() { Name = "Another" },
-                new MediaItem() { Name = "SWEI" },
-                new MediaItem() { Name = "FHTW" }
+                new MediaItem() { Name = "Tour1" },
+                new MediaItem() { Name = "Tour2" },
+                new MediaItem() { Name = "Tour3" }
             };
         }
 

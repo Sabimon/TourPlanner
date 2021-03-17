@@ -6,18 +6,15 @@ using TourPlannerModels;
 
 namespace TourPlanner.ViewModels
 {
-    public class MediaFolderVM : ViewModelBase
+    public class FolderViewModel : ViewModelBase
     {
-
         private TourPlannerManager mediaManager;
         private MediaItem currentItem;
         private MediaFolder folder;
         private string searchName;
 
         public ICommand SearchCommand { get; set; }
-
         public ICommand ClearCommand { get; set; }
-
         public ObservableCollection<MediaItem> Items { get; set; }
 
         public string SearchName
@@ -46,7 +43,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public MediaFolderVM(TourPlannerManager mediaManager)
+        public FolderViewModel(TourPlannerManager mediaManager)
         {
             this.mediaManager = mediaManager;
             Items = new ObservableCollection<MediaItem>();
