@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TourPlannerVM/1.0.0": {
+        "dependencies": {
+          "TouPlannerModels": "1.0.0",
+          "TourPlannerBL": "1.0.0"
+        },
+        "runtime": {
+          "TourPlannerVM.dll": {}
+        }
+      },
+      "TouPlannerModels/1.0.0": {
+        "runtime": {
+          "TouPlannerModels.dll": {}
+        }
+      },
+      "TourPlannerBL/1.0.0": {
+        "dependencies": {
+          "TouPlannerModels": "1.0.0"
+        },
+        "runtime": {
+          "TourPlannerBL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TourPlannerVM/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TouPlannerModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TourPlannerBL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
