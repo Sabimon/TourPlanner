@@ -25,33 +25,25 @@ namespace TourPlanner.ViewModels
             canExecutePredicate = canExecute;
         }
 
-        /// <summary>
-        /// Defines the method to be called when the command is invoked.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to null.</param>
+        // <summary>
+        // Defines the method to be called when the command is invoked.
+        // </summary>
+        // <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to null.</param>
         public void Execute(object parameter)
         {
             executeAction(parameter);
         }
 
-        /// <summary>
-        /// Defines the method that determines whether the command can execute in its current state.
-        /// </summary>
-        /// <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to null.</param>
-        /// <returns>
-        /// true if this command can be executed; otherwise, false.
-        /// </returns>
+        // <summary>
+        // Defines the method that determines whether the command can execute in its current state.
+        // </summary>
+        // <param name="parameter">Data used by the command.  If the command does not require data to be passed, this object can be set to null.</param>
+        // <returns>
+        // true if this command can be executed; otherwise, false.
+        // </returns>
         public bool CanExecute(object parameter)
         {
-            /*if(canExecutePredicate == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }*/
-            //ich denke dass ist der einfachere Code als die Zeile unten but im note sure
+            //versteh nicht ganz was die Kurzform macht
             return canExecutePredicate == null ? true : canExecutePredicate(parameter);
         }
 

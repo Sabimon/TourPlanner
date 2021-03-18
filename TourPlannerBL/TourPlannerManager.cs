@@ -5,6 +5,8 @@ namespace TourPlannerBL {
     public interface TourPlannerManager {
         MediaFolder GetMediaFolder(string url);
         IEnumerable<MediaItem> GetItems(MediaFolder folder);
+        IEnumerable<MediaTour> GetTours(MediaFolder folder);
         IEnumerable<MediaItem> SearchForItems(string itemName, MediaFolder folder, bool caseSensitive = false);
+        IEnumerable<MediaTour> SearchForTours(string tourName, MediaFolder folder, bool caseSensitive = false);
     }
 }

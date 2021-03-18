@@ -10,12 +10,15 @@ namespace TourPlanner.ViewModels
     {
         private TourPlannerManager mediaManager;
         private MediaItem currentItem;
+        private MediaTour currentTour;
         private MediaFolder folder;
-        private string searchName="test";
+        private string searchName;
+        private string searchTour;
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
         public ObservableCollection<MediaItem> Items { get; set; }
+        public ObservableCollection<MediaTour> Tours { get; set; }
 
         public string SearchName
         {
@@ -25,11 +28,35 @@ namespace TourPlanner.ViewModels
                 if ((searchName != value))
                 {
                     searchName = value;
-                    RaisePropertyChangedEvent(nameof(SearchName)); //verteh ich nicht
+                    RaisePropertyChangedEvent(nameof(SearchName)); 
                 }
             }
         }
 
+        public string SearchTour{
+            get { return searchTour; }
+            set
+            {
+                if ((searchTour != value))
+                {
+                    searchTour = value;
+                    RaisePropertyChangedEvent(nameof(SearchTour));
+                }
+            }
+        }
+
+        public MediaTour CurrentTour
+        {
+            get { return currentTour; }
+            set
+            {
+                if ((currentTour != value) && (value != null))
+                {
+                    currentTour = value;
+                    RaisePropertyChangedEvent(nameof(CurrentTour)); 
+                }
+            }
+        }
         public MediaItem CurrentItem
         {
             get { return currentItem; }
@@ -38,17 +65,18 @@ namespace TourPlanner.ViewModels
                 if ((currentItem != value) && (value != null))
                 {
                     currentItem = value;
-                    RaisePropertyChangedEvent(nameof(CurrentItem)); //verteh ich nicht
+                    RaisePropertyChangedEvent(nameof(CurrentItem));
                 }
             }
         }
+
 
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
             Items = new ObservableCollection<MediaItem>();
+            Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
-            //lol lambda expressions check gar nicht was abgeht
             this.SearchCommand = new RelayCommand(o => {
                 IEnumerable<MediaItem> items = mediaManager.SearchForItems(SearchName, folder);
                 Items.Clear();
@@ -56,13 +84,29 @@ namespace TourPlanner.ViewModels
                 {
                     Items.Add(item);
                 }
-            });
+            }, (_) =>{ //(_) braucht keinen Parameter
+                if (SearchName != null && SearchName.Length > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            );
 
             this.ClearCommand = new RelayCommand(o => {
                 Items.Clear();
                 SearchName = "";
 
                 FillListView();
+            });
+
+            this.CurrentTour = new RelayCommand(o => {
+                IEnumerable<MediaTour> tours = mediaManager.SearchForTours(SearchTour, folder);
+                Tours.Clear();
+                foreach (MediaTour tour in tours)
+                {
+                    Tours.Add(tour);
+                }
             });
 
             InitListView();

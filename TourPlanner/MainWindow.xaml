@@ -37,14 +37,14 @@
         <TextBlock Margin="5" Text="TourPlanner App"  />
         <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
         <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
-        <TextBox Margin="5" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding SearchName, Mode=TwoWay}"></TextBox>
+        <TextBox Margin="5" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button Margin="5" Grid.Row="2" Grid.Column="4" Command="{Binding SearchCommand}" Content="Search" />
         <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Tours" />
         <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" />
         <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
         <Button Margin="5" Grid.Row="4" Grid.Column="2" Command="{}" Content="Route" />
         <Button Margin="5" Grid.Row="4" Grid.Column="3" Command="{}" Content="Description" />
-        <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" SelectedItem="{}" DisplayMemberPath="Name" />
+        <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
         <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
         <Button Margin="5" Grid.Row="10" Grid.Column="6" Command="{}" Content="Zoom" />
         <TextBlock Margin="5" Grid.Row="11" Grid.Column="2" Text="Date" />
