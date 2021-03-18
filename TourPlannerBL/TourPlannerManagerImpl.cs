@@ -23,7 +23,7 @@ namespace TourPlannerBL {
             IEnumerable<MediaItem> items = GetItems(folder);
 
             if (caseSensitive) {
-                return items.Where(x => x.Name.Contains(itemName));
+                return items.Where(x => x.Name.Contains(itemName)); //sucht nach items & lambda ist auch da
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
         }

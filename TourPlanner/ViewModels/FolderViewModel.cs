@@ -11,7 +11,7 @@ namespace TourPlanner.ViewModels
         private TourPlannerManager mediaManager;
         private MediaItem currentItem;
         private MediaFolder folder;
-        private string searchName;
+        private string searchName="test";
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
@@ -25,7 +25,7 @@ namespace TourPlanner.ViewModels
                 if ((searchName != value))
                 {
                     searchName = value;
-                    RaisePropertyChangedEvent(nameof(SearchName));
+                    RaisePropertyChangedEvent(nameof(SearchName)); //verteh ich nicht
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace TourPlanner.ViewModels
                 if ((currentItem != value) && (value != null))
                 {
                     currentItem = value;
-                    RaisePropertyChangedEvent(nameof(CurrentItem));
+                    RaisePropertyChangedEvent(nameof(CurrentItem)); //verteh ich nicht
                 }
             }
         }
