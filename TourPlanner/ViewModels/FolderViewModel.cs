@@ -43,9 +43,9 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public FolderViewModel(TourPlannerManager mediaManager)
+        public FolderViewModel()
         {
-            this.mediaManager = mediaManager;
+            this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
             Items = new ObservableCollection<MediaItem>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             //lol lambda expressions check gar nicht was abgeht

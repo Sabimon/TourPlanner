@@ -6,6 +6,9 @@
         xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="Lavender" >
+    <Window.DataContext>
+        <vm:FolderViewModel />
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
