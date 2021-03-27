@@ -6,15 +6,15 @@ namespace TourPlanner.ViewModels {
     public abstract class ViewModelBase : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChangedEvent([CallerMemberName] string propertyName = "") {
-            ValidatePropertyName(propertyName);
+        protected void RaisePropertyChangedEvent([CallerMemberName] string propertyName = null) {
+            //ValidatePropertyName(propertyName);
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void ValidatePropertyName(string propertyName) {
+        protected void ValidatePropertyName(string propertyName) { //[CallerMemberName] , nameof()
             if (TypeDescriptor.GetProperties(this)[propertyName] == null) {
-                throw new ArgumentException("Invalid propery name: " + propertyName);
+                throw new ArgumentException("Invalid property name: " + propertyName);
             }
         }
     }

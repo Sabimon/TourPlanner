@@ -99,17 +99,8 @@ namespace TourPlanner.ViewModels
 
                 FillListView();
             });
-
-            this.CurrentTour = new RelayCommand(o => {
-                IEnumerable<MediaTour> tours = mediaManager.SearchForTours(SearchTour, folder);
-                Tours.Clear();
-                foreach (MediaTour tour in tours)
-                {
-                    Tours.Add(tour);
-                }
-            });
-
             InitListView();
+            InitListViewTour();
         }
 
 
@@ -119,6 +110,12 @@ namespace TourPlanner.ViewModels
             FillListView();
         }
 
+        public void InitListViewTour()
+        {
+            Tours = new ObservableCollection<MediaTour>();
+            FillListViewTours();
+        }
+
         private void FillListView()
         {
             foreach (MediaItem item in mediaManager.GetItems(folder))
@@ -126,6 +123,12 @@ namespace TourPlanner.ViewModels
                 Items.Add(item);
             }
         }
-
+        private void FillListViewTours()
+        {
+            foreach (MediaTour tour in mediaManager.GetTours(folder))
+            {
+                Tours.Add(tour);
+            }
+        }
     }
 }
