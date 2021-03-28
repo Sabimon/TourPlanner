@@ -14,9 +14,13 @@ namespace TourPlanner.ViewModels
         private MediaFolder folder;
         private string searchName;
         private string searchTour;
+        private string routeVisible;
+        private string descriptionVisible;
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
+        public ICommand ShowRoute { get; set; }
+        public ICommand ShowDescription { get; set; }
         public ObservableCollection<MediaItem> Items { get; set; }
         public ObservableCollection<MediaTour> Tours { get; set; }
 
@@ -32,7 +36,6 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
         public string SearchTour
         {
             get { return searchTour; }
@@ -42,6 +45,30 @@ namespace TourPlanner.ViewModels
                 {
                     searchTour = value;
                     RaisePropertyChangedEvent(nameof(SearchTour));
+                }
+            }
+        }
+        public string RouteVisible
+        {
+            get { return routeVisible; }
+            set
+            {
+                if ((routeVisible != value))
+                {
+                    routeVisible = value;
+                    RaisePropertyChangedEvent(nameof(RouteVisible));
+                }
+            }
+        }
+        public string DescriptionVisible
+        {
+            get { return descriptionVisible; }
+            set
+            {
+                if ((descriptionVisible != value))
+                {
+                    descriptionVisible = value;
+                    RaisePropertyChangedEvent(nameof(DescriptionVisible));
                 }
             }
         }
@@ -94,11 +121,8 @@ namespace TourPlanner.ViewModels
             }
             );
 
-            this.ClearCommand = new RelayCommand(o => {
-                Items.Clear();
-                SearchName = "";
-
-                FillListView();
+            this.ShowRoute = new RelayCommand(o => {
+                
             });
             InitListView();
             InitListViewTour();
