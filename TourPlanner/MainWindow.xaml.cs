@@ -27,6 +27,12 @@ namespace TourPlanner
             
         }
 
-    }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var transform = (ScaleTransform)imageView.RenderTransform;
+            transform.ScaleX *= 1.1;
+            transform.ScaleY *= 1.1;
+        }
 
+    }
 }
