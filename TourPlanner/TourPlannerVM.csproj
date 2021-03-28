@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TouPlannerModels\TouPlannerModels.csproj" />
     <ProjectReference Include="..\TourPlannerBL\TourPlannerBL.csproj" />
+    <ProjectReference Include="..\TourPlannerDL\TourPlannerDL.csproj" />
   </ItemGroup>
 
 </Project>

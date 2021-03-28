@@ -9,7 +9,8 @@
       "TourPlannerVM/1.0.0": {
         "dependencies": {
           "TouPlannerModels": "1.0.0",
-          "TourPlannerBL": "1.0.0"
+          "TourPlannerBL": "1.0.0",
+          "TourPlannerDL": "1.0.0"
         },
         "runtime": {
           "TourPlannerVM.dll": {}
@@ -27,6 +28,11 @@
         "runtime": {
           "TourPlannerBL.dll": {}
         }
+      },
+      "TourPlannerDL/1.0.0": {
+        "runtime": {
+          "TourPlannerDL.dll": {}
+        }
       }
     }
   },
@@ -42,6 +48,11 @@
       "sha512": ""
     },
     "TourPlannerBL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TourPlannerDL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

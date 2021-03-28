@@ -33,7 +33,8 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        public string SearchTour{
+        public string SearchTour
+        {
             get { return searchTour; }
             set
             {

@@ -1,0 +1,12 @@
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\bin\Debug\net5.0\TourPlannerDL.deps.json
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\bin\Debug\net5.0\TourPlannerDL.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\bin\Debug\net5.0\ref\TourPlannerDL.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\bin\Debug\net5.0\TourPlannerDL.pdb
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\ref\TourPlannerDL.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0\TourPlannerDL.pdb

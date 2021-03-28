@@ -25,6 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -50,5 +51,7 @@
         <TextBlock Margin="5" Grid.Row="11" Grid.Column="2" Text="Date" />
         <TextBlock Margin="5" Grid.Row="11" Grid.Column="3" Text="Distance" />
         <TextBlock Margin="5" Grid.Row="11" Grid.Column="4" Text="Duration" />
+        <Image Margin="5" Grid.Row="12" Grid.Column="2" Grid.RowSpan="5" Source="C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\Images\bluelavender.jpg" Stretch="Uniform" />
     </Grid>
+
 </Window>
