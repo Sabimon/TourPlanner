@@ -37,12 +37,15 @@
         <TextBlock Margin="5" Text="TourPlanner App"  />
         <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
         <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
-        <TextBox Margin="5" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding SearchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="4" Command="{Binding SearchCommand}" Content="Search" />
+        <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Margin="0" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="To:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="4" Command="{Binding SearchRoute}" Content="Search" />
         <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Tours" />
         <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" />
         <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
-        <Button Margin="5" Grid.Row="4" Grid.Column="2" Click="ShowRouteButtonClick" Command="{Binding ShowRoute}" Content="Route" />
+        <Button Margin="5" Grid.Row="4" Grid.Column="2" Click="ShowRouteButtonClick" Command="" Content="Route" />
         <Button Margin="5" Grid.Row="4" Grid.Column="3" Click="ShowDescriptionButtonClick" Command="{}" Content="Description" />
         <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
         <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />

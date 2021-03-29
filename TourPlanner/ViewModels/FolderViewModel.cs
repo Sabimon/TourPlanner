@@ -13,27 +13,37 @@ namespace TourPlanner.ViewModels
         private MediaItem currentItem;
         private MediaTour currentTour;
         private MediaFolder folder;
-        private string searchName;
+        private string fromDest;
+        private string toDest;
         private string searchTour;
-        private string routeVisible;
-        private string descriptionVisible;
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
-        public ICommand ShowRoute { get; set; }
-        public ICommand ShowDescription { get; set; }
+        public ICommand SearchRoute { get; set; }
         public ObservableCollection<MediaItem> Items { get; set; }
         public ObservableCollection<MediaTour> Tours { get; set; }
 
-        public string SearchName
+        public string FromDest
         {
-            get { return searchName; }
+            get { return fromDest; }
             set
             {
-                if ((searchName != value))
+                if ((fromDest != value))
                 {
-                    searchName = value;
-                    RaisePropertyChangedEvent(nameof(SearchName)); 
+                    fromDest = value;
+                    RaisePropertyChangedEvent(nameof(FromDest)); 
+                }
+            }
+        }
+        public string ToDest
+        {
+            get { return toDest; }
+            set
+            {
+                if ((toDest != value))
+                {
+                    toDest = value;
+                    RaisePropertyChangedEvent(nameof(ToDest));
                 }
             }
         }
@@ -46,30 +56,6 @@ namespace TourPlanner.ViewModels
                 {
                     searchTour = value;
                     RaisePropertyChangedEvent(nameof(SearchTour));
-                }
-            }
-        }
-        public string RouteVisible
-        {
-            get { return routeVisible; }
-            set
-            {
-                if ((routeVisible != value))
-                {
-                    routeVisible = value;
-                    RaisePropertyChangedEvent(nameof(RouteVisible));
-                }
-            }
-        }
-        public string DescriptionVisible
-        {
-            get { return descriptionVisible; }
-            set
-            {
-                if ((descriptionVisible != value))
-                {
-                    descriptionVisible = value;
-                    RaisePropertyChangedEvent(nameof(DescriptionVisible));
                 }
             }
         }
@@ -107,25 +93,16 @@ namespace TourPlanner.ViewModels
             Items = new ObservableCollection<MediaItem>();
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
-            this.SearchCommand = new RelayCommand(o => {
-                IEnumerable<MediaItem> items = mediaManager.SearchForItems(SearchName, folder);
-                Items.Clear();
-                foreach (MediaItem item in items)
-                {
-                    Items.Add(item);
-                }
+            this.SearchRoute = new RelayCommand(o => {
+                http.FindRoute(FromDest, ToDest);
             }, (_) =>{ //(_) braucht keinen Parameter
-                if (SearchName != null && SearchName.Length > 0)
+                if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
                     return true;
                 }
                 return false;
             }
             );
-
-            this.ShowRoute = new RelayCommand(o => {
-                http.FindRoute("Wien", "Graz");
-            });
             InitListView();
             InitListViewTour();
         }
