@@ -124,7 +124,7 @@ namespace TourPlanner.ViewModels
             );
 
             this.ShowRoute = new RelayCommand(o => {
-                http.TryConnection();
+                http.FindRoute("Wien", "Graz");
             });
             InitListView();
             InitListViewTour();
