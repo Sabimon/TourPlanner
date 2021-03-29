@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TourPlannerBL;
 using TourPlannerModels;
+using TourPlannerDL;
 
 namespace TourPlanner.ViewModels
 {
@@ -102,6 +103,7 @@ namespace TourPlanner.ViewModels
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
+            httpListener http = new httpListener();
             Items = new ObservableCollection<MediaItem>();
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
@@ -122,7 +124,7 @@ namespace TourPlanner.ViewModels
             );
 
             this.ShowRoute = new RelayCommand(o => {
-                
+                http.TryConnection();
             });
             InitListView();
             InitListViewTour();
