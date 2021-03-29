@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tA0kfkgayDef/Yan0+Ob10WlgJQT7XLIdCpbpqQfyJUX7/uH9/bFISKpUekXqxPl1/Wcxmt7VlL+dMTp148QuA==",
+  "dgSpecHash": "pqDpMT2FLxCa94Z60kWJMIbphDP7R/hkZ1FhbO8fJSTsXAx8ff6onJVkTheKFGcMOe/ZiaOqZeyn6sQg9mmK4A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
   "logs": []
 }
