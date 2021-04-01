@@ -23,11 +23,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -38,28 +35,32 @@
         <TextBlock Margin="5" Text="TourPlanner App"  />
         <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
         <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
-        <Label Margin="0" Grid.Row="2" Grid.Column="0" Content="From:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Label Margin="0" Grid.Row="2" Grid.Column="3" Content="To:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="6" Command="{Binding SearchRoute}" Content="Search" />
-        <TextBlock Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Tours" />
-        <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" />
-        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
-        <Button Margin="5" Grid.Row="4" Grid.Column="2" Click="ShowRouteButtonClick" Command="" Content="Route" />
-        <Button Margin="5" Grid.Row="4" Grid.Column="3" Click="ShowDescriptionButtonClick" Command="{}" Content="Description" />
-        <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
-        <Button Margin="5" Grid.Row="10" Grid.Column="5" Command="{}" Content="Zoom in" Click="ZoomInButtonClick" />
-        <Button Margin="5" Grid.Row="10" Grid.Column="6" Command="{}" Content="Zoom out" Click="ZoomOutButtonClick" />
-        <TextBlock Margin="5" Grid.Row="11" Grid.Column="2" Text="Date" />
-        <TextBlock Margin="5" Grid.Row="11" Grid.Column="3" Text="Distance" />
-        <TextBlock Margin="5" Grid.Row="11" Grid.Column="4" Text="Duration" />
-        <Image Margin="8" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\Images\bluelavender.jpg" Stretch="Uniform" x:Name="imageView" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
-            <Image.RenderTransform>
-                <ScaleTransform/>
-            </Image.RenderTransform>
-        </Image>
+        <Label Margin="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Content="From:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="To:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="5" Command="{Binding SearchRoute}" Content="Search" />
+        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" Text="Tours" />
+        <!-- <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" /> -->
+        <ListBox Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
+        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="0,0,0,0">
+            <TabItem Header="Route">
+                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+            </TabItem>
+            <TabItem Header="Description">
+                <Image Margin="8" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\Images\bluelavender.jpg" Stretch="Uniform" x:Name="imageView" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <ScaleTransform/>
+                    </Image.RenderTransform>
+                </Image>
+            </TabItem>
+        </TabControl>
+        <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="4" Command="{}" Content="Zoom in" Click="ZoomInButtonClick" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="5" Command="{}" Content="Zoom out" Click="ZoomOutButtonClick" />
+        <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Text="Date" />
+        <TextBlock Margin="5" Grid.Row="10" Grid.Column="3" Text="Distance" />
+        <TextBlock Margin="5" Grid.Row="10" Grid.Column="4" Text="Duration" />
     </Grid>
 
 </Window>
