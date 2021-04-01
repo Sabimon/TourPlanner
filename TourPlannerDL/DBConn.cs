@@ -1,13 +1,14 @@
 ﻿using Npgsql;
 using System;
+using System.IO;
 
 namespace TourPlannerDL
 {
     public class DBConn
     {
-        string connString = "Host=localhost;Username=postgres;Password=wordpass;Database=TourPlanner;Port=5432";
         private NpgsqlConnection conn;
-
+        public string path = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\db.config";
+        public string connString = "Host=localhost;Username=postgres;Password=wordpass;Database=TourPlanner;Port=5432";
         public void Connection()
         {
             try
