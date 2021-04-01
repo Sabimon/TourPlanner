@@ -27,15 +27,5 @@ namespace TourPlanner
             transform.ScaleX /= 1.1;
             transform.ScaleY /= 1.1;
         }
-        private void ShowRouteButtonClick(object sender, RoutedEventArgs e)
-        {
-            this.imageView.Visibility = Visibility.Visible;
-            this.listRoutes.Visibility = Visibility.Collapsed;
-        }
-        private void ShowDescriptionButtonClick(object sender, RoutedEventArgs e)
-        {
-            this.listRoutes.Visibility = Visibility.Visible;
-            this.imageView.Visibility = Visibility.Collapsed;
-        }
     }
 }
