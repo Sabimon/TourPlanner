@@ -29,5 +29,4 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\Ge
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Npgsql.dll
-C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.dll.config
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerVM.dll.config
