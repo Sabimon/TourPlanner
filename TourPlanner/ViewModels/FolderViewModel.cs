@@ -94,7 +94,7 @@ namespace TourPlanner.ViewModels
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.SearchRoute = new RelayCommand(o => {
-                http.FindRoute(FromDest, ToDest);
+                http.getMapImage();
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {

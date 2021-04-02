@@ -48,7 +48,7 @@ namespace TourPlannerDL
             catch (HttpRequestException e)
             {
                 Debug.WriteLine("Exception Caught!!");
-                Debug.WriteLine("Message :{0} ", e.Message);
+                Debug.WriteLine($"Message :{e.Message} ");
                 return e.Message;
             }
         }
@@ -59,10 +59,27 @@ namespace TourPlannerDL
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
                 string respBody = response.Result;
                 string fileName = fromDestination + "-" + toDestination;
-                db.InsertNewRoute(fileName);
+                //db.InsertNewRoute(fileName);
                 fileName = fileName + ".json";
 
                 Task filetask = File.WriteAllTextAsync(path + fileName, response.Result.ToString() + "\n" + respBody);
+                return respBody;
+            }
+            catch (HttpRequestException e)
+            {
+                Debug.WriteLine("Exception Caught!!");
+                Debug.WriteLine("Message :{0} ", e.Message);
+                return e.Message;
+            }
+        }
+
+        public string getMapImage()
+        {
+            try
+            {
+                var response = httpClient.GetStringAsync("https://www.mapquestapi.com/staticmap/v4/getmap?key=V5j8RGvth4UydnpUgMg2RYyVNpE12fJy&size=600,400&type=map&imagetype=png&declutter=false&shapeformat=cmp&shape=uajsFvh}qMlJsK??zKfQ??tk@urAbaEyiC??y]{|AaPsoDa~@wjEhUwaDaM{y@??t~@yY??DX&scenter=40.0337,-76.5047&ecenter=39.9978,-76.3545&traffic=4");
+                string respBody = response.Result;
+                Task filetask = File.WriteAllTextAsync(path + "Test.jpg", response.Result + "\n" + respBody);
                 return respBody;
             }
             catch (HttpRequestException e)
