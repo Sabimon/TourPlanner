@@ -12,8 +12,9 @@ namespace TourPlannerDL
     {
         private static httpListener instance = null;
         private static HttpClient httpClient = null;
+        DBConn db = new DBConn();
         private static string key = "V5j8RGvth4UydnpUgMg2RYyVNpE12fJy";
-        private static string path = "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\MapResponses\\";
+        private static string path = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
 
         public static httpListener Instance()
         {
@@ -57,7 +58,9 @@ namespace TourPlannerDL
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
                 string respBody = response.Result;
-                string fileName = fromDestination + "-" + toDestination + ".json";
+                string fileName = fromDestination + "-" + toDestination;
+                db.InsertNewRoute(fileName);
+                fileName = fileName + ".json";
 
                 Task filetask = File.WriteAllTextAsync(path + fileName, response.Result.ToString() + "\n" + respBody);
                 return respBody;
