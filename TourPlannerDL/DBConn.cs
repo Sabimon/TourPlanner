@@ -11,7 +11,7 @@ namespace TourPlannerDL
 {
     public class DBConn
     {
-        private NpgsqlConnection conn;
+        public NpgsqlConnection conn;
 
         public void Connection()
         {
@@ -32,15 +32,6 @@ namespace TourPlannerDL
         public DBConn()
         {
             Connection();
-        }
-
-        public void InsertNewRoute(string fileName)
-        {
-            using (var cmd = new NpgsqlCommand($"INSERT INTO routes (routename) VALUES (@r)", conn))
-            {
-                cmd.Parameters.AddWithValue("r", fileName);
-                cmd.ExecuteNonQuery();
-            }
         }
     }
 }

@@ -1384,12 +1384,23 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
+      "TouPlannerModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/TouPlannerModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TouPlannerModels.dll": {}
+        }
+      },
       "TourPlannerDL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Npgsql": "5.0.4",
-          "System.Configuration.ConfigurationManager": "5.0.0"
+          "System.Configuration.ConfigurationManager": "5.0.0",
+          "TouPlannerModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TourPlannerDL.dll": {}
@@ -5129,6 +5140,11 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
+    },
+    "TouPlannerModels/1.0.0": {
+      "type": "project",
+      "path": "../TouPlannerModels/TouPlannerModels.csproj",
+      "msbuildProject": "../TouPlannerModels/TouPlannerModels.csproj"
     },
     "TourPlannerDL/1.0.0": {
       "type": "project",
