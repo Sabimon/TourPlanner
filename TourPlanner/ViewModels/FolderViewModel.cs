@@ -16,6 +16,7 @@ namespace TourPlanner.ViewModels
         private string fromDest;
         private string toDest;
         private string searchTour;
+        public string imgPath=@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
@@ -84,7 +85,18 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
+        public string ImagePath
+        {
+            get { return imgPath; }
+            set
+            {
+                if ((imgPath != value))
+                {
+                    imgPath = value;
+                    RaisePropertyChangedEvent(nameof(ImagePath));
+                }
+            }
+        }
 
         public FolderViewModel()
         {
