@@ -9,11 +9,11 @@ namespace TourPlannerDL
 {
     public class DBInput
     {
-        public DBConn db = new();
+        public DBConn db;
 
         public DBInput()
         {
-
+            db = DBConn.Instance();
         }
 
         public void InsertNewRoute(string fileName)

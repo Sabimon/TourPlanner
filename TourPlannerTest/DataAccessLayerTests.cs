@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using TourPlannerBL;
+using TourPlannerModels;
 using TourPlannerDL;
 
 namespace TourPlannerTest
@@ -6,7 +8,8 @@ namespace TourPlannerTest
     public class Tests
     {
         httpListener http = new httpListener();
-        DBConn db = new DBConn();
+        DBOutput dbOut = new DBOutput();
+        DBInput dbIn = new DBInput();
 
         [Test]
         public void httpListenerNotNull()
@@ -14,9 +17,21 @@ namespace TourPlannerTest
             Assert.NotNull(http);
         }
         [Test]
-        public void DBConnNotNull()
+        public void DBOutputNotNull()
         {
-            Assert.NotNull(db);
+            Assert.NotNull(dbOut);
+        }
+        [Test]
+        public void DBInputNotNull()
+        {
+            Assert.NotNull(dbIn);
+        }
+        [Test]
+        public void GetRoutesNotNull()
+        {
+            TourPlannerManager mediaManager = TourPlannerManagerFactory.GetFactoryManager();
+            MediaFolder folder = mediaManager.GetMediaFolder("");
+            Assert.NotNull(dbOut.GetRoutes(folder));
         }
     }
 }
