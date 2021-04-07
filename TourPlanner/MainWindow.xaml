@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="Lavender" >
     <Window.DataContext>
-        <vm:FolderViewModel />
+        <vm:FolderViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -39,25 +39,28 @@
         <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="To:" />
         <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="5" Command="{Binding SearchRoute}" Content="Search" />
+        <Button Margin="5" Grid.Row="2" Grid.Column="5" Command="{Binding SearchRoute}" Content="Add Tour" />
         <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" Text="Tours" />
         <!-- <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" /> -->
-        <ListBox Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="0" Content="Search" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="1" Content="Delete" />
+        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="8" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
         <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="0,0,0,0">
             <TabItem Header="Route">
                 <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
             </TabItem>
             <TabItem Header="Description">
-                <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding ImagePath}" Stretch="UniformToFill" x:Name="imageView" RenderTransformOrigin="0.5,0.5">
+                <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding ImagePath}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
-                        <ScaleTransform/>
+                        <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                     </Image.RenderTransform>
                 </Image>
             </TabItem>
         </TabControl>
         <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="4" Command="{}" Content="Zoom in" Click="ZoomInButtonClick" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="5" Command="{}" Content="Zoom out" Click="ZoomOutButtonClick" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="3" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="4" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="5" Command="{Binding ResetZoomCommand}" Content="Reset" />
         <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Text="Date" />
         <TextBlock Margin="5" Grid.Row="10" Grid.Column="3" Text="Distance" />
         <TextBlock Margin="5" Grid.Row="10" Grid.Column="4" Text="Duration" />

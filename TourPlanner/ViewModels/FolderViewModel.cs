@@ -4,6 +4,7 @@ using System.Windows.Input;
 using TourPlannerBL;
 using TourPlannerModels;
 using TourPlannerDL;
+using System.Windows.Media;
 
 namespace TourPlanner.ViewModels
 {
@@ -16,14 +17,36 @@ namespace TourPlanner.ViewModels
         private string fromDest;
         private string toDest;
         private string searchTour;
+        private ScaleTransform image;
         public string imgPath=@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
+
+        private const decimal Unity = 1;
+        private decimal _scale = Unity;
+        public decimal ScaleStep => 0.1m;
+        public decimal MinimumScale => 0.1m;
+        public decimal MaximumScale => 4.0m;
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
         public ICommand SearchRoute { get; set; }
+        public ICommand ZoomOutCommand { get; set; }
+        public ICommand ZoomInCommand { get; set; }
+        public ICommand ResetZoomCommand { get; set; }
         public ObservableCollection<MediaItem> Items { get; set; }
         public ObservableCollection<MediaTour> Tours { get; set; }
 
+        public decimal Scale
+        {
+            get { return _scale; }
+            set
+            {
+                if ((_scale != value))
+                {
+                    _scale = value;
+                    RaisePropertyChangedEvent(nameof(Scale));
+                }
+            }
+        }
         public string FromDest
         {
             get { return fromDest; }
@@ -97,6 +120,18 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
+        public ScaleTransform ImageView
+        {
+            get { return image; }
+            set
+            {
+                if ((image != value))
+                {
+                    image = value;
+                    RaisePropertyChangedEvent(nameof(ImageView));
+                }
+            }
+        }
 
         public FolderViewModel()
         {
@@ -114,8 +149,10 @@ namespace TourPlanner.ViewModels
                     return true;
                 }
                 return false;
-            }
-            );
+            });
+            this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
+            this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
+            this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
             InitListView();
             InitListViewTour();
         }
