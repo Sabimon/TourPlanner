@@ -10,11 +10,11 @@ namespace TourPlannerDL
 {
     public class DBOutput
     {
-        public DBConn db= new();
+        public DBConn db;
 
         public DBOutput()
         {
-
+            db = DBConn.Instance();
         }
 
         public IEnumerable<MediaItem> GetRoutes(MediaFolder folder)
@@ -27,6 +27,10 @@ namespace TourPlannerDL
                 {
                     resultList.Add(new MediaItem() { Name = reader.GetString(0) });
                 }
+            }
+            if (resultList == null)
+            {
+                resultList.Add(new MediaItem() { Name = "No Tour found" });
             }
             return resultList;
         }

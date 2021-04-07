@@ -12,6 +12,7 @@ namespace TourPlannerDL
     public class DBConn
     {
         public NpgsqlConnection conn;
+        private static DBConn _instance = null;
 
         public void Connection()
         {
@@ -29,9 +30,17 @@ namespace TourPlannerDL
             }
         }
 
-        public DBConn()
+        private DBConn()
         {
             Connection();
+        }
+        public static DBConn Instance()
+        {
+            if (_instance == null)
+            {
+                _instance = new DBConn();
+            }
+            return _instance;
         }
     }
 }

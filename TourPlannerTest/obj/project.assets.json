@@ -1394,6 +1394,20 @@
           "bin/placeholder/TouPlannerModels.dll": {}
         }
       },
+      "TourPlannerBL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "TouPlannerModels": "1.0.0",
+          "TourPlannerDL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TourPlannerBL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TourPlannerBL.dll": {}
+        }
+      },
       "TourPlannerDL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5146,6 +5160,11 @@
       "path": "../TouPlannerModels/TouPlannerModels.csproj",
       "msbuildProject": "../TouPlannerModels/TouPlannerModels.csproj"
     },
+    "TourPlannerBL/1.0.0": {
+      "type": "project",
+      "path": "../TourPlannerBL/TourPlannerBL.csproj",
+      "msbuildProject": "../TourPlannerBL/TourPlannerBL.csproj"
+    },
     "TourPlannerDL/1.0.0": {
       "type": "project",
       "path": "../TourPlannerDL/TourPlannerDL.csproj",
@@ -5157,7 +5176,7 @@
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
       "NUnit3TestAdapter >= 3.16.1",
-      "TourPlannerDL >= 1.0.0"
+      "TourPlannerBL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5187,8 +5206,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj"
+            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj"
             }
           }
         }
