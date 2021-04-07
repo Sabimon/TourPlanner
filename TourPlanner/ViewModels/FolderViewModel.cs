@@ -16,6 +16,7 @@ namespace TourPlanner.ViewModels
         private string fromDest;
         private string toDest;
         private string searchTour;
+        public string imgPath=@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
@@ -84,7 +85,18 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
+        public string ImagePath
+        {
+            get { return imgPath; }
+            set
+            {
+                if ((imgPath != value))
+                {
+                    imgPath = value;
+                    RaisePropertyChangedEvent(nameof(ImagePath));
+                }
+            }
+        }
 
         public FolderViewModel()
         {
@@ -94,7 +106,8 @@ namespace TourPlanner.ViewModels
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.SearchRoute = new RelayCommand(o => {
-                http.FindRoute(FromDest, ToDest);
+                //http.FindRoute(FromDest, ToDest);
+                //http.GetAndSaveImage(FromDest, ToDest);
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {

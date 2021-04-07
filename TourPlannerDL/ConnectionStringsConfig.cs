@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlannerDL
 {
-    public class ConnectionStringsConfig
+    public class ConnectionStringsConfig //has to have same name as config section in app.config
     {
         public string Host { get; set; }
         public string Username { get; set; }

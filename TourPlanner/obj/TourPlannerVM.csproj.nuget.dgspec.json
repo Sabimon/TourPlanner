@@ -84,6 +84,9 @@
             "projectReferences": {
               "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
                 "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
+              },
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj"
               }
             }
           }
@@ -139,7 +142,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

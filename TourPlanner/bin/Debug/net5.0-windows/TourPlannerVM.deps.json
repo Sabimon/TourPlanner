@@ -71,7 +71,8 @@
       },
       "TourPlannerBL/1.0.0": {
         "dependencies": {
-          "TouPlannerModels": "1.0.0"
+          "TouPlannerModels": "1.0.0",
+          "TourPlannerDL": "1.0.0"
         },
         "runtime": {
           "TourPlannerBL.dll": {}
@@ -80,7 +81,8 @@
       "TourPlannerDL/1.0.0": {
         "dependencies": {
           "Npgsql": "5.0.4",
-          "System.Configuration.ConfigurationManager": "5.0.0"
+          "System.Configuration.ConfigurationManager": "5.0.0",
+          "TouPlannerModels": "1.0.0"
         },
         "runtime": {
           "TourPlannerDL.dll": {}

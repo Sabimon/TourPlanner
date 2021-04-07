@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TourPlannerModels;
+using TourPlannerDL;
 
 namespace TourPlannerBL {
     internal class TourPlannerManagerImpl : TourPlannerManager {
 
         public IEnumerable<MediaItem> GetItems(MediaFolder folder) {
-            // usually querying the disk, or from a DB, or ...
-            return new List<MediaItem>() {
-                new MediaItem() { Name = "Tour1" },
-                new MediaItem() { Name = "Tour2" },
-                new MediaItem() { Name = "Tour3" }
-            };
+            DBOutput db = new DBOutput();
+            return db.GetRoutes(folder);
         }
 
         public IEnumerable<MediaTour> GetTours(MediaFolder folder2){

@@ -48,7 +48,7 @@
                 <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
             </TabItem>
             <TabItem Header="Description">
-                <Image Margin="8" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\Images\bluelavender.jpg" Stretch="Uniform" x:Name="imageView" RenderTransformOrigin="0.5,0.5">
+                <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding ImagePath}" Stretch="UniformToFill" x:Name="imageView" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <ScaleTransform/>
                     </Image.RenderTransform>
