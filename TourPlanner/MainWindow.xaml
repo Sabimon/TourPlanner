@@ -40,10 +40,10 @@
         <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="To:" />
         <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="6" Command="{Binding SearchRoute}" Content="Add Tour" />
+        <Button Margin="5" Grid.Row="2" Grid.Column="6" Command="{Binding AddRoute}" Content="Add Tour" />
         <Button Margin="5" Grid.Row="3" Grid.Column="0" Content="Search" />
         <Button Margin="5" Grid.Row="3" Grid.Column="1" Content="Delete" />
-        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="7" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
+        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="7" Name="listMediaItems" ItemsSource="{Binding Items, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
         <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="0,0,0,0">
             <TabItem Header="Route">
                 <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding ImagePath}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >

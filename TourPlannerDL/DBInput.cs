@@ -16,11 +16,13 @@ namespace TourPlannerDL
             db = DBConn.Instance();
         }
 
-        public void InsertNewRoute(string fileName)
+        public void InsertNewRoute(string FromDest, string ToDest)
         {
+            db.conn.Close();
+            db.conn.Open();
             using (var cmd = new NpgsqlCommand($"INSERT INTO routes (routename) VALUES (@r)", db.conn))
             {
-                cmd.Parameters.AddWithValue("r", fileName);
+                cmd.Parameters.AddWithValue("r", $"{FromDest}-{ToDest}");
                 cmd.ExecuteNonQuery();
             }
         }

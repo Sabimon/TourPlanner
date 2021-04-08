@@ -11,6 +11,8 @@ namespace TourPlanner.ViewModels
     public class FolderViewModel : ViewModelBase
     {
         private TourPlannerManager mediaManager;
+        private httpListener http = httpListener.Instance();
+        private DBInput dbIn=new(); 
         private MediaItem currentItem;
         private MediaTour currentTour;
         private MediaFolder folder;
@@ -28,7 +30,7 @@ namespace TourPlanner.ViewModels
 
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
-        public ICommand SearchRoute { get; set; }
+        public ICommand AddRoute { get; set; }
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
@@ -136,13 +138,13 @@ namespace TourPlanner.ViewModels
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
-            httpListener http = httpListener.Instance();
             Items = new ObservableCollection<MediaItem>();
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
-            this.SearchRoute = new RelayCommand(o => {
+            this.AddRoute = new RelayCommand(o => {
                 //http.FindRoute(FromDest, ToDest);
                 //http.GetAndSaveImage(FromDest, ToDest);
+                dbIn.InsertNewRoute(FromDest, ToDest);
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
