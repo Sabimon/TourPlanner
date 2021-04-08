@@ -5,11 +5,13 @@ using TourPlannerDL;
 
 namespace TourPlannerTest
 {
+    [TestFixture]
     public class Tests
     {
-        httpListener http = new httpListener();
-        DBOutput dbOut = new DBOutput();
-        DBInput dbIn = new DBInput();
+        httpListener http = httpListener.Instance();
+        DBConn db = DBConn.Instance();
+        DBOutput dbOut = new();
+        DBInput dbIn = new();
 
         [Test]
         public void httpListenerNotNull()
@@ -17,21 +19,16 @@ namespace TourPlannerTest
             Assert.NotNull(http);
         }
         [Test]
-        public void DBOutputNotNull()
+        public void DBConnNotNull()
         {
-            Assert.NotNull(dbOut);
-        }
-        [Test]
-        public void DBInputNotNull()
-        {
-            Assert.NotNull(dbIn);
+            Assert.IsNotNull(db);
         }
         [Test]
         public void GetRoutesNotNull()
         {
             TourPlannerManager mediaManager = TourPlannerManagerFactory.GetFactoryManager();
             MediaFolder folder = mediaManager.GetMediaFolder("");
-            Assert.NotNull(dbOut.GetRoutes(folder));
+            Assert.IsNotNull(dbOut.GetRoutes(folder));
         }
     }
 }

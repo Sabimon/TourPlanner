@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    "net5.0-windows7.0": {
       "Microsoft.CodeCoverage/16.5.0": {
         "type": "package",
         "compile": {
@@ -1422,6 +1422,24 @@
         "runtime": {
           "bin/placeholder/TourPlannerDL.dll": {}
         }
+      },
+      "TourPlannerVM/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "TouPlannerModels": "1.0.0",
+          "TourPlannerBL": "1.0.0",
+          "TourPlannerDL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TourPlannerVM.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TourPlannerVM.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -5169,14 +5187,19 @@
       "type": "project",
       "path": "../TourPlannerDL/TourPlannerDL.csproj",
       "msbuildProject": "../TourPlannerDL/TourPlannerDL.csproj"
+    },
+    "TourPlannerVM/1.0.0": {
+      "type": "project",
+      "path": "../TourPlanner/TourPlannerVM.csproj",
+      "msbuildProject": "../TourPlanner/TourPlannerVM.csproj"
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    "net5.0-windows7.0": [
       "Microsoft.NET.Test.Sdk >= 16.5.0",
       "NUnit >= 3.12.0",
       "NUnit3TestAdapter >= 3.16.1",
-      "TourPlannerBL >= 1.0.0"
+      "TourPlannerVM >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5196,18 +5219,18 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net5.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj"
+            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj"
             }
           }
         }
@@ -5219,8 +5242,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",

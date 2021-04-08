@@ -18,7 +18,7 @@ namespace TourPlanner.ViewModels
         private string toDest;
         private string searchTour;
         private ScaleTransform image;
-        public string imgPath=@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
+        public string imgPath= @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
 
         private const decimal Unity = 1;
         private decimal _scale = Unity;
@@ -136,7 +136,7 @@ namespace TourPlanner.ViewModels
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
-            httpListener http = new httpListener();
+            httpListener http = httpListener.Instance();
             Items = new ObservableCollection<MediaItem>();
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");

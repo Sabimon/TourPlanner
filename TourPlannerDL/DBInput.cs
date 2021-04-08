@@ -9,7 +9,7 @@ namespace TourPlannerDL
 {
     public class DBInput
     {
-        public DBConn db;
+        DBConn db;
 
         public DBInput()
         {

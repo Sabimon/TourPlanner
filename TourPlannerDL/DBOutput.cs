@@ -10,7 +10,7 @@ namespace TourPlannerDL
 {
     public class DBOutput
     {
-        public DBConn db;
+        DBConn db;
 
         public DBOutput()
         {

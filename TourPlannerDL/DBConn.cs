@@ -34,6 +34,7 @@ namespace TourPlannerDL
         {
             Connection();
         }
+
         public static DBConn Instance()
         {
             if (_instance == null)

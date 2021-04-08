@@ -18,15 +18,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net5.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
             "projectReferences": {}
           }
         },
@@ -37,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "imports": [
             "net461",
             "net462",
@@ -72,15 +72,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net5.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
             "projectReferences": {
               "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
                 "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
@@ -98,8 +98,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "imports": [
             "net461",
             "net462",
@@ -133,15 +133,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net5.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
             "projectReferences": {
               "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
                 "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
@@ -156,8 +156,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "dependencies": {
             "Npgsql": {
               "target": "Package",
@@ -201,18 +201,18 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net5.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj": {
-                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj"
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj"
               }
             }
           }
@@ -224,8 +224,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
@@ -253,6 +253,73 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
+        "projectName": "TourPlannerVM",
+        "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0-windows7.0": {
+            "targetAlias": "net5.0-windows",
+            "projectReferences": {
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
+              },
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj"
+              },
+              "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj": {
+                "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerDL\\TourPlannerDL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
