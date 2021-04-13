@@ -24,5 +24,14 @@ namespace TourPlannerDL
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void DeleteRoute(string route)
+        {
+            using (var cmd = new NpgsqlCommand($"DELETE FROM routes WHERE routename = (@r)", db.conn))
+            {
+                cmd.Parameters.AddWithValue("r", route);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

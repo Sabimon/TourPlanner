@@ -31,6 +31,8 @@ namespace TourPlanner.ViewModels
         public ICommand SearchCommand { get; set; }
         public ICommand ClearCommand { get; set; }
         public ICommand AddRoute { get; set; }
+        public ICommand SearchRoute { get; set; }
+        public ICommand DeleteRoute { get; set; }
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
@@ -144,13 +146,20 @@ namespace TourPlanner.ViewModels
             this.AddRoute = new RelayCommand(o => {
                 dbIn.InsertNewRoute(FromDest, ToDest);
                 Items.Clear();
-                FillListView();//update Item List, but there is propably a better way to do this
+                FillListView();//update Item List, there is propably a better way to do this
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
                     return true;
                 }
                 return false;
+            });
+            this.SearchRoute = new RelayCommand(o => {
+                //http.FindRoute(from - to substrings);
+            });
+            this.DeleteRoute = new RelayCommand(o => {
+                dbIn.DeleteRoute(CurrentItem.Name);
+                Items.Remove(CurrentItem);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
