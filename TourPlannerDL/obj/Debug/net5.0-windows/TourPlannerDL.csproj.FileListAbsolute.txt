@@ -13,3 +13,4 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0-windows\
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0-windows\TourPlannerDL.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0-windows\ref\TourPlannerDL.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\obj\Debug\net5.0-windows\TourPlannerDL.pdb
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\bin\Debug\net5.0-windows\TourPlannerDL.dll.config

@@ -27,6 +27,7 @@ namespace TourPlannerDL
                 {
                     resultList.Add(new MediaItem() { Name = reader.GetString(0) });
                 }
+                reader.Close();
             }
             if (resultList == null)
             {

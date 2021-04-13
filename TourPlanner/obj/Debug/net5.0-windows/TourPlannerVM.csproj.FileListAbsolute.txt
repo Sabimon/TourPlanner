@@ -30,3 +30,4 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\To
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\ref\TourPlannerVM.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.genruntimeconfig.cache
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.dll.config
