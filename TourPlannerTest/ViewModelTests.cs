@@ -16,7 +16,7 @@ namespace TourPlannerTest
         public void PropertyTest()
         {
             FolderViewModel VM = new FolderViewModel();
-            VM.ImagePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
+            //VM.ImagePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
             Assert.NotNull(VM.ImagePath);
         }
     }

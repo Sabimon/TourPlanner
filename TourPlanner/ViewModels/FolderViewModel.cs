@@ -142,9 +142,9 @@ namespace TourPlanner.ViewModels
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
-                //http.FindRoute(FromDest, ToDest);
-                //http.GetAndSaveImage(FromDest, ToDest);
                 dbIn.InsertNewRoute(FromDest, ToDest);
+                Items.Clear();
+                FillListView();//update Item List, but there is propably a better way to do this
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
