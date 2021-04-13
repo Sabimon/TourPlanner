@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "j0Rh1fht/fOBangnrfWFm53iLVrHEv2scKfsUrCkCPR1fITFOeh9IBUF5pwX3ZuiIqfCRlM6E6QZBUWh68zAtA==",
+  "dgSpecHash": "wvR/okoMEDMaITtgvNqqQhrl1j2DiBc/CBEZ7AV/esRYwPC0OC8RBQoBmzTxz1lYP65I4p2fmLXkHaWtEYKW1w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerTest\\TourPlannerTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\log4net\\2.0.12\\log4net.2.0.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.dotnet.internalabstractions\\1.0.0\\microsoft.dotnet.internalabstractions.1.0.0.nupkg.sha512",

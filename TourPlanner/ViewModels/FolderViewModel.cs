@@ -12,14 +12,13 @@ namespace TourPlanner.ViewModels
     {
         private TourPlannerManager mediaManager;
         private httpListener http = httpListener.Instance();
-        private DBInput dbIn=new(); 
+        //private DBInput dbIn=new(); 
         private MediaItem currentItem;
         private MediaTour currentTour;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
         private string searchTour;
-        private ScaleTransform image;
         public string imgPath= @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
 
         private const decimal Unity = 1;
@@ -124,18 +123,6 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public ScaleTransform ImageView
-        {
-            get { return image; }
-            set
-            {
-                if ((image != value))
-                {
-                    image = value;
-                    RaisePropertyChangedEvent(nameof(ImageView));
-                }
-            }
-        }
 
         public FolderViewModel()
         {
@@ -144,7 +131,7 @@ namespace TourPlanner.ViewModels
             Tours = new ObservableCollection<MediaTour>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
-                dbIn.InsertNewRoute(FromDest, ToDest);
+                //dbIn.InsertNewRoute(FromDest, ToDest);
                 Items.Clear();
                 FillListView();//update Item List, there is propably a better way to do this
             }, (_) =>{ //(_) braucht keinen Parameter
@@ -158,7 +145,7 @@ namespace TourPlanner.ViewModels
                 //http.FindRoute(from - to substrings);
             });
             this.DeleteRoute = new RelayCommand(o => {
-                dbIn.DeleteRoute(CurrentItem.Name);
+                //dbIn.DeleteRoute(CurrentItem.Name);
                 Items.Remove(CurrentItem);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);

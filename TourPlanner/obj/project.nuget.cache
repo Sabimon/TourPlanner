@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7dcavVgn+8uoab+F5JkTfeOG3B4PwjHKTbvY2RJhGm38H0D5cs+sF0u6+zHZpitOIwFUErsMmEPALJlfGPypwQ==",
+  "dgSpecHash": "5Ni9M8C+8FHxNnjayuJzEIyt/vGa9tPvZGkL3avpwndF2QGAc27Jr317GuwiL5F6s1PcUeAKL+HRNlqObjignw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlanner\\TourPlannerVM.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\log4net\\2.0.12\\log4net.2.0.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",

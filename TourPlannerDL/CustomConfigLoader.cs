@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+
+//code snacked from: https://makolyte.com/csharp-how-to-read-a-custom-class-from-app-config-with-an-automatic-loader/
 
 namespace TourPlannerDL
 {
