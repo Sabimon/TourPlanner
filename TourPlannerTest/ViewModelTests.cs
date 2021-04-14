@@ -17,7 +17,7 @@ namespace TourPlannerTest
         {
             FolderViewModel VM = new FolderViewModel();
             VM.imgPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
-            Assert.NotNull(VM.imgPath);
+            NUnit.Framework.Assert.NotNull(VM.imgPath);
         }
     }
 }

@@ -5,6 +5,9 @@ using TourPlannerBL;
 using TourPlannerModels;
 using TourPlannerDL;
 using System.Windows.Media;
+using System.IO;
+using System.Windows.Media.Imaging;
+using System;
 
 namespace TourPlanner.ViewModels
 {
@@ -12,14 +15,12 @@ namespace TourPlanner.ViewModels
     {
         private TourPlannerManager mediaManager;
         private httpListener http = httpListener.Instance();
-        //private DBInput dbIn=new(); 
-        private MediaItem currentItem;
-        private MediaTour currentTour;
+        private DBInput dbIn=new(); 
+        private MediaItem currentInfo;
+        private MediaItem currentTour;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
-        private string searchTour;
-        public string imgPath= @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\Wien-Linz.jpg";
 
         private const decimal Unity = 1;
         private decimal _scale = Unity;
@@ -27,16 +28,14 @@ namespace TourPlanner.ViewModels
         public decimal MinimumScale => 0.1m;
         public decimal MaximumScale => 4.0m;
 
-        public ICommand SearchCommand { get; set; }
-        public ICommand ClearCommand { get; set; }
         public ICommand AddRoute { get; set; }
         public ICommand SearchRoute { get; set; }
         public ICommand DeleteRoute { get; set; }
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
-        public ObservableCollection<MediaItem> Items { get; set; }
-        public ObservableCollection<MediaTour> Tours { get; set; }
+        public ObservableCollection<MediaItem> Infos { get; set; }
+        public ObservableCollection<MediaItem> Tours { get; set; }
 
         public decimal Scale
         {
@@ -74,20 +73,8 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public string SearchTour
-        {
-            get { return searchTour; }
-            set
-            {
-                if ((searchTour != value))
-                {
-                    searchTour = value;
-                    RaisePropertyChangedEvent(nameof(SearchTour));
-                }
-            }
-        }
 
-        public MediaTour CurrentTour
+        public MediaItem CurrentTour
         {
             get { return currentTour; }
             set
@@ -95,45 +82,64 @@ namespace TourPlanner.ViewModels
                 if ((currentTour != value) && (value != null))
                 {
                     currentTour = value;
-                    RaisePropertyChangedEvent(nameof(CurrentTour)); 
+                    RaisePropertyChangedEvent(nameof(CurrentTour));
+                    RaisePropertyChangedEvent(nameof(SelectedTourMapImage));
                 }
             }
         }
-        public MediaItem CurrentItem
+        public MediaItem CurrentInfo
         {
-            get { return currentItem; }
+            get { return currentInfo; }
             set
             {
-                if ((currentItem != value) && (value != null))
+                if ((currentInfo != value) && (value != null))
                 {
-                    currentItem = value;
-                    RaisePropertyChangedEvent(nameof(CurrentItem));
+                    currentInfo = value;
+                    RaisePropertyChangedEvent(nameof(CurrentInfo));
                 }
             }
         }
-        public string ImagePath
+
+        public ImageSource SelectedTourMapImage
         {
-            get { return imgPath; }
-            set
+            get
             {
-                if ((imgPath != value))
+                if (CurrentTour != null)
                 {
-                    imgPath = value;
-                    RaisePropertyChangedEvent(nameof(ImagePath));
+                    try
+                    {
+                        string location = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
+                        if (File.Exists(location))
+                        {
+                            var bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                            bitmap.UriSource = new Uri(location);
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
+
+                            return bitmap;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        return null;
+                    }
                 }
+                return null;
             }
         }
 
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
-            Items = new ObservableCollection<MediaItem>();
-            Tours = new ObservableCollection<MediaTour>();
+            Tours = new ObservableCollection<MediaItem>();
+            Infos = new ObservableCollection<MediaItem>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
-                //dbIn.InsertNewRoute(FromDest, ToDest);
-                Items.Clear();
-                FillListView();//update Item List, there is propably a better way to do this
+                dbIn.InsertNewRoute(FromDest, ToDest);
+                Tours.Clear();
+                FillListViewTours();//update Item List, there is propably a better way to do this
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
@@ -145,41 +151,40 @@ namespace TourPlanner.ViewModels
                 //http.FindRoute(from - to substrings);
             });
             this.DeleteRoute = new RelayCommand(o => {
-                //dbIn.DeleteRoute(CurrentItem.Name);
-                Items.Remove(CurrentItem);
+                dbIn.DeleteRoute(CurrentTour.Name);
+                Tours.Remove(CurrentTour);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
-            InitListView();
+            InitListViewInfos();
             InitListViewTour();
-        }
-
-
-        public void InitListView()
-        {
-            Items = new ObservableCollection<MediaItem>();
-            FillListView();
         }
 
         public void InitListViewTour()
         {
-            Tours = new ObservableCollection<MediaTour>();
+            Tours = new ObservableCollection<MediaItem>();
             FillListViewTours();
         }
 
-        private void FillListView()
-        {
-            foreach (MediaItem item in mediaManager.GetItems(folder))
-            {
-                Items.Add(item);
-            }
-        }
         private void FillListViewTours()
         {
-            foreach (MediaTour tour in mediaManager.GetTours(folder))
+            foreach (MediaItem item in mediaManager.GetTours(folder))
             {
-                Tours.Add(tour);
+                Tours.Add(item);
+            }
+        }
+        public void InitListViewInfos()
+        {
+            Infos = new ObservableCollection<MediaItem>();
+            FillListViewInfos();
+        }
+
+        private void FillListViewInfos()
+        {
+            foreach (MediaItem tour in mediaManager.GetInfos(folder))
+            {
+                Infos.Add(tour);
             }
         }
     }

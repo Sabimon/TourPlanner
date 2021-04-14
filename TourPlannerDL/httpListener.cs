@@ -12,7 +12,7 @@ namespace TourPlannerDL
         private static httpListener instance = null;
         private static HttpClient httpClient = null;
         private static string key = "V5j8RGvth4UydnpUgMg2RYyVNpE12fJy";
-        private static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
+        public static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
         private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
 
         public static httpListener Instance()
