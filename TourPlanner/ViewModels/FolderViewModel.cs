@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TourPlannerBL;
 using TourPlannerModels;
@@ -15,9 +14,9 @@ namespace TourPlanner.ViewModels
     {
         private TourPlannerManager mediaManager;
         private httpListener http = httpListener.Instance();
-        private DBInput dbIn=new(); 
-        private MediaItem currentInfo;
+        private DBInput dbIn=new();
         private MediaItem currentTour;
+        private MediaItem currentInfo;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
@@ -34,8 +33,8 @@ namespace TourPlanner.ViewModels
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
-        public ObservableCollection<MediaItem> Infos { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
+        public ObservableCollection<MediaItem> Infos { get; set; }
 
         public decimal Scale
         {
@@ -106,24 +105,17 @@ namespace TourPlanner.ViewModels
             {
                 if (CurrentTour != null)
                 {
-                    try
+                    string location = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
+                    if (File.Exists(location))
                     {
-                        string location = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
-                        if (File.Exists(location))
-                        {
-                            var bitmap = new BitmapImage();
-                            bitmap.BeginInit();
-                            bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                            bitmap.UriSource = new Uri(location);
-                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmap.EndInit();
+                        var bitmap = new BitmapImage();
+                        bitmap.BeginInit();
+                        bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                        bitmap.UriSource = new Uri(location);
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.EndInit();
 
-                            return bitmap;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        return null;
+                        return bitmap;
                     }
                 }
                 return null;
@@ -148,6 +140,8 @@ namespace TourPlanner.ViewModels
                 return false;
             });
             this.SearchRoute = new RelayCommand(o => {
+                JsonHandler json = new();
+                json.DeserializeJSON();
                 //http.FindRoute(from - to substrings);
             });
             this.DeleteRoute = new RelayCommand(o => {

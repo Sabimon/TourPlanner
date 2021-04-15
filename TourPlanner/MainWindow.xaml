@@ -53,7 +53,7 @@
                 </Image>
             </TabItem>
             <TabItem Header="Description">
-                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Infos}" SelectedItem="{Binding CurrentInfo}" DisplayMemberPath="Name" />
             </TabItem>
         </TabControl>
         <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
