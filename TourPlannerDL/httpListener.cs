@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace TourPlannerDL
 {
@@ -40,8 +41,6 @@ namespace TourPlannerDL
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=Wien&to=Graz");
                 string respBody = response.Result;
-
-                Task filetask = File.WriteAllTextAsync(RoutePath + "Test.json", respBody);
                 return respBody;
             }
             catch (HttpRequestException e)
@@ -58,9 +57,9 @@ namespace TourPlannerDL
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
                 string respBody = response.Result;
                 string fileName = fromDestination + "-" + toDestination;
-                string fileLocation = $@"{RoutePath}\{fileName}.json";
-
-                Task filetask = File.WriteAllTextAsync(fileLocation, respBody);
+                //do JSON stuff
+                //string fileLocation = $@"{RoutePath}\{fileName}.json";
+                //Task filetask = File.WriteAllTextAsync(fileLocation, respBody);
                 return respBody;
             }
             catch (HttpRequestException e)

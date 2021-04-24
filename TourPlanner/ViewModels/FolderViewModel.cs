@@ -26,6 +26,7 @@ namespace TourPlanner.ViewModels
         public decimal ScaleStep => 0.1m;
         public decimal MinimumScale => 0.1m;
         public decimal MaximumScale => 4.0m;
+        //Code for zoom commands snacked from: https://www.carlosjanderson.com/let-users-zoom-in-or-out-of-a-wpf-view/
 
         public ICommand AddRoute { get; set; }
         public ICommand SearchRoute { get; set; }
@@ -129,9 +130,9 @@ namespace TourPlanner.ViewModels
             Infos = new ObservableCollection<MediaItem>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
-                dbIn.InsertNewRoute(FromDest, ToDest);
+                dbIn.InsertNewRoute(FromDest, ToDest);//in BL
                 Tours.Clear();
-                FillListViewTours();//update Item List, there is propably a better way to do this
+                FillListViewTours();//update Item List
             }, (_) =>{ //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
@@ -141,11 +142,12 @@ namespace TourPlanner.ViewModels
             });
             this.SearchRoute = new RelayCommand(o => {
                 JsonHandler json = new();
-                json.DeserializeJSON();
+                json.DeserializeJSON(); //in BL
                 //http.FindRoute(from - to substrings);
+                //http.FindRoute("Wien", "London");
             });
             this.DeleteRoute = new RelayCommand(o => {
-                dbIn.DeleteRoute(CurrentTour.Name);
+                dbIn.DeleteRoute(CurrentTour.Name); //in BL
                 Tours.Remove(CurrentTour);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
