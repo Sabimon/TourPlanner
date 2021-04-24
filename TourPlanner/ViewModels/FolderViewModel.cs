@@ -142,7 +142,7 @@ namespace TourPlanner.ViewModels
             });
             this.SearchRoute = new RelayCommand(o => {
                 JsonHandler json = new();
-                json.DeserializeJSON(); //in BL
+                json.DeserializeJSON(File.ReadAllText(@$"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\Floridsdorf-Kagran.json")); //in BL
                 //http.FindRoute(from - to substrings);
                 //http.FindRoute("Wien", "London");
             });

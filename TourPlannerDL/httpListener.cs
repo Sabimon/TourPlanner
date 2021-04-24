@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TourPlannerDL
 {
@@ -14,7 +15,7 @@ namespace TourPlannerDL
         private static HttpClient httpClient = null;
         private static string key = "V5j8RGvth4UydnpUgMg2RYyVNpE12fJy";
         public static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
-        private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
+        //private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
 
         public static httpListener Instance()
         {
@@ -58,6 +59,15 @@ namespace TourPlannerDL
                 string respBody = response.Result;
                 string fileName = fromDestination + "-" + toDestination;
                 //do JSON stuff
+                var jsonData = JObject.Parse(respBody);
+                JsonSerializer serializer = new JsonSerializer();
+
+                using (StreamWriter sw = new StreamWriter(@$"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\test.json"))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, "distance: " + jsonData["route"]["distance"]);
+                    serializer.Serialize(writer, "total time: " + jsonData["route"]["formattedTime"]);
+                }
                 //string fileLocation = $@"{RoutePath}\{fileName}.json";
                 //Task filetask = File.WriteAllTextAsync(fileLocation, respBody);
                 return respBody;

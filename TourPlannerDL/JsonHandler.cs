@@ -13,30 +13,18 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace TourPlannerDL
 {
-    public class route
-    {
-        public float distance { get; set; }
-        public DateTime formattedTime { get; set; }
-    }
-    public class Info
-    {
-        //public List<infos> route { get; set; }
-    }
-
     public class JsonHandler
     {
-        public void DeserializeJSON()
+        DBInput dbIn = new();
+        public void DeserializeJSON(string json)
         {
-            string filename = @$"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\Floridsdorf-Kagran.json";
-            var json = File.ReadAllText(filename);
             var jsonData = JObject.Parse(json);
             JsonSerializer serializer = new JsonSerializer();
-
-            using (StreamWriter sw = new StreamWriter(@$"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\test.json"))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-                serializer.Serialize(writer, jsonData["route"]["distance"]);
-            }
+            var distance = jsonData["route"]["distance"].ToString();
+            var totalTime = jsonData["route"]["formattedTime"].ToString();
+            var highway = jsonData["route"]["hasHighway"].ToString();
+            var access = jsonData["route"]["hasAccessRestriction"].ToString();
+            dbIn.InsertTourLogs(distance, totalTime, highway, access);
         }
     }
 }
