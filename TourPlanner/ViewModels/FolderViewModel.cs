@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using TourPlannerBL;
 using TourPlannerModels;
-using TourPlannerDL;
 using System.Windows.Media;
 using System.IO;
 using System.Windows.Media.Imaging;
@@ -13,8 +12,8 @@ namespace TourPlanner.ViewModels
     public class FolderViewModel : ViewModelBase
     {
         private TourPlannerManager mediaManager;
-        private httpListener http = httpListener.Instance();
-        private DBInput dbIn=new();
+        private httpBusiness http = new();
+        private DBBusiness db = new();
         private MediaItem currentTour;
         private MediaItem currentInfo;
         private MediaFolder folder;
@@ -130,7 +129,7 @@ namespace TourPlanner.ViewModels
             Infos = new ObservableCollection<MediaItem>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
-                dbIn.InsertNewRoute(FromDest, ToDest);//in BL
+                db.InsertNewRoute(FromDest, ToDest);
                 Tours.Clear();
                 FillListViewTours();//update Item List
             }, (_) =>{ //(_) braucht keinen Parameter
@@ -141,13 +140,10 @@ namespace TourPlanner.ViewModels
                 return false;
             });
             this.SearchRoute = new RelayCommand(o => {
-                JsonHandler json = new();
-                json.DeserializeJSON(File.ReadAllText(@$"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\Floridsdorf-Kagran.json")); //in BL
-                //http.FindRoute(from - to substrings);
                 //http.FindRoute("Wien", "London");
             });
             this.DeleteRoute = new RelayCommand(o => {
-                dbIn.DeleteRoute(CurrentTour.Name); //in BL
+                db.DeleteRoute(CurrentTour.Name);
                 Tours.Remove(CurrentTour);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
