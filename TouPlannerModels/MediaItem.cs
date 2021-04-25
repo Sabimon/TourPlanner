@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace TourPlannerModels {
+namespace TourPlannerModels 
+{
     public class MediaItem {
         public string Name { get; set; }
         public string Url { get; set; }

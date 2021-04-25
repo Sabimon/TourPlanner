@@ -23,8 +23,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -37,14 +42,14 @@
         <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
         <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
         <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="To:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="6" Command="{Binding AddRoute}" Content="Add Tour" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Margin="0" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Content="To:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="8" Command="{Binding AddRoute}" Content="Add Tour" />
         <Button Margin="5" Grid.Row="3" Grid.Column="0" Command="{Binding SearchRoute}" Content="Search" />
         <Button Margin="5" Grid.Row="3" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
         <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="7" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
-        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="0,0,0,0">
+        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="9" Margin="0,0,0,0">
             <TabItem Header="Route">
                 <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
@@ -57,12 +62,23 @@
             </TabItem>
         </TabControl>
         <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="4" Command="{Binding ZoomInCommand}" Content="Zoom in" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="5" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="6" Command="{Binding ResetZoomCommand}" Content="Reset" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Text="Date" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="3" Text="Distance" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="4" Text="Duration" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="8" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="9" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="9" Grid.Column="10" Command="{Binding ResetZoomCommand}" Content="Reset" />
+        <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="9" Grid.RowSpan="5" Name="Logs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
+                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>
+                <DataGridTextColumn Header="Total Cost"  Binding="{Binding Cost}"/>
+                <DataGridTextColumn Header="Weather"  Binding="{Binding Weather}"/>
+                <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
+                <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
+                <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </Window>

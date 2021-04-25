@@ -31,19 +31,19 @@ namespace TourPlannerDL
 
         public void InsertTourLogs(string distance, string totalTime, string highway, string access)
         {
-            using (var cmd = new NpgsqlCommand($"INSERT INTO logs (\"routeID\", report, rating, animals, cost, weather, total_time, date, distance, highway, access) VALUES (@a, @b, @c, @d, @e, @f, @g, @h, @i, @j, @k)", db.conn))
+            using (var cmd = new NpgsqlCommand($"INSERT INTO logs (\"routeID\", report, weather, total_time, date, distance, highway, access, rating, animals, cost) VALUES (@a, @b, @c, @d, @e, @f, @g, @h, @i, @j, @k)", db.conn))
             {
                 cmd.Parameters.AddWithValue("a", 1);
                 cmd.Parameters.AddWithValue("b", "dauert lange");
-                cmd.Parameters.AddWithValue("c", 1);
-                cmd.Parameters.AddWithValue("d", 1);
-                cmd.Parameters.AddWithValue("e", 10.5);
-                cmd.Parameters.AddWithValue("g", "rainy");
-                cmd.Parameters.AddWithValue("f", totalTime);
-                cmd.Parameters.AddWithValue("h", "24.01.");
-                cmd.Parameters.AddWithValue("i", distance); 
-                cmd.Parameters.AddWithValue("j", highway);
-                cmd.Parameters.AddWithValue("k", access);
+                cmd.Parameters.AddWithValue("c", "rainy");
+                cmd.Parameters.AddWithValue("d", totalTime);
+                cmd.Parameters.AddWithValue("e", "24.01.");
+                cmd.Parameters.AddWithValue("g", distance);
+                cmd.Parameters.AddWithValue("f", highway);
+                cmd.Parameters.AddWithValue("h", access);
+                cmd.Parameters.AddWithValue("i", "1"); 
+                cmd.Parameters.AddWithValue("j", "true");
+                cmd.Parameters.AddWithValue("k", "10.5");
                 cmd.ExecuteNonQuery();
             }
         }

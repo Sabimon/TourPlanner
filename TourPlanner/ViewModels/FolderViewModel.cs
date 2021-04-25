@@ -6,6 +6,9 @@ using System.Windows.Media;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System;
+using System.Collections.Generic;
+using TourPlannerDL;
+using System.Data;
 
 namespace TourPlanner.ViewModels
 {
@@ -19,6 +22,7 @@ namespace TourPlanner.ViewModels
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
+        private DataTable logDataTable;
 
         private const decimal Unity = 1;
         private decimal _scale = Unity;
@@ -35,6 +39,7 @@ namespace TourPlanner.ViewModels
         public ICommand ResetZoomCommand { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
         public ObservableCollection<MediaItem> Infos { get; set; }
+        public ObservableCollection<Logs> Logs { get; set; }
 
         public decimal Scale
         {
@@ -72,7 +77,6 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
         public MediaItem CurrentTour
         {
             get { return currentTour; }
@@ -98,7 +102,6 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-
         public ImageSource SelectedTourMapImage
         {
             get
@@ -121,12 +124,25 @@ namespace TourPlanner.ViewModels
                 return null;
             }
         }
+        public DataTable LogDataTable
+        {
+            get { return logDataTable; }
+            set
+            {
+                if ((logDataTable != value))
+                {
+                    logDataTable = value;
+                    RaisePropertyChangedEvent(nameof(LogDataTable));
+                }
+            }
+        }
 
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
             Tours = new ObservableCollection<MediaItem>();
             Infos = new ObservableCollection<MediaItem>();
+            Logs = new ObservableCollection<Logs>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
                 db.InsertNewRoute(FromDest, ToDest);
@@ -141,6 +157,7 @@ namespace TourPlanner.ViewModels
             });
             this.SearchRoute = new RelayCommand(o => {
                 //http.FindRoute("Wien", "London");
+                FillLogs(CurrentTour.Name);
             });
             this.DeleteRoute = new RelayCommand(o => {
                 db.DeleteRoute(CurrentTour.Name);
@@ -177,6 +194,14 @@ namespace TourPlanner.ViewModels
             foreach (MediaItem tour in mediaManager.GetInfos(folder))
             {
                 Infos.Add(tour);
+            }
+        }
+
+        private void FillLogs(string Name)
+        {
+            foreach(Logs item in db.GetLogs(Name))
+            {
+                Logs.Add(item);
             }
         }
     }
