@@ -37,10 +37,27 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="5" Text="TourPlanner App"  />
-        <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
-        <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
+        <TextBlock Margin="5" Text="TourPlanner App" Grid.ColumnSpan="12" />
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="0">
+            <MenuItem Header="Options">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="1">
+            <MenuItem Header="Files">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
         <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
         <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Margin="0" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Content="To:" />
@@ -48,10 +65,10 @@
         <Button Margin="5" Grid.Row="2" Grid.Column="8" Command="{Binding AddRoute}" Content="Add Tour" />
         <Button Margin="5" Grid.Row="3" Grid.Column="0" Command="{Binding SearchRoute}" Content="Search" />
         <Button Margin="5" Grid.Row="3" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
-        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="7" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
-        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="9" Margin="0,0,0,0">
+        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="8" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="9" Margin="0,0,0,0">
             <TabItem Header="Route">
-                <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
+                <Image Margin="5" Grid.Row="5" Grid.Column="2" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                     </Image.RenderTransform>
@@ -61,24 +78,76 @@
                 <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Infos}" SelectedItem="{Binding CurrentInfo}" DisplayMemberPath="Name" />
             </TabItem>
         </TabControl>
-        <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="8" Command="{Binding ZoomInCommand}" Content="Zoom in" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="9" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="10" Command="{Binding ResetZoomCommand}" Content="Reset" />
-        <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="9" Grid.RowSpan="5" Name="Logs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
-                <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
-                <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>
-                <DataGridTextColumn Header="Total Cost"  Binding="{Binding Cost}"/>
-                <DataGridTextColumn Header="Weather"  Binding="{Binding Weather}"/>
-                <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
-                <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
-                <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
-                <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
+        <TabControl Grid.Row="8" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="9" Margin="0,0,0,0">
+            <TabItem Header="All Logs">
+                <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="10" Grid.RowSpan="5" Name="Logs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
+                        <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                        <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>
+                        <DataGridTextColumn Header="Total Cost"  Binding="{Binding Cost}"/>
+                        <DataGridTextColumn Header="Weather"  Binding="{Binding Weather}"/>
+                        <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                        <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
+                        <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
+                        <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Add Log">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Report" />
+                        <TextBox Margin="5" Width="500"  Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
+                        <TextBox Margin="5" Width="500" Text="{}"></TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Change Log">
+            </TabItem>
+            <TabItem Header="Delete Log">
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 
 </Window>
