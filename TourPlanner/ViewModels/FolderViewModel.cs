@@ -31,6 +31,16 @@ namespace TourPlanner.ViewModels
         private string addDistance;
         private string addHighway;
         private string addAccess;
+        private string changeReport;
+        private string changeRating;
+        private string changeAnimals;
+        private string changeCost;
+        private string changeWeather;
+        private string changeTime;
+        private string changeDate;
+        private string changeDistance;
+        private string changeHighway;
+        private string changeAccess;
         private DataTable logDataTable;
 
         private const decimal Unity = 1;
@@ -47,9 +57,12 @@ namespace TourPlanner.ViewModels
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
         public ICommand AddLog { get; set; }
+        public ICommand ChangeLog { get; set; }
+        public ICommand DeleteLog { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
+        public ObservableCollection<Logs> ChangeLogs { get; set; }
         public ObservableCollection<Description> Description { get; set; }
 
         public decimal Scale
@@ -208,6 +221,19 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
+        public string ChangeReport { get; set; }
+        public string ChangeRating { get; set; }
+        public string ChangeAnimals { get; set; }
+        public string ChangeCost { get; set; }
+        public string ChangeTime { get; set; }
+        public string ChangeWeather { get; set; }
+        public string ChangeDate { get; set; }
+        public string ChangeDistance { get; set; }
+        public string ChangeHighway { get; set; }
+        public string ChangeAccess { get; set; }
+        public string ChangeID { get; set; }
+        public string DeleteID { get; set; }
+
         public MediaItem CurrentTour
         {
             get { return currentTour; }
@@ -264,31 +290,45 @@ namespace TourPlanner.ViewModels
             Description = new ObservableCollection<Description>();
             Logs = new ObservableCollection<Logs>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
-            this.AddRoute = new RelayCommand(o => {
+            this.AddRoute = new RelayCommand(o =>
+            {
                 db.InsertNewRoute(FromDest, ToDest);
                 Tours.Clear();
                 FillListViewTours();//update Item List
-            }, (_) =>{ //(_) braucht keinen Parameter
+            }, (_) =>
+            { //(_) braucht keinen Parameter
                 if (FromDest != null && FromDest.Length > 0 && ToDest != null && ToDest.Length > 0)
                 {
                     return true;
                 }
                 return false;
             });
-            this.SearchRoute = new RelayCommand(o => {
+            this.SearchRoute = new RelayCommand(o =>
+            {
+                Logs.Clear();
                 //http.FindRoute("Wien", "London");
                 FillListViewDescription(CurrentTour.Name);
                 FillLogs(CurrentTour.Name);
             });
-            this.DeleteRoute = new RelayCommand(o => {
+            this.DeleteRoute = new RelayCommand(o =>
+            {
                 db.DeleteRoute(CurrentTour.Name);
                 Tours.Remove(CurrentTour);
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
-            this.AddLog = new RelayCommand(o => {
-                AddLogsDB(CurrentTour.Name);
+            this.AddLog = new RelayCommand(o =>
+            {
+                AddLogDB(CurrentTour.Name);
+            });
+            this.ChangeLog = new RelayCommand(o =>
+            {
+                ChangeLogDB(ChangeID);
+            });
+            this.DeleteLog = new RelayCommand(o =>
+            {
+                DeleteLogDB(DeleteID);
             });
             InitListViewTour();
         }
@@ -320,16 +360,17 @@ namespace TourPlanner.ViewModels
 
         private void FillLogs(string Name)
         {
-            foreach(Logs item in db.GetLogs(Name))
+            foreach (Logs item in db.GetLogs(Name))
             {
                 Logs.Add(item);
             }
         }
 
-        private void AddLogsDB(string Name)
+        private void AddLogDB(string Name)
         {
             AddLogs = new ObservableCollection<Logs>();
-            AddLogs.Add(new Logs() {
+            AddLogs.Add(new Logs()
+            {
                 Report = AddReport,
                 Weather = AddWeather,
                 Time = AddTime,
@@ -342,6 +383,28 @@ namespace TourPlanner.ViewModels
                 Cost = AddCost
             });
             db.InsertLog(AddLogs, Name);
+        }
+        private void ChangeLogDB(string ChangeID)
+        {
+            ChangeLogs = new ObservableCollection<Logs>();
+            ChangeLogs.Add(new Logs()
+            {
+                Report = ChangeReport,
+                Weather = ChangeWeather,
+                Time = ChangeTime,
+                Date = ChangeDate,
+                Highway = ChangeHighway,
+                Distance = ChangeDistance,
+                Access = ChangeAccess,
+                Rating = ChangeRating,
+                Animals = ChangeAnimals,
+                Cost = ChangeCost
+            });
+            db.ChangeLog(ChangeLogs, ChangeID);
+        }
+        private void DeleteLogDB(string DeleteID)
+        {
+            db.DeleteLog(DeleteID);
         }
     }
 }

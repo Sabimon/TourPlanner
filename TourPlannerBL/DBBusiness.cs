@@ -37,5 +37,15 @@ namespace TourPlannerBL
             int ID = dbOut.GetRouteID(routeName);
             dbIn.InsertTourDescription(distance, totalTime, highway, access, ID);
         }
+        public void ChangeLog(ObservableCollection<Logs> ChangeLogs, string ChangeID)
+        {
+            int ID = Convert.ToInt32(ChangeID);
+            dbIn.ChangeLog(ChangeLogs, ID);
+        }
+        public void DeleteLog(string DeleteID)
+        {
+            int ID = Convert.ToInt32(DeleteID);
+            dbIn.DeleteLog(ID);
+        }
     }
 }
