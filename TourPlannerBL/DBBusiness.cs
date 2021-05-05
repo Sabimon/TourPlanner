@@ -18,7 +18,10 @@ namespace TourPlannerBL
         {
             dbIn.InsertNewRoute(FromDest, ToDest);
         }
-
+        public void InsertLog(ObservableCollection<Logs> AddLogs)
+        {
+            dbIn.InsertTourLogs(AddLogs);
+        }
         public void DeleteRoute(string Name)
         {
             dbIn.DeleteRoute(Name);

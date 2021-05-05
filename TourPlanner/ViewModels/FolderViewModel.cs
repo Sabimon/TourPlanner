@@ -21,6 +21,16 @@ namespace TourPlanner.ViewModels
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
+        private string addReport;
+        private string addRating;
+        private string addAnimals;
+        private string addCost;
+        private string addWeather;
+        private string addTime;
+        private string addDate;
+        private string addDistance;
+        private string addHighway;
+        private string addAccess;
         private DataTable logDataTable;
 
         private const decimal Unity = 1;
@@ -39,6 +49,7 @@ namespace TourPlanner.ViewModels
         public ICommand AddLog { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
+        public ObservableCollection<Logs> AddLogs { get; set; }
         public ObservableCollection<Description> Description { get; set; }
 
         public decimal Scale
@@ -61,7 +72,7 @@ namespace TourPlanner.ViewModels
                 if ((fromDest != value))
                 {
                     fromDest = value;
-                    RaisePropertyChangedEvent(nameof(FromDest)); 
+                    RaisePropertyChangedEvent(nameof(FromDest));
                 }
             }
         }
@@ -74,6 +85,126 @@ namespace TourPlanner.ViewModels
                 {
                     toDest = value;
                     RaisePropertyChangedEvent(nameof(ToDest));
+                }
+            }
+        }
+        public string AddReport
+        {
+            get { return addReport; }
+            set
+            {
+                if ((addReport != value))
+                {
+                    addReport = value;
+                    RaisePropertyChangedEvent(nameof(AddReport));
+                }
+            }
+        }
+        public string AddRating
+        {
+            get { return addRating; }
+            set
+            {
+                if ((addRating != value))
+                {
+                    addRating = value;
+                    RaisePropertyChangedEvent(nameof(AddRating));
+                }
+            }
+        }
+        public string AddAnimals
+        {
+            get { return addAnimals; }
+            set
+            {
+                if ((addAnimals != value))
+                {
+                    addAnimals = value;
+                    RaisePropertyChangedEvent(nameof(AddAnimals));
+                }
+            }
+        }
+        public string AddCost
+        {
+            get { return addCost; }
+            set
+            {
+                if ((addCost != value))
+                {
+                    addCost = value;
+                    RaisePropertyChangedEvent(nameof(AddCost));
+                }
+            }
+        }
+        public string AddWeather
+        {
+            get { return addWeather; }
+            set
+            {
+                if ((addWeather != value))
+                {
+                    addWeather = value;
+                    RaisePropertyChangedEvent(nameof(AddWeather));
+                }
+            }
+        }
+        public string AddTime
+        {
+            get { return addTime; }
+            set
+            {
+                if ((addTime != value))
+                {
+                    addTime = value;
+                    RaisePropertyChangedEvent(nameof(AddTime));
+                }
+            }
+        }
+        public string AddDate
+        {
+            get { return addDate; }
+            set
+            {
+                if ((addDate != value))
+                {
+                    addDate = value;
+                    RaisePropertyChangedEvent(nameof(AddDate));
+                }
+            }
+        }
+        public string AddDistance
+        {
+            get { return addDistance; }
+            set
+            {
+                if ((addDistance != value))
+                {
+                    addDistance = value;
+                    RaisePropertyChangedEvent(nameof(AddDistance));
+                }
+            }
+        }
+        public string AddHighway
+        {
+            get { return addHighway; }
+            set
+            {
+                if ((addHighway != value))
+                {
+                    addHighway = value;
+                    RaisePropertyChangedEvent(nameof(AddHighway));
+                }
+            }
+        }
+        public string AddAccess
+        {
+            get { return addAccess; }
+            set
+            {
+                if ((addAccess != value))
+                {
+                    addAccess = value;
+                    RaisePropertyChangedEvent(nameof(AddAccess));
                 }
             }
         }
@@ -145,8 +276,9 @@ namespace TourPlanner.ViewModels
                 return false;
             });
             this.SearchRoute = new RelayCommand(o => {
-                //http.FindRoute("Wien", "London");
-                FillLogs(CurrentTour.Name);
+                http.FindRoute("Wien", "London");
+                FillListViewDescription(CurrentTour.Name);
+                //FillLogs(CurrentTour.Name);
             });
             this.DeleteRoute = new RelayCommand(o => {
                 db.DeleteRoute(CurrentTour.Name);
@@ -156,9 +288,8 @@ namespace TourPlanner.ViewModels
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
             this.AddLog = new RelayCommand(o => {
-                //db.InsertLog();
+                FillAddLogs();
             });
-            InitListViewDescription(CurrentTour.Name);
             InitListViewTour();
         }
 
@@ -193,6 +324,24 @@ namespace TourPlanner.ViewModels
             {
                 Logs.Add(item);
             }
+        }
+
+        private void FillAddLogs()
+        {
+            AddLogs = new ObservableCollection<Logs>();
+            AddLogs.Add(new Logs() {
+                Report = AddReport,
+                Weather = AddWeather,
+                Time = AddTime,
+                Date = AddDate,
+                Highway = AddHighway,
+                Distance = AddDistance,
+                Access = AddAccess,
+                Rating = AddRating,
+                Animals = AddAnimals,
+                Cost = AddCost
+            });
+            db.InsertLog(AddLogs);
         }
     }
 }

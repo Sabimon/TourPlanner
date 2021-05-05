@@ -79,7 +79,14 @@
                 </Image>
             </TabItem>
             <TabItem Header="Description">
-                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listDescription" ItemsSource="{Binding Description}" DisplayMemberPath="Name" />
+                <DataGrid Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listDescription" ItemsSource="{Binding Description}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
+                        <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
+                        <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
+                        <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
         </TabControl>
         <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />

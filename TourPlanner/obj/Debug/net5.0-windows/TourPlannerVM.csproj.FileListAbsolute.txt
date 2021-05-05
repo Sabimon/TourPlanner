@@ -7,10 +7,8 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\To
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\ref\TourPlannerVM.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerVM.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Npgsql.dll
-C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TouPlannerModels.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerBL.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.dll
-C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TouPlannerModels.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerBL.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlannerVM.csprojAssemblyReference.cache
@@ -33,3 +31,5 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\To
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerDL.dll.config
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\log4net.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerModels.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\TourPlannerModels.pdb
