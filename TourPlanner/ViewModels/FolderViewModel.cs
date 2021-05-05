@@ -276,9 +276,9 @@ namespace TourPlanner.ViewModels
                 return false;
             });
             this.SearchRoute = new RelayCommand(o => {
-                http.FindRoute("Wien", "London");
+                //http.FindRoute("Wien", "London");
                 FillListViewDescription(CurrentTour.Name);
-                //FillLogs(CurrentTour.Name);
+                FillLogs(CurrentTour.Name);
             });
             this.DeleteRoute = new RelayCommand(o => {
                 db.DeleteRoute(CurrentTour.Name);
@@ -288,7 +288,7 @@ namespace TourPlanner.ViewModels
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
             this.AddLog = new RelayCommand(o => {
-                FillAddLogs();
+                AddLogsDB(CurrentTour.Name);
             });
             InitListViewTour();
         }
@@ -326,7 +326,7 @@ namespace TourPlanner.ViewModels
             }
         }
 
-        private void FillAddLogs()
+        private void AddLogsDB(string Name)
         {
             AddLogs = new ObservableCollection<Logs>();
             AddLogs.Add(new Logs() {
@@ -341,7 +341,7 @@ namespace TourPlanner.ViewModels
                 Animals = AddAnimals,
                 Cost = AddCost
             });
-            db.InsertLog(AddLogs);
+            db.InsertLog(AddLogs, Name);
         }
     }
 }

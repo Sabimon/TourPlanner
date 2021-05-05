@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace TourPlannerDL
 {
@@ -56,12 +54,7 @@ namespace TourPlannerDL
             try
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
-                string respBody = response.Result;
-                string fileName = fromDestination + "-" + toDestination;
-                //do JSON stuff
-                JsonHandler json = new();
-                json.DeserializeJSON(respBody);
-                return respBody;
+                return response.Result;
             }
             catch (HttpRequestException e)
             {

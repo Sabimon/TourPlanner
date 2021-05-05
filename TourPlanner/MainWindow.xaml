@@ -41,7 +41,6 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Margin="5" Text="TourPlanner App" Grid.ColumnSpan="12" />
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="0">
@@ -89,13 +88,14 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
-        <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
-        <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="8" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="9" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="10" Command="{Binding ResetZoomCommand}" Content="Reset" />
         <TabControl Grid.Row="8" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="9" Margin="0,0,0,0">
             <TabItem Header="All Logs">
-                <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="10" Grid.RowSpan="5" Name="Logs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
+                <DataGrid Margin="0,5,10,5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="10" Grid.RowSpan="5" Name="Logs" ItemsSource="{Binding Logs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Log ID" Binding="{Binding LogID}"/>
                         <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
                         <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
                         <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>
@@ -167,6 +167,7 @@
             <TabItem Header="Delete Log">
                 <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="10" Grid.RowSpan="5" Name="DeleteLogs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="LogID" Binding="{Binding LogID}"/>
                         <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
                         <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
                         <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>

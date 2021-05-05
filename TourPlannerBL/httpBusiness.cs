@@ -13,7 +13,11 @@ namespace TourPlannerBL
 
         public void FindRoute(string FromDest, string ToDest)
         {
+            string respBody= http.FindRoute(FromDest, ToDest);
             http.FindRoute(FromDest, ToDest);
+            string routeName = $"{FromDest}-{ToDest}";
+            JsonHandler json = new();
+            json.DeserializeJSON(respBody, routeName);
         }
     }
 }

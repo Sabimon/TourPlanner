@@ -31,10 +31,11 @@ namespace TourPlannerDL
             }
         }
 
-        public void InsertTourLogs(ObservableCollection<Logs> AddLogs)
+        public void InsertTourLogs(ObservableCollection<Logs> AddLogs, int ID)
         {
-            using (var cmd = new NpgsqlCommand($"INSERT INTO logs (report, weather, total_time, date, distance, highway, access, rating, animals, cost) VALUES (@b, @c, @d, @e, @f, @g, @h, @i, @j, @k)", db.conn))
+            using (var cmd = new NpgsqlCommand($"INSERT INTO logs (\"routeID\", report, weather, total_time, date, distance, highway, access, rating, animals, cost) VALUES (@a, @b, @c, @d, @e, @f, @g, @h, @i, @j, @k)", db.conn))
             {
+                cmd.Parameters.AddWithValue("a", ID);
                 cmd.Parameters.AddWithValue("b", AddLogs[0].Report);
                 cmd.Parameters.AddWithValue("c", AddLogs[0].Weather);
                 cmd.Parameters.AddWithValue("d", AddLogs[0].Time);
@@ -48,10 +49,11 @@ namespace TourPlannerDL
                 cmd.ExecuteNonQuery();
             }
         }
-        public void InsertTourDescription(string distance, string totalTime, string highway, string access)
+        public void InsertTourDescription(string distance, string totalTime, string highway, string access, int ID)
         {
-            using (var cmd = new NpgsqlCommand($"INSERT INTO description (distance, total_time, highway, access) VALUES (@b, @c, @d, @e)", db.conn))
+            using (var cmd = new NpgsqlCommand($"INSERT INTO description (\"routeID\", distance, total_time, highway, access) VALUES (@a, @b, @c, @d, @e)", db.conn))
             {
+                cmd.Parameters.AddWithValue("a", ID);
                 cmd.Parameters.AddWithValue("b", distance);
                 cmd.Parameters.AddWithValue("c", totalTime);
                 cmd.Parameters.AddWithValue("d", highway);

@@ -59,11 +59,12 @@ namespace TourPlannerDL
             //resultList = null;
             using (var cmd = new NpgsqlCommand($"SELECT * FROM logs WHERE \"routeID\" = (@r);", db.conn))
             {
-                cmd.Parameters.AddWithValue("r", 1); //hardcoded
+                cmd.Parameters.AddWithValue("r", ID);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     resultList.Add(new Logs() {
+                        LogID= reader.GetInt32(0),
                         Report= reader.GetString(2), 
                         Weather = reader.GetString(3),
                         Time = reader.GetString(4),
@@ -86,16 +87,16 @@ namespace TourPlannerDL
             ObservableCollection<Description> resultList = new ObservableCollection<Description>();
             using (var cmd = new NpgsqlCommand($"SELECT * FROM description WHERE \"routeID\" = (@r);", db.conn))
             {
-                cmd.Parameters.AddWithValue("r", 1); //hardcoded
+                cmd.Parameters.AddWithValue("r", ID);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     resultList.Add(new Description()
                     {
-                        Distance = reader.GetString(1),
-                        Time = reader.GetString(2),
-                        Highway = reader.GetString(3),
-                        Access = reader.GetString(4)
+                        Distance = reader.GetString(2),
+                        Time = reader.GetString(3),
+                        Highway = reader.GetString(4),
+                        Access = reader.GetString(5)
                     });
                 }
                 reader.Close();
