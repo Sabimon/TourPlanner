@@ -110,39 +110,43 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Add Log">
-                <StackPanel Orientation="Vertical" Margin="5">
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Margin="0" Content="Report" />
-                        <TextBox Margin="5" Width="150" Text="{Binding AddReport}"></TextBox>
-                        <Label Margin="0" HorizontalAlignment="Right" Content="Rating" />
-                        <TextBox Margin="5" HorizontalAlignment="Right" Width="150" Text="{Binding AddRating}"></TextBox>
-                        <Button Margin="5" Command="{Binding AddLog}" Content="Add Log" />
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Margin="0" Content="Animal-Friendly" />
-                        <TextBox Margin="5" Width="150"  Text="{Binding AddAnimals}"></TextBox>
-                        <Label Margin="0" HorizontalAlignment="Right" Content="Total Cost" />
-                        <TextBox Margin="5" Width="150" Text="{Binding AddCost}"></TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Margin="0" Content="Weather" />
-                        <TextBox Margin="5" Width="150"  Text="{Binding AddWeather}"></TextBox>
-                        <Label Margin="0" HorizontalAlignment="Right" Content="Total Time" />
-                        <TextBox Margin="5" Width="150" Text="{Binding AddTime}"></TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Margin="0" Content="Date" />
-                        <TextBox Margin="5" Width="150"  Text="{Binding AddDate}"></TextBox>
-                        <Label Margin="0" HorizontalAlignment="Right" Content="Distance" />
-                        <TextBox Margin="5" Width="150" Text="{Binding AddDistance}"></TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="5">
-                        <Label Margin="0" Content="Has Highway" />
-                        <TextBox Margin="5" Width="150"  Text="{Binding AddHighway}"></TextBox>
-                        <Label Margin="0" HorizontalAlignment="Right" Content="Access Limitation" />
-                        <TextBox Margin="5" Width="150" Text="{Binding AddAccess}"></TextBox>
-                    </StackPanel>
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Report" />
+                    <TextBox Margin="5" Grid.Row="0" Grid.Column="1" Text="{Binding AddReport}"></TextBox>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Content="Rating" />
+                    <TextBox Margin="5" Grid.Row="0" Grid.Column="3" Text="{Binding AddRating}"></TextBox>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Animal-Friendly" />
+                    <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding AddAnimals}"></TextBox>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Content="Total Cost" />
+                    <TextBox Margin="5" Grid.Row="1" Grid.Column="3" Text="{Binding AddCost}"></TextBox>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Weather" />
+                    <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding AddWeather}"></TextBox>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Content="Distance" />
+                    <TextBox Margin="5" Grid.Row="2" Grid.Column="3" Text="{Binding AddDistance}"></TextBox>
+                    <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Total Time" />
+                    <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding AddTime}"></TextBox>
+                    <Label Margin="0" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Content="Date" />
+                    <TextBox Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding AddDate}"></TextBox>
+                    <Label Margin="0" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="Has Highway" />
+                    <TextBox Margin="5" Grid.Row="4" Grid.Column="1" Text="{Binding AddHighway}"></TextBox>
+                    <Label Margin="0" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Content="Access Limitation" />
+                    <TextBox Margin="5" Grid.Row="4" Grid.Column="3" Text="{Binding AddAccess}"></TextBox>
+                    <Button Margin="5" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Command="{Binding AddLog}" Content="Add Log" />
+                </Grid>
             </TabItem>
             <TabItem Header="Change Log">
                 <DataGrid Margin="5" Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="10" Grid.RowSpan="5" Name="ChangeLogs" ItemsSource="{Binding Logs}" AutoGenerateColumns="False">
