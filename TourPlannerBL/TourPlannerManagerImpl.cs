@@ -2,20 +2,20 @@
 using System.Linq;
 using TourPlannerModels;
 using TourPlannerDL;
+using System.Collections.ObjectModel;
 
 namespace TourPlannerBL {
     internal class TourPlannerManagerImpl : TourPlannerManager {
-
+        DBOutput db = new DBOutput();
         public IEnumerable<MediaItem> GetTours(MediaFolder folder) {
-            DBOutput db = new DBOutput();
             return db.GetRoutes(folder);
         }
 
-        public IEnumerable<MediaItem> GetInfos(MediaFolder folder2){
-            // usually querying the disk, or from a DB, or ...
-            return new List<MediaItem>() {
-                new MediaItem() { Name = "dauert lange" }
-            };
+        public ObservableCollection<Description> GetDescription(string Name)
+        {
+            int ID;
+            ID = db.GetRouteID(Name);
+            return db.GetDescription(ID);
         }
 
         public MediaFolder GetMediaFolder(string url) {
@@ -31,14 +31,14 @@ namespace TourPlannerBL {
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
         }
-        public IEnumerable<MediaItem> SearchForInfos(string tourName, MediaFolder folder2, bool caseSensitive = false){
-            IEnumerable<MediaItem> tours = GetInfos(folder2);
+        /*public IEnumerable<MediaItem> SearchForDescription(string tourName, MediaFolder folder2, bool caseSensitive = false){
+            ObservableCollection<Description> tours = GetDescription();
 
             if (caseSensitive)
             {
                 return tours.Where(x => x.Name.Contains(tourName)); //sucht nach items & lambda ist auch da
             }
             return tours.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
-        }
+        }*/
     }
 }

@@ -190,14 +190,14 @@
           }
         }
       },
-      "TouPlannerModels/1.0.0": {
+      "TourPlannerModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
-          "bin/placeholder/TouPlannerModels.dll": {}
+          "bin/placeholder/TourPlannerModels.dll": {}
         },
         "runtime": {
-          "bin/placeholder/TouPlannerModels.dll": {}
+          "bin/placeholder/TourPlannerModels.dll": {}
         }
       }
     }
@@ -617,10 +617,10 @@
         "version.txt"
       ]
     },
-    "TouPlannerModels/1.0.0": {
+    "TourPlannerModels/1.0.0": {
       "type": "project",
-      "path": "../TouPlannerModels/TouPlannerModels.csproj",
-      "msbuildProject": "../TouPlannerModels/TouPlannerModels.csproj"
+      "path": "../TouPlannerModels/TourPlannerModels.csproj",
+      "msbuildProject": "../TouPlannerModels/TourPlannerModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -628,7 +628,7 @@
       "Newtonsoft.Json >= 13.0.1",
       "Npgsql >= 5.0.4",
       "System.Configuration.ConfigurationManager >= 5.0.0",
-      "TouPlannerModels >= 1.0.0",
+      "TourPlannerModels >= 1.0.0",
       "log4net >= 2.0.12"
     ]
   },
@@ -659,8 +659,8 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj": {
-              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj"
+            "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TourPlannerModels.csproj": {
+              "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TourPlannerModels.csproj"
             }
           }
         }

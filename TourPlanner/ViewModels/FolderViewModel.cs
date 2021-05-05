@@ -18,7 +18,6 @@ namespace TourPlanner.ViewModels
         private httpBusiness http = new();
         private DBBusiness db = new();
         private MediaItem currentTour;
-        private MediaItem currentInfo;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
@@ -37,9 +36,10 @@ namespace TourPlanner.ViewModels
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
+        public ICommand AddLog { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
-        public ObservableCollection<MediaItem> Infos { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
+        public ObservableCollection<Description> Description { get; set; }
 
         public decimal Scale
         {
@@ -87,18 +87,7 @@ namespace TourPlanner.ViewModels
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
                     RaisePropertyChangedEvent(nameof(SelectedTourMapImage));
-                }
-            }
-        }
-        public MediaItem CurrentInfo
-        {
-            get { return currentInfo; }
-            set
-            {
-                if ((currentInfo != value) && (value != null))
-                {
-                    currentInfo = value;
-                    RaisePropertyChangedEvent(nameof(CurrentInfo));
+                    RaisePropertyChangedEvent(nameof(Description));
                 }
             }
         }
@@ -141,7 +130,7 @@ namespace TourPlanner.ViewModels
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
             Tours = new ObservableCollection<MediaItem>();
-            Infos = new ObservableCollection<MediaItem>();
+            Description = new ObservableCollection<Description>();
             Logs = new ObservableCollection<Logs>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
             this.AddRoute = new RelayCommand(o => {
@@ -166,13 +155,15 @@ namespace TourPlanner.ViewModels
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
-            InitListViewInfos();
+            this.AddLog = new RelayCommand(o => {
+                //db.InsertLog();
+            });
+            InitListViewDescription(CurrentTour.Name);
             InitListViewTour();
         }
 
         public void InitListViewTour()
         {
-            Tours = new ObservableCollection<MediaItem>();
             FillListViewTours();
         }
 
@@ -183,17 +174,16 @@ namespace TourPlanner.ViewModels
                 Tours.Add(item);
             }
         }
-        public void InitListViewInfos()
+        public void InitListViewDescription(string Name)
         {
-            Infos = new ObservableCollection<MediaItem>();
-            FillListViewInfos();
+            FillListViewDescription(Name);
         }
 
-        private void FillListViewInfos()
+        private void FillListViewDescription(string Name)
         {
-            foreach (MediaItem tour in mediaManager.GetInfos(folder))
+            foreach (Description description in mediaManager.GetDescription(Name))
             {
-                Infos.Add(tour);
+                Description.Add(description);
             }
         }
 

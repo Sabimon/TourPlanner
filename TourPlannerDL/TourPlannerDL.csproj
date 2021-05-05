@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TouPlannerModels\TouPlannerModels.csproj" />
+    <ProjectReference Include="..\TouPlannerModels\TourPlannerModels.csproj" />
   </ItemGroup>
 
 </Project>

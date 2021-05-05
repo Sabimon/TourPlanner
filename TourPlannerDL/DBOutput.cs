@@ -36,6 +36,7 @@ namespace TourPlannerDL
             }
             return resultList;
         }
+
         public int GetRouteID(string Name)
         {
             int Result = 0;
@@ -51,6 +52,7 @@ namespace TourPlannerDL
             }
             return Result;
         }
+
         public ObservableCollection<Logs> GetLogs(int ID)
         {
             ObservableCollection<Logs> resultList = new ObservableCollection<Logs>();
@@ -72,6 +74,28 @@ namespace TourPlannerDL
                         Rating = reader.GetString(9),
                         Animals = reader.GetString(10),
                         Cost = reader.GetString(11)
+                    });
+                }
+                reader.Close();
+            }
+            return resultList;
+        }
+
+        public ObservableCollection<Description> GetDescription(int ID)
+        {
+            ObservableCollection<Description> resultList = new ObservableCollection<Description>();
+            using (var cmd = new NpgsqlCommand($"SELECT * FROM description WHERE \"routeID\" = (@r);", db.conn))
+            {
+                cmd.Parameters.AddWithValue("r", 1); //hardcoded
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    resultList.Add(new Description()
+                    {
+                        Distance = reader.GetString(1),
+                        Time = reader.GetString(2),
+                        Highway = reader.GetString(3),
+                        Access = reader.GetString(4)
                     });
                 }
                 reader.Close();

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TourPlannerModels;
 
 namespace TourPlannerBL {
     public interface TourPlannerManager {
         MediaFolder GetMediaFolder(string url);
-        IEnumerable<MediaItem> GetInfos(MediaFolder folder);
+        ObservableCollection<Description> GetDescription(string Name);
         IEnumerable<MediaItem> GetTours(MediaFolder folder);
-        IEnumerable<MediaItem> SearchForInfos(string itemName, MediaFolder folder, bool caseSensitive = false);
+        //IEnumerable<MediaItem> SearchForDescription(string itemName, MediaFolder folder, bool caseSensitive = false);
         IEnumerable<MediaItem> SearchForTours(string tourName, MediaFolder folder, bool caseSensitive = false);
     }
 }

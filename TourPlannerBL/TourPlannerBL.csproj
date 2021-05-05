@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TouPlannerModels\TouPlannerModels.csproj" />
+    <ProjectReference Include="..\TouPlannerModels\TourPlannerModels.csproj" />
     <ProjectReference Include="..\TourPlannerDL\TourPlannerDL.csproj" />
   </ItemGroup>
 

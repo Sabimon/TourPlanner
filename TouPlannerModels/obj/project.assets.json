@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj",
-      "projectName": "TouPlannerModels",
-      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TouPlannerModels.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TourPlannerModels.csproj",
+      "projectName": "TourPlannerModels",
+      "projectPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\TourPlannerModels.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TouPlannerModels\\obj\\",
       "projectStyle": "PackageReference",

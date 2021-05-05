@@ -47,5 +47,17 @@ namespace TourPlannerDL
                 cmd.ExecuteNonQuery();
             }
         }
+        public void InsertTourDescription(string distance, string totalTime, string highway, string access)
+        {
+            using (var cmd = new NpgsqlCommand($"INSERT INTO description (\"routeID\", distance, total_time, highway, access) VALUES (@a, @b, @c, @d, @e)", db.conn))
+            {
+                cmd.Parameters.AddWithValue("a", 1);
+                cmd.Parameters.AddWithValue("b", distance);
+                cmd.Parameters.AddWithValue("c", totalTime);
+                cmd.Parameters.AddWithValue("d", highway);
+                cmd.Parameters.AddWithValue("e", access);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
