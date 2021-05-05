@@ -14,11 +14,9 @@ namespace TourPlanner.ViewModels
 {
     public class Properties : ViewModelBase
     {
-        private TourPlannerManager mediaManager;
         private httpBusiness http = new();
         private DBBusiness db = new();
         private MediaItem currentTour;
-        private MediaFolder folder;
         private string fromDest;
         private string toDest;
         private DataTable logDataTable;

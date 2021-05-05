@@ -6,9 +6,8 @@ using System.Windows.Media;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System;
-using System.Collections.Generic;
-using TourPlannerDL;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace TourPlanner.ViewModels
 {
@@ -21,26 +20,7 @@ namespace TourPlanner.ViewModels
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
-        private string addReport;
-        private string addRating;
-        private string addAnimals;
-        private string addCost;
-        private string addWeather;
-        private string addTime;
-        private string addDate;
-        private string addDistance;
-        private string addHighway;
-        private string addAccess;
-        private string changeReport;
-        private string changeRating;
-        private string changeAnimals;
-        private string changeCost;
-        private string changeWeather;
-        private string changeTime;
-        private string changeDate;
-        private string changeDistance;
-        private string changeHighway;
-        private string changeAccess;
+        private string numericInput;
         private DataTable logDataTable;
 
         private const decimal Unity = 1;
@@ -101,126 +81,33 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public string AddReport
+        public string PreviewTextInput
         {
-            get { return addReport; }
+            get { return numericInput; }
             set
             {
-                if ((addReport != value))
+                if ((numericInput != value))
                 {
-                    addReport = value;
-                    RaisePropertyChangedEvent(nameof(AddReport));
+                    Regex regex = new Regex("[^0-5]+");
+                    //code snacked from https://abundantcode.com/how-to-allow-only-numeric-input-in-a-textbox-in-wpf/
+                    if (regex.IsMatch(value))
+                    {
+                        numericInput = value;
+                        RaisePropertyChangedEvent(nameof(PreviewTextInput));
+                    }
                 }
             }
         }
-        public string AddRating
-        {
-            get { return addRating; }
-            set
-            {
-                if ((addRating != value))
-                {
-                    addRating = value;
-                    RaisePropertyChangedEvent(nameof(AddRating));
-                }
-            }
-        }
-        public string AddAnimals
-        {
-            get { return addAnimals; }
-            set
-            {
-                if ((addAnimals != value))
-                {
-                    addAnimals = value;
-                    RaisePropertyChangedEvent(nameof(AddAnimals));
-                }
-            }
-        }
-        public string AddCost
-        {
-            get { return addCost; }
-            set
-            {
-                if ((addCost != value))
-                {
-                    addCost = value;
-                    RaisePropertyChangedEvent(nameof(AddCost));
-                }
-            }
-        }
-        public string AddWeather
-        {
-            get { return addWeather; }
-            set
-            {
-                if ((addWeather != value))
-                {
-                    addWeather = value;
-                    RaisePropertyChangedEvent(nameof(AddWeather));
-                }
-            }
-        }
-        public string AddTime
-        {
-            get { return addTime; }
-            set
-            {
-                if ((addTime != value))
-                {
-                    addTime = value;
-                    RaisePropertyChangedEvent(nameof(AddTime));
-                }
-            }
-        }
-        public string AddDate
-        {
-            get { return addDate; }
-            set
-            {
-                if ((addDate != value))
-                {
-                    addDate = value;
-                    RaisePropertyChangedEvent(nameof(AddDate));
-                }
-            }
-        }
-        public string AddDistance
-        {
-            get { return addDistance; }
-            set
-            {
-                if ((addDistance != value))
-                {
-                    addDistance = value;
-                    RaisePropertyChangedEvent(nameof(AddDistance));
-                }
-            }
-        }
-        public string AddHighway
-        {
-            get { return addHighway; }
-            set
-            {
-                if ((addHighway != value))
-                {
-                    addHighway = value;
-                    RaisePropertyChangedEvent(nameof(AddHighway));
-                }
-            }
-        }
-        public string AddAccess
-        {
-            get { return addAccess; }
-            set
-            {
-                if ((addAccess != value))
-                {
-                    addAccess = value;
-                    RaisePropertyChangedEvent(nameof(AddAccess));
-                }
-            }
-        }
+        public string AddReport { get; set; }
+        public string AddRating { get; set; }
+        public string AddAnimals { get; set; }
+        public string AddCost { get; set; }
+        public string AddTime { get; set; }
+        public string AddWeather { get; set; }
+        public string AddDate { get; set; }
+        public string AddDistance { get; set; }
+        public string AddHighway { get; set; }
+        public string AddAccess { get; set; }
         public string ChangeReport { get; set; }
         public string ChangeRating { get; set; }
         public string ChangeAnimals { get; set; }

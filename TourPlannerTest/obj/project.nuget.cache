@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "lBtZiokrKV91TPTo3O0b8GVpO0Js+F1H3DxAUZ+86d20IcIKAH4ePBYeRdZcuRoPfJVhOIIZF2dyF2ylTk6fQg==",
+  "dgSpecHash": "fUR5YDwZ5Zzq+8V3v3byXO+JRV6mrgSA0oQPEkE2+cc54d7N3xClMN/o2KWWroeY0AAOqiencivr/Rk7ZHSoCQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerTest\\TourPlannerTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\extended.wpf.toolkit\\4.0.2\\extended.wpf.toolkit.4.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\log4net\\2.0.12\\log4net.2.0.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.dotnet.internalabstractions\\1.0.0\\microsoft.dotnet.internalabstractions.1.0.0.nupkg.sha512",
@@ -72,5 +73,16 @@
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"Extended.Wpf.Toolkit 4.0.2\" wurde nicht mit dem Projektzielframework \"net5.0-windows7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "libraryId": "Extended.Wpf.Toolkit",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
 }
