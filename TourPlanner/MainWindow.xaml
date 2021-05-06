@@ -150,13 +150,13 @@
                     <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Weather" />
                     <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding AddWeather}"></TextBox>
                     <Label Margin="0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Content="Total Cost" />
-                    <xctk:IntegerUpDown Margin="5" Grid.Row="1" Grid.Column="4" Value="{Binding AddCost}"/>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="1" Grid.Column="4" Increment="0.1" Value="{Binding AddCost}"/>
                     <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Distance" />
-                    <xctk:IntegerUpDown Margin="5" Grid.Row="2" Grid.Column="1" Value="{Binding AddDistance}"/>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="1" Increment="0.1" Value="{Binding AddDistance}"/>
                     <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="Total Time" />
-                    <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding AddDate}"></TextBox>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="4" Increment="0.1" Value="{Binding AddTime}"></xctk:DecimalUpDown>
                     <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Date" />
-                    <Calendar  Margin="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="AddTime" />
+                    <Calendar Margin="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="AddDate" />
                     <Label Margin="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" Content="Animal-Friendly" />
                     <CheckBox Margin="5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Name="AddAnimals" Content="{Binding AddAnimals}"></CheckBox>
                     <Label Margin="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" Content="Has Highway" />
@@ -195,22 +195,21 @@
                     <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Report" />
                     <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeReport}"></TextBox>
                     <Label Margin="0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Content="Total Cost" />
-                    <xctk:IntegerUpDown Margin="5" Grid.Row="1" Grid.Column="4" Value="{Binding ChangeCost}"/>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="1" Grid.Column="4" Increment="0.1" Value="{Binding ChangeCost}"/>
                     <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Weather" />
                     <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding ChangeWeather}"></TextBox>
                     <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="Total Time" />
-                    <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding ChangeDate}"></TextBox>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="4" Increment="0.1" Text="{Binding ChangeTime}"></xctk:DecimalUpDown>
                     <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Distance" />
-                    <xctk:IntegerUpDown Margin="5" Grid.Row="3" Grid.Column="1" Value="{Binding ChangeDistance}"/>
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="3" Grid.Column="1" Increment="0.1" Value="{Binding ChangeDistance}"/>
                     <Label Margin="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" Content="Animal-Friendly" />
                     <CheckBox Margin="5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Name="ChangeAnimals" Content="{Binding ChangeAnimals}"></CheckBox>
                     <Label Margin="0" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="Date" />
-                    <Calendar  Margin="5" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="ChangeTime" />
+                    <Calendar  Margin="5" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="ChangeDate" />
                     <Label Margin="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" Content="Has Highway" />
                     <CheckBox Margin="5" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Name="ChangeHighway" Content="{Binding ChangeHighway}"></CheckBox>
                     <Label Margin="0" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Content="Access Limitation" />
                     <CheckBox Margin="5" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Name="ChangeAccess" Content="{Binding ChangeAccess}"></CheckBox>
-                    
                     <Button Margin="5" Grid.Row="7" Grid.Column="4" Command="{Binding ChangeLog}" Content="Change Log" />
                 </Grid>
             </TabItem>

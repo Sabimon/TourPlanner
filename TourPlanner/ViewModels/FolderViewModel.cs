@@ -99,25 +99,25 @@ namespace TourPlanner.ViewModels
             }
         }
         public string AddReport { get; set; }
-        public string AddRating { get; set; }
-        public string AddAnimals { get; set; }
-        public string AddCost { get; set; }
-        public string AddTime { get; set; }
+        public int AddRating { get; set; }
+        public bool AddAnimals { get; set; }
+        public decimal AddCost { get; set; }
+        public decimal AddTime { get; set; }
         public string AddWeather { get; set; }
-        public string AddDate { get; set; }
-        public string AddDistance { get; set; }
-        public string AddHighway { get; set; }
-        public string AddAccess { get; set; }
+        public DateTime AddDate { get; set; }
+        public decimal AddDistance { get; set; }
+        public bool AddHighway { get; set; }
+        public bool AddAccess { get; set; }
         public string ChangeReport { get; set; }
-        public string ChangeRating { get; set; }
-        public string ChangeAnimals { get; set; }
-        public string ChangeCost { get; set; }
-        public string ChangeTime { get; set; }
+        public int ChangeRating { get; set; }
+        public bool ChangeAnimals { get; set; }
+        public decimal ChangeCost { get; set; }
+        public decimal ChangeTime { get; set; }
         public string ChangeWeather { get; set; }
-        public string ChangeDate { get; set; }
-        public string ChangeDistance { get; set; }
-        public string ChangeHighway { get; set; }
-        public string ChangeAccess { get; set; }
+        public DateTime ChangeDate { get; set; }
+        public decimal ChangeDistance { get; set; }
+        public bool ChangeHighway { get; set; }
+        public bool ChangeAccess { get; set; }
         public string ChangeID { get; set; }
         public string DeleteID { get; set; }
 
@@ -208,14 +208,20 @@ namespace TourPlanner.ViewModels
             this.AddLog = new RelayCommand(o =>
             {
                 AddLogDB(CurrentTour.Name);
+                Logs.Clear();
+                FillLogs(CurrentTour.Name);
             });
             this.ChangeLog = new RelayCommand(o =>
             {
                 ChangeLogDB(ChangeID);
+                Logs.Clear();
+                FillLogs(CurrentTour.Name);
             });
             this.DeleteLog = new RelayCommand(o =>
             {
                 DeleteLogDB(DeleteID);
+                Logs.Clear();
+                FillLogs(CurrentTour.Name);
             });
             InitListViewTour();
         }
@@ -260,14 +266,14 @@ namespace TourPlanner.ViewModels
             {
                 Report = AddReport,
                 Weather = AddWeather,
-                Time = AddTime,
-                Date = AddDate,
-                Highway = AddHighway,
-                Distance = AddDistance,
-                Access = AddAccess,
-                Rating = AddRating,
-                Animals = AddAnimals,
-                Cost = AddCost
+                Time = AddTime.ToString(),
+                Date = AddDate.ToString(),
+                Highway = AddHighway.ToString(),
+                Distance = AddDistance.ToString(),
+                Access = AddAccess.ToString(),
+                Rating = AddRating.ToString(),
+                Animals = AddAnimals.ToString(),
+                Cost = AddCost.ToString()
             });
             db.InsertLog(AddLogs, Name);
         }
@@ -278,14 +284,14 @@ namespace TourPlanner.ViewModels
             {
                 Report = ChangeReport,
                 Weather = ChangeWeather,
-                Time = ChangeTime,
-                Date = ChangeDate,
-                Highway = ChangeHighway,
-                Distance = ChangeDistance,
-                Access = ChangeAccess,
-                Rating = ChangeRating,
-                Animals = ChangeAnimals,
-                Cost = ChangeCost
+                Time = ChangeTime.ToString(),
+                Date = ChangeDate.ToString(),
+                Highway = ChangeHighway.ToString(),
+                Distance = ChangeDistance.ToString(),
+                Access = ChangeAccess.ToString(),
+                Rating = ChangeRating.ToString(),
+                Animals = ChangeAnimals.ToString(),
+                Cost = ChangeCost.ToString()
             });
             db.ChangeLog(ChangeLogs, ChangeID);
         }
