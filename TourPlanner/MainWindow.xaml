@@ -6,12 +6,13 @@
         xmlns:vm="clr-namespace:TourPlanner.ViewModels"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800" Background="Lavender" >
+        Title="MainWindow" Height="650" Width="800" MinHeight="650" Background="Lavender" >
     <Window.DataContext>
         <vm:FolderViewModel/>
     </Window.DataContext>
     <Grid >
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -96,7 +97,10 @@
         <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
         <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
         <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
-        <TabControl Grid.Row="8" Grid.Column="2" Grid.RowSpan="13" Grid.ColumnSpan="9" Margin="0,0,0,0">
+
+        <GridSplitter Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" ></GridSplitter>
+
+        <TabControl Grid.Row="9" Grid.Column="2" Grid.RowSpan="13" Grid.ColumnSpan="9" Margin="0,0,0,0">
             <TabItem Header="All Logs">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -236,7 +240,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
-
 </Window>
