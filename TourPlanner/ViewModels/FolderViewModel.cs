@@ -16,6 +16,7 @@ namespace TourPlanner.ViewModels
         private TourPlannerManager mediaManager;
         private httpBusiness http = new();
         private DBBusiness db = new();
+        private StringHandler strHander = new();
         private MediaItem currentTour;
         private MediaFolder folder;
         private string fromDest;
@@ -193,7 +194,8 @@ namespace TourPlanner.ViewModels
             this.SearchRoute = new RelayCommand(o =>
             {
                 Logs.Clear();
-                //http.FindRoute("Wien", "London");
+                //http.FindRoute(CurrentTour.Name);
+                //http.GetAndSaveImage(CurrentTour.Name);
                 FillListViewDescription(CurrentTour.Name);
                 FillLogs(CurrentTour.Name);
             });

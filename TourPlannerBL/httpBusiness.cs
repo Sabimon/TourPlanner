@@ -10,14 +10,21 @@ namespace TourPlannerBL
     public class httpBusiness
     {
         private httpListener http = httpListener.Instance();
+        private StringHandler strHander = new();
 
-        public void FindRoute(string FromDest, string ToDest)
+        public void FindRoute(string TourName)
         {
-            string respBody= http.FindRoute(FromDest, ToDest);
-            http.FindRoute(FromDest, ToDest);
-            string routeName = $"{FromDest}-{ToDest}";
+            List<String> Destination = strHander.StringSplitter(TourName);
+            string respBody= http.FindRoute(Destination[0], Destination[1]);
+            //http.FindRoute(FromDest, ToDest);
             JsonHandler json = new();
-            json.DeserializeJSON(respBody, routeName);
+            json.DeserializeJSON(respBody, TourName);
+        }
+
+        public void GetAndSaveImage(string TourName)
+        {
+            List<String> Destination = strHander.StringSplitter(TourName);
+            http.GetAndSaveImage(Destination[0], Destination[1]);
         }
     }
 }
