@@ -191,11 +191,11 @@ namespace TourPlanner.ViewModels
                 }
                 return false;
             });
-            this.SearchRoute = new RelayCommand(o =>
+            this.SearchRoute = new RelayCommand(async o =>
             {
                 Logs.Clear();
                 //http.FindRoute(CurrentTour.Name);
-                //http.GetAndSaveImage(CurrentTour.Name);
+                //await http.GetAndSaveImage(CurrentTour.Name);
                 FillListViewDescription(CurrentTour.Name);
                 FillLogs(CurrentTour.Name);
             });

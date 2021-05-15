@@ -21,10 +21,10 @@ namespace TourPlannerBL
             json.DeserializeJSON(respBody, TourName);
         }
 
-        public void GetAndSaveImage(string TourName)
+        public async Task GetAndSaveImage(string TourName)
         {
             List<String> Destination = strHander.StringSplitter(TourName);
-            http.GetAndSaveImage(Destination[0], Destination[1]);
+            await http.GetAndSaveImage(Destination[0], Destination[1]);
         }
     }
 }
