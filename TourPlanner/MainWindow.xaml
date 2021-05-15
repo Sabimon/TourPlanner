@@ -4,13 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:TourPlanner.ViewModels"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="Lavender" >
+        Title="MainWindow" Height="650" Width="800" MinHeight="650" Background="Lavender" >
     <Window.DataContext>
-        <vm:FolderViewModel />
+        <vm:FolderViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -31,36 +42,203 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="5" Text="TourPlanner App"  />
-        <Label Margin="0" Grid.Row="1" Grid.Column="0" Content="Options" />
-        <Label Margin="0" Grid.Row="1" Grid.Column="1" Content="Files" />
-        <Label Margin="0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Content="From:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="To:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="5" Command="{Binding SearchRoute}" Content="Search" />
-        <TextBlock Margin="5" Grid.Row="2" Grid.Column="0" Text="Tours" />
-        <!-- <TextBlock Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="Title" /> -->
-        <ListBox Margin="5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="9" Name="listMediaItems" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}" DisplayMemberPath="Name" />
-        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="5" Margin="0,0,0,0">
+        <TextBlock Margin="5" Text="TourPlanner App" Grid.ColumnSpan="12" />
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="0">
+            <MenuItem Header="Options">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="1">
+            <MenuItem Header="Files">
+                <MenuItem Header="_New" />
+                <MenuItem Header="_Open" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Margin="0" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Content="To:" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="8" Command="{Binding AddRoute}" Content="Add Tour" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="0" Command="{Binding SearchRoute}" Content="Search" />
+        <Button Margin="5" Grid.Row="3" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
+        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="14" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="8" Margin="0,0,0,0">
             <TabItem Header="Route">
-                <ListBox Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listRoutes" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
-            </TabItem>
-            <TabItem Header="Description">
-                <Image Margin="5" Grid.Row="5" Grid.Column="2" Grid.RowSpan="5" Source="{Binding ImagePath}" Stretch="UniformToFill" x:Name="imageView" RenderTransformOrigin="0.5,0.5">
+                <Image Margin="5" Grid.Row="5" Grid.Column="2" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
-                        <ScaleTransform/>
+                        <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                     </Image.RenderTransform>
                 </Image>
             </TabItem>
+            <TabItem Header="Description">
+                <DataGrid Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listDescription" ItemsSource="{Binding Description}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
+                        <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
+                        <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
+                        <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
         </TabControl>
-        <TextBlock Margin="5" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="3" Text="Logs:" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="4" Command="{}" Content="Zoom in" Click="ZoomInButtonClick" />
-        <Button Margin="5" Grid.Row="9" Grid.Column="5" Command="{}" Content="Zoom out" Click="ZoomOutButtonClick" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="2" Text="Date" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="3" Text="Distance" />
-        <TextBlock Margin="5" Grid.Row="10" Grid.Column="4" Text="Duration" />
-    </Grid>
+        <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
 
+        <GridSplitter Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" ></GridSplitter>
+
+        <TabControl Grid.Row="9" Grid.Column="2" Grid.RowSpan="13" Grid.ColumnSpan="9" Margin="0,0,0,0">
+            <TabItem Header="All Logs">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Name="Logs" ItemsSource="{Binding Logs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Log ID" Binding="{Binding LogID}"/>
+                            <DataGridTextColumn Header="Report" Binding="{Binding Report}"/>
+                            <DataGridTextColumn Header="Rating" Binding="{Binding Rating}"/>
+                            <DataGridTextColumn Header="Animal-Friendly" Binding="{Binding Animals}"/>
+                            <DataGridTextColumn Header="Total Cost"  Binding="{Binding Cost}"/>
+                            <DataGridTextColumn Header="Weather"  Binding="{Binding Weather}"/>
+                            <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                            <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
+                            <DataGridTextColumn Header="Has Highway" Binding="{Binding Highway}" />
+                            <DataGridTextColumn Header="Access Limitation" Binding="{Binding Access}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add Log">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Report" />
+                    <TextBox Margin="5" Grid.Row="0" Grid.Column="1" Text="{Binding AddReport}"></TextBox>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" Content="Rating" />
+                    <xctk:IntegerUpDown Margin="5" Grid.Row="0" Grid.Column="4" Maximum="5" Value="{Binding AddRating}"/>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Weather" />
+                    <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding AddWeather}"></TextBox>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Content="Total Cost" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="1" Grid.Column="4" Increment="0.1" Value="{Binding AddCost}"/>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Distance" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="1" Increment="0.1" Value="{Binding AddDistance}"/>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="Total Time" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="4" Increment="0.1" Value="{Binding AddTime}"></xctk:DecimalUpDown>
+                    <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Date" />
+                    <Calendar Margin="5" Grid.Row="3" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="AddDate" />
+                    <Label Margin="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" Content="Animal-Friendly" />
+                    <CheckBox Margin="5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Name="AddAnimals" Content="{Binding AddAnimals}"></CheckBox>
+                    <Label Margin="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" Content="Has Highway" />
+                    <CheckBox Margin="5" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Name="AddHighway" Content="{Binding AddHighway}"></CheckBox>
+                    <Label Margin="0" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Content="Access Limitation" />
+                    <CheckBox Margin="5" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Name="AddAccess" Content="{Binding AddAccess}"></CheckBox>
+                    <Button Margin="5" Grid.Row="6" Grid.Column="4" Command="{Binding AddLog}" Content="Add Log" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Change Log">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Log ID" />
+                    <ComboBox Margin="5" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Path=Logs}"
+                    DisplayMemberPath="LogID"
+                    SelectedValuePath="LogID"
+                    SelectedValue="{Binding ChangeID}"/>
+                    <Label Margin="0" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" Content="Rating" />
+                    <xctk:IntegerUpDown Margin="5" Grid.Row="0" Grid.Column="4" Maximum="5" Value="{Binding ChangeRating}"/>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Report" />
+                    <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding ChangeReport}"></TextBox>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Content="Total Cost" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="1" Grid.Column="4" Increment="0.1" Value="{Binding ChangeCost}"/>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Weather" />
+                    <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding ChangeWeather}"></TextBox>
+                    <Label Margin="0" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Content="Total Time" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="2" Grid.Column="4" Increment="0.1" Text="{Binding ChangeTime}"></xctk:DecimalUpDown>
+                    <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Distance" />
+                    <xctk:DecimalUpDown Margin="5" Grid.Row="3" Grid.Column="1" Increment="0.1" Value="{Binding ChangeDistance}"/>
+                    <Label Margin="0" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" Content="Animal-Friendly" />
+                    <CheckBox Margin="5" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Name="ChangeAnimals" Content="{Binding ChangeAnimals}"></CheckBox>
+                    <Label Margin="0" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="Date" />
+                    <Calendar  Margin="5" Grid.Row="4" Grid.Column="1" Grid.RowSpan="4"  Grid.ColumnSpan="2" Name="ChangeDate" />
+                    <Label Margin="0" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" Content="Has Highway" />
+                    <CheckBox Margin="5" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Name="ChangeHighway" Content="{Binding ChangeHighway}"></CheckBox>
+                    <Label Margin="0" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Content="Access Limitation" />
+                    <CheckBox Margin="5" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Name="ChangeAccess" Content="{Binding ChangeAccess}"></CheckBox>
+                    <Button Margin="5" Grid.Row="7" Grid.Column="4" Command="{Binding ChangeLog}" Content="Change Log" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Delete Log">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*" />
+                        <ColumnDefinition Width="132*"/>
+                        <ColumnDefinition Width="162*" />
+                        <ColumnDefinition Width="162*" />
+                        <ColumnDefinition Width="162*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="86,0,0,85" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Content="Log ID" Grid.RowSpan="2" />
+                    <ComboBox Margin="5,5,5,5" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=Logs}"
+                    DisplayMemberPath="LogID"
+                    SelectedValuePath="LogID"
+                    SelectedValue="{Binding DeleteID}"/>
+                    <Button Margin="5,5,5,5" Grid.Row="1" Grid.Column="3" Command="{Binding DeleteLog}" Content="Delete Log" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

@@ -12,8 +12,8 @@ namespace TourPlannerDL
         private static httpListener instance = null;
         private static HttpClient httpClient = null;
         private static string key = "V5j8RGvth4UydnpUgMg2RYyVNpE12fJy";
-        private static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
-        private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
+        public static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
+        //private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
 
         public static httpListener Instance()
         {
@@ -40,8 +40,6 @@ namespace TourPlannerDL
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=Wien&to=Graz");
                 string respBody = response.Result;
-
-                Task filetask = File.WriteAllTextAsync(RoutePath + "Test.json", respBody);
                 return respBody;
             }
             catch (HttpRequestException e)
@@ -56,12 +54,7 @@ namespace TourPlannerDL
             try
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
-                string respBody = response.Result;
-                string fileName = fromDestination + "-" + toDestination;
-                string fileLocation = $@"{RoutePath}\{fileName}.json";
-
-                Task filetask = File.WriteAllTextAsync(fileLocation, respBody);
-                return respBody;
+                return response.Result;
             }
             catch (HttpRequestException e)
             {

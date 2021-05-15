@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerVM", "TourPlanne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerBL", "TourPlannerBL\TourPlannerBL.csproj", "{38EFD121-B93B-424F-802C-D073E05ED8C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TouPlannerModels", "TouPlannerModels\TouPlannerModels.csproj", "{2F06F8E1-1AD0-441C-98B3-BCDDDA3336F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerModels", "TouPlannerModels\TourPlannerModels.csproj", "{2F06F8E1-1AD0-441C-98B3-BCDDDA3336F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerTest", "TourPlannerTest\TourPlannerTest.csproj", "{E55F5A86-4884-42AC-A82A-E0C1687D0CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlannerDL", "TourPlannerDL\TourPlannerDL.csproj", "{738529B4-5D5D-49A2-A59E-2B6FF78468E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlannerDL", "TourPlannerDL\TourPlannerDL.csproj", "{738529B4-5D5D-49A2-A59E-2B6FF78468E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

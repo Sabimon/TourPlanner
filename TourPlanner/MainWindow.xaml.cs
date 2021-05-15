@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using TourPlannerDL;
+using TourPlanner.ViewModels;
 
 namespace TourPlanner
 {
@@ -13,19 +14,6 @@ namespace TourPlanner
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void ZoomInButtonClick(object sender, RoutedEventArgs e)
-        {
-            var transform = (ScaleTransform)imageView.RenderTransform;
-            transform.ScaleX *= 1.1;
-            transform.ScaleY *= 1.1;
-        }
-        private void ZoomOutButtonClick(object sender, RoutedEventArgs e)
-        {
-            var transform = (ScaleTransform)imageView.RenderTransform;
-            transform.ScaleX /= 1.1;
-            transform.ScaleY /= 1.1;
         }
     }
 }

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "qtY+ng1INgDFKGukiokg0FVyMLoHiechbniZxWccLBzzi10AYCkgqQIBZ70muk8qPVqcV3bbX+aGtL6NjrNMKQ==",
+  "dgSpecHash": "R21WYMEi3yjLbsF8hTYTApSlh/vgudtvHIh6iWNG9XNitiS0H+xGYXBVIp5y+OeWgUqf36XOQ3tK6sqSyvI91g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\source\\repos\\TourPlanner\\TourPlannerBL\\TourPlannerBL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\log4net\\2.0.12\\log4net.2.0.12.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",

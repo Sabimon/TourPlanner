@@ -2,3 +2,4 @@
 using System;
 using System.Reflection;
 [assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v5.0", FrameworkDisplayName = "")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config")]

@@ -9,3 +9,4 @@ C:\Users\Lenovo\source\repos\TourPlanner\TouPlannerModels\obj\Debug\net5.0\TouPl
 C:\Users\Lenovo\source\repos\TourPlanner\TouPlannerModels\obj\Debug\net5.0\TouPlannerModels.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TouPlannerModels\obj\Debug\net5.0\ref\TouPlannerModels.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TouPlannerModels\obj\Debug\net5.0\TouPlannerModels.pdb
+C:\Users\Lenovo\source\repos\TourPlanner\TouPlannerModels\obj\Debug\net5.0\TouPlannerModels.csprojAssemblyReference.cache
