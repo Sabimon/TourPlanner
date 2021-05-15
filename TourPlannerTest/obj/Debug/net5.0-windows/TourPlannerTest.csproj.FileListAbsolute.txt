@@ -109,7 +109,6 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\obj\Debug\net5.0-window
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\obj\Debug\net5.0-windows\ref\TourPlannerTest.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\obj\Debug\net5.0-windows\TourPlannerTest.pdb
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\obj\Debug\net5.0-windows\TourPlannerTest.genruntimeconfig.cache
-C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\TourPlannerDL.dll.config
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\log4net.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
