@@ -1,12 +1,7 @@
 ﻿using log4net;
-using log4net.Config;
 using Npgsql;
 using System;
 using System.Configuration; //Nuggi erforderlich
-using System.IO;
-using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
 
 
 namespace TourPlannerDL

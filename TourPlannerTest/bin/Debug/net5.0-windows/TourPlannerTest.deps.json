@@ -911,7 +911,8 @@
           "Extended.Wpf.Toolkit": "4.0.2",
           "TourPlannerBL": "1.0.0",
           "TourPlannerDL": "1.0.0",
-          "TourPlannerModels": "1.0.0"
+          "TourPlannerModels": "1.0.0",
+          "log4net": "2.0.12"
         },
         "runtime": {
           "TourPlannerVM.dll": {}

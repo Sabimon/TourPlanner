@@ -132,3 +132,4 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-window
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\log4net.config

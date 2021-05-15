@@ -13,6 +13,7 @@ namespace TourPlanner
 
         public MainWindow()
         {
+            log4net.Config.XmlConfigurator.Configure();
             InitializeComponent();
         }
     }
