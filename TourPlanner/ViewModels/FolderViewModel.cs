@@ -134,7 +134,8 @@ namespace TourPlanner.ViewModels
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
                     RaisePropertyChangedEvent(nameof(SelectedTourMapImage));
-                    RaisePropertyChangedEvent(nameof(Description));
+                    UpdateLogs();
+                    UpdateDescription();
                 }
             }
         }
@@ -198,8 +199,8 @@ namespace TourPlanner.ViewModels
                 Logs.Clear();
                 //http.FindRoute(CurrentTour.Name);
                 //await http.GetAndSaveImage(CurrentTour.Name);
-                FillListViewDescription(CurrentTour.Name);
-                FillLogs(CurrentTour.Name);
+                UpdateLogs();
+                UpdateDescription();
             });
             this.DeleteRoute = new RelayCommand(o =>
             {
@@ -232,7 +233,6 @@ namespace TourPlanner.ViewModels
 
         public void InitListViewTour()
         {
-            log.Info("Test");
             FillListViewTours();
         }
 
@@ -242,6 +242,7 @@ namespace TourPlanner.ViewModels
             {
                 Tours.Add(item);
             }
+            log.Info("Fill ListView with Tours");
         }
         public void InitListViewDescription(string Name)
         {
@@ -254,6 +255,7 @@ namespace TourPlanner.ViewModels
             {
                 Description.Add(description);
             }
+            log.Info("Fill ListView with Description");
         }
 
         private void FillLogs(string Name)
@@ -262,6 +264,7 @@ namespace TourPlanner.ViewModels
             {
                 Logs.Add(item);
             }
+            log.Info("Fill ListView with Logs");
         }
 
         private void AddLogDB(string Name)
@@ -281,6 +284,7 @@ namespace TourPlanner.ViewModels
                 Cost = AddCost.ToString()
             });
             db.InsertLog(AddLogs, Name);
+            log.Info("Add Logs to Route");
         }
         private void ChangeLogDB(string ChangeID)
         {
@@ -299,10 +303,22 @@ namespace TourPlanner.ViewModels
                 Cost = ChangeCost.ToString()
             });
             db.ChangeLog(ChangeLogs, ChangeID);
+            log.Info("Change Log from Route");
         }
         private void DeleteLogDB(string DeleteID)
         {
             db.DeleteLog(DeleteID);
+            log.Info("Delete Log from Route");
+        }
+        private void UpdateLogs()
+        {
+            Logs.Clear();
+            FillLogs(CurrentTour.Name);
+        }
+        private void UpdateDescription()
+        {
+            Description.Clear();
+            FillListViewDescription(CurrentTour.Name);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 using Npgsql;
 using TourPlannerModels;
 
@@ -12,6 +13,7 @@ namespace TourPlannerDL
     public class DBOutput
     {
         DBConn db;
+        private static readonly ILog log = LogManager.GetLogger(typeof(DBOutput));
 
         public DBOutput()
         {
@@ -34,6 +36,7 @@ namespace TourPlannerDL
             {
                 resultList.Add(new MediaItem() { Name = "No Tour found" });
             }
+            log.Info("RouteList filled from DB");
             return resultList;
         }
 
@@ -50,13 +53,13 @@ namespace TourPlannerDL
                 }
                 reader.Close();
             }
+            log.Info("Get RouteID from DB");
             return Result;
         }
 
         public ObservableCollection<Logs> GetLogs(int ID)
         {
             ObservableCollection<Logs> resultList = new ObservableCollection<Logs>();
-            //resultList = null;
             using (var cmd = new NpgsqlCommand($"SELECT * FROM logs WHERE \"routeID\" = (@r);", db.conn))
             {
                 cmd.Parameters.AddWithValue("r", ID);
@@ -79,6 +82,7 @@ namespace TourPlannerDL
                 }
                 reader.Close();
             }
+            log.Info("LogList filled from DB");
             return resultList;
         }
 
@@ -101,7 +105,24 @@ namespace TourPlannerDL
                 }
                 reader.Close();
             }
+            log.Info("Get Description from DB");
             return resultList;
+        }
+        public int CountRouteIDInDescription(int ID)
+        {
+            int Result = 0;
+            using (var cmd = new NpgsqlCommand($"SELECT COUNT(\"routeID\") FROM description WHERE \"routeID\" = (@r);", db.conn))
+            {
+                cmd.Parameters.AddWithValue("r", ID);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Result = reader.GetInt32(0);
+                }
+                reader.Close();
+            }
+            log.Info("Count Route IDs from DB in Table Description");
+            return Result;
         }
     }
 }

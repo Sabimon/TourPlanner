@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Net;
+using log4net;
+using System.Configuration;
 
 namespace TourPlannerDL
 {
@@ -10,9 +12,9 @@ namespace TourPlannerDL
     {
         private static httpListener instance = null;
         private static HttpClient httpClient = null;
-        private static string key = "V5j8RGvth4UydnpUgMg2RYyVNpE12fJy";
+        private static string key = ConfigurationManager.AppSettings["MapQuestKey"];
         public static string MapPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
-        //private static string RoutePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\RouteResponses\";
+        private static readonly ILog log = LogManager.GetLogger(typeof(httpListener));
 
         public static httpListener Instance()
         {
@@ -22,7 +24,6 @@ namespace TourPlannerDL
             }
             return instance;
         }
-
 
         public httpListener()
         {
@@ -39,12 +40,14 @@ namespace TourPlannerDL
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=Wien&to=Graz");
                 string respBody = response.Result;
+                log.Info("MapQuest Connection success");
                 return respBody;
             }
             catch (HttpRequestException e)
             {
                 Debug.WriteLine("Exception Caught!!");
                 Debug.WriteLine($"Message :{e.Message} ");
+                log.Info($"MapQuest Connection failed, Error Message: {e.Message}");
                 return e.Message;
             }
         }
@@ -53,12 +56,14 @@ namespace TourPlannerDL
             try
             {
                 var response = httpClient.GetStringAsync("http://www.mapquestapi.com/directions/v2/route?key=" + key + "&from=" + fromDestination + "&to=" + toDestination);
+                log.Info($"MapQuest Route Response");
                 return response.Result;
             }
             catch (HttpRequestException e)
             {
                 Debug.WriteLine("Exception Caught!!");
                 Debug.WriteLine("Message :{0} ", e.Message);
+                log.Info($"MapQuest Response failed, Error Message: {e.Message}");
                 return e.Message;
             }
         }
@@ -70,6 +75,7 @@ namespace TourPlannerDL
             string fileLocation = $@"{MapPath}\{fileName}.jpg";
             using WebClient client = new();
             await client.DownloadFileTaskAsync(new Uri($"https://www.mapquestapi.com/staticmap/v5/map?key=V5j8RGvth4UydnpUgMg2RYyVNpE12fJy&size=1920,1080&start=Wien&end=Graz&format=jpg"), fileLocation);
+            log.Info($"MapQuest Map Image Response");
         }
     }
 }

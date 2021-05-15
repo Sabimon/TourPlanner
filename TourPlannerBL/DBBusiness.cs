@@ -35,7 +35,10 @@ namespace TourPlannerBL
         public void InsertTourDescription(string distance, string totalTime, string highway, string access, string routeName)
         {
             int ID = dbOut.GetRouteID(routeName);
-            dbIn.InsertTourDescription(distance, totalTime, highway, access, ID);
+            if (dbOut.CountRouteIDInDescription(ID) < 1) //no description added yet
+            {
+                dbIn.InsertTourDescription(distance, totalTime, highway, access, ID);
+            }
         }
         public void ChangeLog(ObservableCollection<Logs> ChangeLogs, string ChangeID)
         {

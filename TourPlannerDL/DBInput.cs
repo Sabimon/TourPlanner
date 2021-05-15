@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using log4net;
+using Npgsql;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
 
@@ -7,6 +8,7 @@ namespace TourPlannerDL
     public class DBInput
     {
         DBConn db;
+        private static readonly ILog log = LogManager.GetLogger(typeof(DBInput));
 
         public DBInput()
         {
@@ -19,18 +21,18 @@ namespace TourPlannerDL
             {
                 cmd.Parameters.AddWithValue("r", $"{FromDest}-{ToDest}");
                 cmd.ExecuteNonQuery();
+                log.Info("Route inserted to DB");
             }
         }
-
         public void DeleteRoute(string route)
         {
             using (var cmd = new NpgsqlCommand($"DELETE FROM routes WHERE routename = (@r)", db.conn))
             {
                 cmd.Parameters.AddWithValue("r", route);
                 cmd.ExecuteNonQuery();
+                log.Info("Route deleted from DB");
             }
         }
-
         public void InsertTourLogs(ObservableCollection<Logs> AddLogs, int ID)
         {
             using (var cmd = new NpgsqlCommand($"INSERT INTO logs (\"routeID\", report, weather, " +
@@ -50,6 +52,7 @@ namespace TourPlannerDL
                 cmd.Parameters.AddWithValue("k", AddLogs[0].Cost);
                 cmd.ExecuteNonQuery();
             }
+            log.Info("Log inserted to DB");
         }
         public void InsertTourDescription(string distance, string totalTime, string highway, string access, int ID)
         {
@@ -63,6 +66,7 @@ namespace TourPlannerDL
                 cmd.Parameters.AddWithValue("e", access);
                 cmd.ExecuteNonQuery();
             }
+            log.Info("Description inserted to DB");
         }
         public void ChangeLog(ObservableCollection<Logs> ChangeLogs, int ID)
         {
@@ -83,6 +87,7 @@ namespace TourPlannerDL
                 cmd.Parameters.AddWithValue("k", ID);
                 cmd.ExecuteNonQuery();
             }
+            log.Info("Log changed in DB");
         }
         public void DeleteLog(int ID)
         {
@@ -91,6 +96,7 @@ namespace TourPlannerDL
                 cmd.Parameters.AddWithValue("a", ID);
                 cmd.ExecuteNonQuery();
             }
+            log.Info("Log deleted from DB");
         }
     }
 }
