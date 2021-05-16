@@ -17,5 +17,9 @@ namespace TourPlannerBL
         {
             Printer.PrintOneReport(SingleTour, Logs, Description);
         }
+        public void PrintSummaryReport(ObservableCollection<Tour> Tours, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+        {
+            Printer.PrintSummaryReport(Tours, Logs, Description);
+        }
     }
 }

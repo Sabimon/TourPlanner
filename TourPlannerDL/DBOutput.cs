@@ -14,6 +14,7 @@ namespace TourPlannerDL
     {
         DBConn db;
         private static readonly ILog log = LogManager.GetLogger(typeof(DBOutput));
+        public static string ImagePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
 
         public DBOutput()
         {
@@ -23,12 +24,15 @@ namespace TourPlannerDL
         public IEnumerable<Tour> GetRoutes(MediaFolder folder)
         {
             List<Tour> resultList = new List<Tour>();
-            using (var cmd = new NpgsqlCommand($"SELECT routename FROM routes;", db.conn))
+            using (var cmd = new NpgsqlCommand($"SELECT routename, \"routeID\" FROM routes;", db.conn))
             {
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    resultList.Add(new Tour() { Name = reader.GetString(0) });
+                    resultList.Add(new Tour() { Name = reader.GetString(0),
+                    ImagePath= $@"{ImagePath}{reader.GetString(0)}.jpg",
+                    TourID=reader.GetInt32(1)
+                    });
                 }
                 reader.Close();
             }
@@ -67,6 +71,7 @@ namespace TourPlannerDL
                 while (reader.Read())
                 {
                     resultList.Add(new Logs() {
+                        TourID=ID,
                         LogID= reader.GetInt32(0),
                         Report= reader.GetString(2), 
                         Weather = reader.GetString(3),
@@ -97,6 +102,7 @@ namespace TourPlannerDL
                 {
                     resultList.Add(new Description()
                     {
+                        TourID=ID,
                         Distance = reader.GetString(2),
                         Time = reader.GetString(3),
                         Highway = reader.GetString(4),

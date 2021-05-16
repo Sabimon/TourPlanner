@@ -238,7 +238,7 @@ namespace TourPlanner.ViewModels
             });
             this.ExportAllTours = new RelayCommand(o =>
             {
-                //ReportAllTours(Tours);
+                ReportAllTours();
             });
             InitListViewTour();
         }
@@ -334,8 +334,25 @@ namespace TourPlanner.ViewModels
         }
         private void ReportOneTour(Tour CurrentTour, ObservableCollection<Logs> CurrentLogs, ObservableCollection<Description> CurrentDescription)
         {
-            CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
+            //CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
             reportHandler.PrintOneReport(CurrentTour, CurrentLogs, CurrentDescription);
+        }
+        private void ReportAllTours()
+        {
+            ObservableCollection<Logs> ReportLogs = new();
+            ObservableCollection<Description> ReportDescription = new();
+            foreach (Tour tour in mediaManager.GetTours(folder))
+            {
+                foreach (Logs item in db.GetLogs(tour.Name))
+                {
+                    ReportLogs.Add(item);
+                }
+                foreach (Description description in mediaManager.GetDescription(tour.Name))
+                {
+                    ReportDescription.Add(description);
+                }
+            }
+            reportHandler.PrintSummaryReport(Tours, ReportLogs, ReportDescription);
         }
     }
 }

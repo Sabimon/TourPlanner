@@ -60,9 +60,9 @@
         </Menu>
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="1">
             <MenuItem Header="Files">
-                <MenuItem Header="_Export Current Tour" Command="{Binding ExportCurrentTour}"/>
-                <MenuItem Header="_Export All Routes" Command="{Binding ExportAllTours}"/>
-                <MenuItem Header="_Import Route From Files"/>
+                <MenuItem Header="_Save Current Tour" Command="{Binding ExportCurrentTour}"/>
+                <MenuItem Header="_Save Tour Summary" Command="{Binding ExportAllTours}"/>
+                <MenuItem Header="_Import Tour From Files"/>
             </MenuItem>
         </Menu>
         <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
