@@ -234,8 +234,7 @@ namespace TourPlanner.ViewModels
             });
             this.ExportCurrentTour = new RelayCommand(o =>
             {
-                CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
-                ReportOneTour(CurrentTour);
+                ReportOneTour(CurrentTour, Logs, Description);
             });
             this.ExportAllTours = new RelayCommand(o =>
             {
@@ -333,9 +332,10 @@ namespace TourPlanner.ViewModels
             Description.Clear();
             FillListViewDescription(CurrentTour.Name);
         }
-        private void ReportOneTour(Tour CurrentTour)
+        private void ReportOneTour(Tour CurrentTour, ObservableCollection<Logs> CurrentLogs, ObservableCollection<Description> CurrentDescription)
         {
-            reportHandler.PrintOneReport(CurrentTour);
+            CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
+            reportHandler.PrintOneReport(CurrentTour, CurrentLogs, CurrentDescription);
         }
     }
 }

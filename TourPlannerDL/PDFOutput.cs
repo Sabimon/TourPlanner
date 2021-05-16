@@ -4,6 +4,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using System.Collections.ObjectModel;
 using TourPlannerModels;
 
 namespace TourPlannerDL
@@ -11,8 +12,9 @@ namespace TourPlannerDL
     public class PDFOutput
     {
         public static string ReportPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\Reports\";
+        private DBOutput dbOut = new();
 
-        public void PrintOneReport(Tour SingleTour)
+        public void PrintOneReport(Tour SingleTour, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
         {
             System.IO.Directory.CreateDirectory(ReportPath);
             string FileName = $"{SingleTour.Name}.pdf";
@@ -21,34 +23,54 @@ namespace TourPlannerDL
             var pdf = new PdfDocument(writer);
             var File = new Document(pdf, PageSize.A4, false);
             Image Map = new Image(ImageDataFactory.Create(SingleTour.ImagePath));
-            // Erstelle Tabelle mit 10 Spalten
-            Table table = new Table(UnitValue.CreatePercentArray(10)).UseAllAvailableWidth();
+            Map.ScaleToFit(PageSize.A5.GetWidth(), PageSize.A4.GetHeight());
 
-            // Table header
-            table.AddCell("Date");
-            table.AddCell("Duration in Minutes");
-            table.AddCell("Distance in KM");
-            table.AddCell("Report");
-            table.AddCell("Rating");
-            table.AddCell("Total Cost in Euro");
-            table.AddCell("Access Limitation");
-            table.AddCell("Weather");
-            table.AddCell("Animal Friendly");
-            table.AddCell("Has Highways");
-            /*foreach (var logItem in tourItem.Log)
+            Table DescripitonTable = new Table(UnitValue.CreatePercentArray(4)).UseAllAvailableWidth();
+            DescripitonTable.AddCell("Duration in Minutes");
+            DescripitonTable.AddCell("Distance in KM");
+            DescripitonTable.AddCell("Has Highways");
+            DescripitonTable.AddCell("Access Limitation");
+            foreach (Description description in Description)
             {
-                table.AddCell($"Neue Tabellen Zelle");
-            }*/
+                DescripitonTable.AddCell(description.Time);
+                DescripitonTable.AddCell(description.Distance);
+                DescripitonTable.AddCell(description.Highway);
+                DescripitonTable.AddCell(description.Access);
+            }
 
-            File.Add(new Paragraph($"Tour Report").SetFontSize(25));
+            Table LogTable = new Table(UnitValue.CreatePercentArray(10)).UseAllAvailableWidth();
+            LogTable.AddCell("Date");
+            LogTable.AddCell("Duration in Minutes");
+            LogTable.AddCell("Distance in KM");
+            LogTable.AddCell("Report");
+            LogTable.AddCell("Rating");
+            LogTable.AddCell("Total Cost in Euro");
+            LogTable.AddCell("Access Limitation");
+            LogTable.AddCell("Weather");
+            LogTable.AddCell("Animal Friendly");
+            LogTable.AddCell("Has Highways");
+            foreach (Logs log in Logs)
+            {
+                LogTable.AddCell(log.Date);
+                LogTable.AddCell(log.Time);
+                LogTable.AddCell(log.Distance);
+                LogTable.AddCell(log.Report);
+                LogTable.AddCell(log.Rating);
+                LogTable.AddCell(log.Cost);
+                LogTable.AddCell(log.Access);
+                LogTable.AddCell(log.Weather);
+                LogTable.AddCell(log.Animals);
+                LogTable.AddCell(log.Highway);
+            }
+
+            File.Add(new Paragraph($"Tour Report For {SingleTour.Name}").SetFontSize(25));
             File.Add(new Paragraph($"Description").SetFontSize(20));
-            //File.Add(new Paragraph($"Tour Shit"));
+            File.Add(DescripitonTable);
             File.Add(new Paragraph($"Map").SetFontSize(20));
             File.Add(Map);
             File.Add(new Paragraph($"Logs").SetFontSize(20));
-            File.Add(table);
+            File.Add(LogTable);
 
-            // Erstellt das Dokument 
             File.Close();
         }
     }
