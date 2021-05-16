@@ -42,6 +42,8 @@ namespace TourPlanner.ViewModels
         public ICommand AddLog { get; set; }
         public ICommand ChangeLog { get; set; }
         public ICommand DeleteLog { get; set; }
+        public ICommand ExportCurrentTour { get; set; }
+        public ICommand ExportAllTours { get; set; }
         public ObservableCollection<MediaItem> Tours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
