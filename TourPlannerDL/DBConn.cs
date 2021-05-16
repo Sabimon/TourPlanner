@@ -17,7 +17,6 @@ namespace TourPlannerDL
         {
             try
             {
-                //XmlConfigurator.Configure(new FileInfo(@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\app.config"));
                 //var config = (ConnectionStringsConfig)ConfigurationManager.GetSection(nameof(ConnectionStringsConfig));
                 connString = ConfigurationManager.ConnectionStrings["ConnectionStringConfig"].ConnectionString;
                 conn = new NpgsqlConnection(connString);

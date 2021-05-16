@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 namespace TourPlannerBL {
     internal class TourPlannerManagerImpl : TourPlannerManager {
         DBOutput db = new DBOutput();
-        public IEnumerable<MediaItem> GetTours(MediaFolder folder) {
+        public IEnumerable<Tour> GetTours(MediaFolder folder) {
             return db.GetRoutes(folder);
         }
 
@@ -23,8 +23,8 @@ namespace TourPlannerBL {
             return new MediaFolder();
         }
 
-        public IEnumerable<MediaItem> SearchForTours(string itemName, MediaFolder folder, bool caseSensitive = false) {
-            IEnumerable<MediaItem> items = GetTours(folder);
+        public IEnumerable<Tour> SearchForTours(string itemName, MediaFolder folder, bool caseSensitive = false) {
+            IEnumerable<Tour> items = GetTours(folder);
 
             if (caseSensitive) {
                 return items.Where(x => x.Name.Contains(itemName)); //sucht nach items & lambda ist auch da

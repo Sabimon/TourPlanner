@@ -16,7 +16,7 @@ namespace TourPlanner.ViewModels
     {
         private httpBusiness http = new();
         private DBBusiness db = new();
-        private MediaItem currentTour;
+        private Tour currentTour;
         private string fromDest;
         private string toDest;
         private DataTable logDataTable;
@@ -64,7 +64,7 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public MediaItem CurrentTour
+        public Tour CurrentTour
         {
             get { return currentTour; }
             set

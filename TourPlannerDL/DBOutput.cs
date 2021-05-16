@@ -14,27 +14,31 @@ namespace TourPlannerDL
     {
         DBConn db;
         private static readonly ILog log = LogManager.GetLogger(typeof(DBOutput));
+        public static string ImagePath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\";
 
         public DBOutput()
         {
             db = DBConn.Instance();
         }
 
-        public IEnumerable<MediaItem> GetRoutes(MediaFolder folder)
+        public IEnumerable<Tour> GetRoutes(MediaFolder folder)
         {
-            List<MediaItem> resultList = new List<MediaItem>();
-            using (var cmd = new NpgsqlCommand($"SELECT routename FROM routes;", db.conn))
+            List<Tour> resultList = new List<Tour>();
+            using (var cmd = new NpgsqlCommand($"SELECT routename, \"routeID\" FROM routes;", db.conn))
             {
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    resultList.Add(new MediaItem() { Name = reader.GetString(0) });
+                    resultList.Add(new Tour() { Name = reader.GetString(0),
+                    ImagePath= $@"{ImagePath}{reader.GetString(0)}.jpg",
+                    TourID=reader.GetInt32(1)
+                    });
                 }
                 reader.Close();
             }
             if (resultList == null)
             {
-                resultList.Add(new MediaItem() { Name = "No Tour found" });
+                resultList.Add(new Tour() { Name = "No Tour found" });
             }
             log.Info("RouteList filled from DB");
             return resultList;
@@ -67,13 +71,14 @@ namespace TourPlannerDL
                 while (reader.Read())
                 {
                     resultList.Add(new Logs() {
+                        TourID=ID,
                         LogID= reader.GetInt32(0),
                         Report= reader.GetString(2), 
                         Weather = reader.GetString(3),
                         Time = reader.GetString(4),
                         Date = reader.GetString(5),
-                        Highway = reader.GetString(6),
-                        Distance = reader.GetString(7),
+                        Distance = reader.GetString(6),
+                        Highway = reader.GetString(7),
                         Access = reader.GetString(8),
                         Rating = reader.GetString(9),
                         Animals = reader.GetString(10),
@@ -97,6 +102,7 @@ namespace TourPlannerDL
                 {
                     resultList.Add(new Description()
                     {
+                        TourID=ID,
                         Distance = reader.GetString(2),
                         Time = reader.GetString(3),
                         Highway = reader.GetString(4),

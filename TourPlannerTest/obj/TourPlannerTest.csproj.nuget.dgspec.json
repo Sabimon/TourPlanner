@@ -171,6 +171,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "itext7": {
+              "target": "Package",
+              "version": "[7.1.15, )"
+            },
             "log4net": {
               "target": "Package",
               "version": "[2.0.12, )"

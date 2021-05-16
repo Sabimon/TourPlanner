@@ -57,7 +57,7 @@ namespace TourPlannerDL
         public void InsertTourDescription(string distance, string totalTime, string highway, string access, int ID)
         {
             using (var cmd = new NpgsqlCommand($"INSERT INTO description (\"routeID\", distance, " +
-                $"total_time, highway, access) VALUES (@a, @b, @c, @d, @e)", db.conn))
+                $"total_time, highway, access, descriptions) VALUES (@a, @b, @c, @d, @e)", db.conn))
             {
                 cmd.Parameters.AddWithValue("a", ID);
                 cmd.Parameters.AddWithValue("b", distance);

@@ -3,6 +3,7 @@
     public class Logs
     {
         public int LogID { get; set; }
+        public int TourID { get; set; }
         public string Report { get; set; }
         public string Rating { get; set; }
         public string Animals { get; set; }

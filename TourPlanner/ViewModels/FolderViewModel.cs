@@ -18,7 +18,8 @@ namespace TourPlanner.ViewModels
         private httpBusiness http = new();
         private DBBusiness db = new();
         private StringHandler strHander = new();
-        private MediaItem currentTour;
+        private ReportHandler reportHandler = new();
+        private Tour currentTour;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
@@ -44,7 +45,7 @@ namespace TourPlanner.ViewModels
         public ICommand DeleteLog { get; set; }
         public ICommand ExportCurrentTour { get; set; }
         public ICommand ExportAllTours { get; set; }
-        public ObservableCollection<MediaItem> Tours { get; set; }
+        public ObservableCollection<Tour> Tours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
         public ObservableCollection<Logs> ChangeLogs { get; set; }
@@ -126,7 +127,7 @@ namespace TourPlanner.ViewModels
         public string ChangeID { get; set; }
         public string DeleteID { get; set; }
 
-        public MediaItem CurrentTour
+        public Tour CurrentTour
         {
             get { return currentTour; }
             set
@@ -179,7 +180,7 @@ namespace TourPlanner.ViewModels
         public FolderViewModel()
         {
             this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
-            Tours = new ObservableCollection<MediaItem>();
+            Tours = new ObservableCollection<Tour>();
             Description = new ObservableCollection<Description>();
             Logs = new ObservableCollection<Logs>();
             folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
@@ -199,8 +200,9 @@ namespace TourPlanner.ViewModels
             this.SearchRoute = new RelayCommand(async o =>
             {
                 Logs.Clear();
-                //http.FindRoute(CurrentTour.Name);
-                //await http.GetAndSaveImage(CurrentTour.Name);
+                http.FindRoute(CurrentTour.Name);
+                await http.GetAndSaveImage(CurrentTour.Name);
+                CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
                 UpdateLogs();
                 UpdateDescription();
             });
@@ -230,6 +232,14 @@ namespace TourPlanner.ViewModels
                 Logs.Clear();
                 FillLogs(CurrentTour.Name);
             });
+            this.ExportCurrentTour = new RelayCommand(o =>
+            {
+                ReportOneTour(CurrentTour, Logs, Description);
+            });
+            this.ExportAllTours = new RelayCommand(o =>
+            {
+                ReportAllTours();
+            });
             InitListViewTour();
         }
 
@@ -240,7 +250,7 @@ namespace TourPlanner.ViewModels
 
         private void FillListViewTours()
         {
-            foreach (MediaItem item in mediaManager.GetTours(folder))
+            foreach (Tour item in mediaManager.GetTours(folder))
             {
                 Tours.Add(item);
             }
@@ -321,6 +331,28 @@ namespace TourPlanner.ViewModels
         {
             Description.Clear();
             FillListViewDescription(CurrentTour.Name);
+        }
+        private void ReportOneTour(Tour CurrentTour, ObservableCollection<Logs> CurrentLogs, ObservableCollection<Description> CurrentDescription)
+        {
+            //CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
+            reportHandler.PrintOneReport(CurrentTour, CurrentLogs, CurrentDescription);
+        }
+        private void ReportAllTours()
+        {
+            ObservableCollection<Logs> ReportLogs = new();
+            ObservableCollection<Description> ReportDescription = new();
+            foreach (Tour tour in mediaManager.GetTours(folder))
+            {
+                foreach (Logs item in db.GetLogs(tour.Name))
+                {
+                    ReportLogs.Add(item);
+                }
+                foreach (Description description in mediaManager.GetDescription(tour.Name))
+                {
+                    ReportDescription.Add(description);
+                }
+            }
+            reportHandler.PrintSummaryReport(Tours, ReportLogs, ReportDescription);
         }
     }
 }

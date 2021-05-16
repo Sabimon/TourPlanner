@@ -12,6 +12,7 @@ namespace TourPlannerBL
             var totalTime = jsonData["route"]["formattedTime"].ToString();
             var highway = jsonData["route"]["hasHighway"].ToString();
             var access = jsonData["route"]["hasAccessRestriction"].ToString();
+            var narratives = jsonData["route"]["legs"]["origNarrative"].ToString();
             db.InsertTourDescription(distance, totalTime, highway, access, routeName);
         }
     }
