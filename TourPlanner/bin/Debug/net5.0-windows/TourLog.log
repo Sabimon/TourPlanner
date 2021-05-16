@@ -231,3 +231,85 @@
 2021-05-16 10:52:13,373 [1] INFO TourPlannerDL.DBConn - DB Connection success
 2021-05-16 10:52:13,404 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
 2021-05-16 10:52:13,406 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:11:34,642 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:11:34,669 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:11:34,670 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:11:39,321 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:11:39,327 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:11:39,327 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:11:39,328 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:11:39,331 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:11:39,331 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:15:01,759 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:15:01,792 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:15:01,794 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:15:05,885 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:15:05,890 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:15:05,890 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:15:05,891 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:15:05,895 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:15:05,895 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:20:36,119 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:20:36,168 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:20:36,170 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:20:42,904 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:20:42,910 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:20:42,911 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:20:42,912 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:20:42,916 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:20:42,916 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:22:46,880 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:22:47,014 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:22:47,015 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:22:50,876 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:22:50,879 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:22:50,879 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:22:50,881 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:22:50,884 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:22:50,884 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:22:52,037 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:22:52,042 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:22:52,042 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:22:52,044 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:22:52,045 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:22:52,045 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:22:54,006 [1] INFO TourPlannerDL.httpListener - MapQuest Route Response
+2021-05-16 13:22:56,585 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:22:56,591 [1] INFO TourPlannerDL.DBOutput - Count Route IDs from DB in Table Description
+2021-05-16 13:23:00,203 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:00,204 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:23:00,204 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:23:00,204 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:00,205 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:23:00,205 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:23:01,217 [1] INFO TourPlannerDL.httpListener - MapQuest Map Image Response
+2021-05-16 13:23:01,222 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:01,223 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:23:01,224 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:23:01,224 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:01,225 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:23:01,225 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:23:01,355 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:01,355 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:23:01,355 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:23:01,356 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:23:01,356 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:23:01,356 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:24:22,515 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:24:22,539 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:24:22,541 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:24:26,342 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:24:26,347 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:24:26,347 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:24:26,348 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:24:26,351 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:24:26,351 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-05-16 13:29:15,233 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-16 13:29:15,251 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-16 13:29:15,252 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-16 13:29:17,930 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:29:17,935 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-16 13:29:17,935 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-16 13:29:17,936 [1] INFO TourPlannerDL.DBOutput - Get RouteID from DB
+2021-05-16 13:29:17,939 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-16 13:29:17,939 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description

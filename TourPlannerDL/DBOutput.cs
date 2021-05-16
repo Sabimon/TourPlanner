@@ -20,21 +20,21 @@ namespace TourPlannerDL
             db = DBConn.Instance();
         }
 
-        public IEnumerable<MediaItem> GetRoutes(MediaFolder folder)
+        public IEnumerable<Tour> GetRoutes(MediaFolder folder)
         {
-            List<MediaItem> resultList = new List<MediaItem>();
+            List<Tour> resultList = new List<Tour>();
             using (var cmd = new NpgsqlCommand($"SELECT routename FROM routes;", db.conn))
             {
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    resultList.Add(new MediaItem() { Name = reader.GetString(0) });
+                    resultList.Add(new Tour() { Name = reader.GetString(0) });
                 }
                 reader.Close();
             }
             if (resultList == null)
             {
-                resultList.Add(new MediaItem() { Name = "No Tour found" });
+                resultList.Add(new Tour() { Name = "No Tour found" });
             }
             log.Info("RouteList filled from DB");
             return resultList;
