@@ -94,7 +94,7 @@ namespace TourPlanner.ViewModels
             get { return report; }
             set
             {
-                if (report != value && strHandler.StringValidation(report)==true)
+                if (report != value || strHandler.StringValidation(ReportProperty) ==true)
                 {
                     report = value;
                     RaisePropertyChangedEvent(nameof(ReportProperty));
@@ -106,7 +106,7 @@ namespace TourPlanner.ViewModels
             get { return weather; }
             set
             {
-                if (weather != value && strHandler.StringValidation(weather) == true)
+                if (weather != value || strHandler.StringValidation(WeatherProperty) == true)
                 {
                     weather = value;
                     RaisePropertyChangedEvent(nameof(WeatherProperty));
