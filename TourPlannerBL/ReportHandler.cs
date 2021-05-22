@@ -8,13 +8,13 @@ namespace TourPlannerBL
     {
         private PDFOutput Printer = new();
 
-        public void PrintOneReport(Tour SingleTour, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+        public void PrintOneTour(Tour SingleTour)
         {
-            Printer.PrintOneReport(SingleTour, Logs, Description);
+            Printer.PrintOneReport(SingleTour);
         }
-        public void PrintSummaryReport(ObservableCollection<Tour> Tours, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+        public void PrintTourSummary(ObservableCollection<Tour> Tours)
         {
-            Printer.PrintSummaryReport(Tours, Logs, Description);
+            Printer.PrintSummaryReport(Tours);
         }
     }
 }

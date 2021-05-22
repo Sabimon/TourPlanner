@@ -4,10 +4,9 @@ using TourPlannerModels;
 
 namespace TourPlannerBL {
     public interface TourPlannerManager {
-        MediaFolder GetMediaFolder(string url);
-        ObservableCollection<Description> GetDescription(string Name);
-        IEnumerable<Tour> GetTours(MediaFolder folder);
-        //IEnumerable<MediaItem> SearchForDescription(string itemName, MediaFolder folder, bool caseSensitive = false);
-        IEnumerable<Tour> SearchForTours(string tourName, MediaFolder folder, bool caseSensitive = false);
+        MediaFolder GetMediaFolder();
+        ObservableCollection<Description> GetDescription(ObservableCollection<Description> Description, int ID);
+        ObservableCollection<Tour> GetTours(ObservableCollection<Tour> AllTours);
+        //IEnumerable<Tour> SearchForTours(string tourName, MediaFolder folder, bool caseSensitive = false);
     }
 }

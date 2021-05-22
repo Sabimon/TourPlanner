@@ -25,9 +25,15 @@ namespace TourPlannerTest
         public void GetRoutesNotNull()
         {
             DBOutput dbOut = new DBOutput();
-            TourPlannerManager mediaManager = TourPlannerManagerFactory.GetFactoryManager();
-            MediaFolder folder = mediaManager.GetMediaFolder("");
-            Assert.IsNotNull(dbOut.GetRoutes(folder));
+            TourPlannerManager tourManager = TourPlannerManagerFactory.GetFactoryManager();
+            MediaFolder folder = tourManager.GetMediaFolder();
+            Assert.IsNotNull(dbOut.GetRoutes());
+        }
+        [Test]
+        public void ConnStringNotNull()
+        {
+            string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringConfig"].ConnectionString;
+            Assert.IsNotNull(_connectionString);
         }
     }
 }

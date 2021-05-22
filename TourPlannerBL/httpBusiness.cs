@@ -18,7 +18,7 @@ namespace TourPlannerBL
             string respBody= http.FindRoute(Destination[0], Destination[1]);
             //http.FindRoute(FromDest, ToDest);
             JsonHandler json = new();
-            json.DeserializeJSON(respBody, TourName);
+            json.DeserializeAPIResponse(respBody, TourName);
         }
 
         public async Task GetAndSaveImage(string TourName)

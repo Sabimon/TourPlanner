@@ -7,23 +7,23 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using System;
 using System.Data;
-using System.Text.RegularExpressions;
 using log4net;
 
 namespace TourPlanner.ViewModels
 {
     public class FolderViewModel : ViewModelBase
     {
-        private TourPlannerManager mediaManager;
+        private TourPlannerManager tourManager;
         private httpBusiness http = new();
         private DBBusiness db = new();
-        private StringHandler strHander = new();
+        private StringHandler strHandler = new();
         private ReportHandler reportHandler = new();
         private Tour currentTour;
         private MediaFolder folder;
         private string fromDest;
         private string toDest;
-        private string numericInput;
+        private string report;
+        private string weather;
         private DataTable logDataTable;
         private static readonly ILog log = LogManager.GetLogger(typeof(FolderViewModel));
 
@@ -43,8 +43,10 @@ namespace TourPlanner.ViewModels
         public ICommand AddLog { get; set; }
         public ICommand ChangeLog { get; set; }
         public ICommand DeleteLog { get; set; }
-        public ICommand ExportCurrentTour { get; set; }
-        public ICommand ExportAllTours { get; set; }
+        public ICommand PrintCurrentTourAsPDF { get; set; }
+        public ICommand PrintAllToursAsPDF { get; set; }
+        public ICommand ImportTour { get; set; }
+        public ICommand ExportTour { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
@@ -87,43 +89,39 @@ namespace TourPlanner.ViewModels
                 }
             }
         }
-        public string PreviewTextInput
+        public string ReportProperty
         {
-            get { return numericInput; }
+            get { return report; }
             set
             {
-                if ((numericInput != value))
+                if (report != value && strHandler.StringValidation(report)==true)
                 {
-                    Regex regex = new Regex("[^0-5]+");
-                    //code snacked from https://abundantcode.com/how-to-allow-only-numeric-input-in-a-textbox-in-wpf/
-                    if (regex.IsMatch(value))
-                    {
-                        numericInput = value;
-                        RaisePropertyChangedEvent(nameof(PreviewTextInput));
-                    }
+                    report = value;
+                    RaisePropertyChangedEvent(nameof(ReportProperty));
                 }
             }
         }
-        public string AddReport { get; set; }
-        public int AddRating { get; set; }
-        public bool AddAnimals { get; set; }
-        public decimal AddCost { get; set; }
-        public decimal AddTime { get; set; }
-        public string AddWeather { get; set; }
-        public DateTime AddDate { get; set; }
-        public decimal AddDistance { get; set; }
-        public bool AddHighway { get; set; }
-        public bool AddAccess { get; set; }
-        public string ChangeReport { get; set; }
-        public int ChangeRating { get; set; }
-        public bool ChangeAnimals { get; set; }
-        public decimal ChangeCost { get; set; }
-        public decimal ChangeTime { get; set; }
-        public string ChangeWeather { get; set; }
-        public DateTime ChangeDate { get; set; }
-        public decimal ChangeDistance { get; set; }
-        public bool ChangeHighway { get; set; }
-        public bool ChangeAccess { get; set; }
+        public string WeatherProperty
+        {
+            get { return weather; }
+            set
+            {
+                if (weather != value && strHandler.StringValidation(weather) == true)
+                {
+                    weather = value;
+                    RaisePropertyChangedEvent(nameof(WeatherProperty));
+                }
+            }
+        }
+        public int RatingProperty { get; set; }
+        public bool AnimalsProperty { get; set; }
+        public decimal CostProperty { get; set; }
+        public decimal TimeProperty { get; set; }
+        public DateTime DateProperty { get; set; }
+        public DateTime ChangeDateProperty { get; set; }
+        public decimal DistanceProperty { get; set; }
+        public bool HighwayProperty { get; set; }
+        public bool AccessProperty { get; set; }
         public string ChangeID { get; set; }
         public string DeleteID { get; set; }
 
@@ -136,6 +134,7 @@ namespace TourPlanner.ViewModels
                 {
                     currentTour = value;
                     RaisePropertyChangedEvent(nameof(CurrentTour));
+                    RaisePropertyChangedEvent(nameof(Logs));
                     RaisePropertyChangedEvent(nameof(SelectedTourMapImage));
                     UpdateLogs();
                     UpdateDescription();
@@ -179,11 +178,11 @@ namespace TourPlanner.ViewModels
 
         public FolderViewModel()
         {
-            this.mediaManager = TourPlannerManagerFactory.GetFactoryManager();
+            this.tourManager = TourPlannerManagerFactory.GetFactoryManager();
             Tours = new ObservableCollection<Tour>();
-            Description = new ObservableCollection<Description>();
             Logs = new ObservableCollection<Logs>();
-            folder = mediaManager.GetMediaFolder("Get Media Folder From Disk");
+            Description = new ObservableCollection<Description>();
+            folder = tourManager.GetMediaFolder();
             this.AddRoute = new RelayCommand(o =>
             {
                 db.InsertNewRoute(FromDest, ToDest);
@@ -218,27 +217,35 @@ namespace TourPlanner.ViewModels
             {
                 AddLogDB(CurrentTour.Name);
                 Logs.Clear();
-                FillLogs(CurrentTour.Name);
+                FillLogs(CurrentTour);
             });
             this.ChangeLog = new RelayCommand(o =>
             {
                 ChangeLogDB(ChangeID);
                 Logs.Clear();
-                FillLogs(CurrentTour.Name);
+                FillLogs(CurrentTour);
             });
             this.DeleteLog = new RelayCommand(o =>
             {
                 DeleteLogDB(DeleteID);
                 Logs.Clear();
-                FillLogs(CurrentTour.Name);
+                FillLogs(CurrentTour);
             });
-            this.ExportCurrentTour = new RelayCommand(o =>
+            this.PrintCurrentTourAsPDF = new RelayCommand(o =>
             {
-                ReportOneTour(CurrentTour, Logs, Description);
+                PrintOneTour(CurrentTour);
             });
-            this.ExportAllTours = new RelayCommand(o =>
+            this.PrintAllToursAsPDF = new RelayCommand(o =>
             {
-                ReportAllTours();
+                PrintAllTours();
+            });
+            this.ImportTour = new RelayCommand(o =>
+            {
+                
+            });
+            this.ExportTour = new RelayCommand(o =>
+            {
+                
             });
             InitListViewTour();
         }
@@ -250,32 +257,25 @@ namespace TourPlanner.ViewModels
 
         private void FillListViewTours()
         {
-            foreach (Tour item in mediaManager.GetTours(folder))
-            {
-                Tours.Add(item);
-            }
+            Tours = tourManager.GetTours(Tours);
             log.Info("Fill ListView with Tours");
         }
-        public void InitListViewDescription(string Name)
+        public void InitListViewDescription(Tour CurrentTour)
         {
-            FillListViewDescription(Name);
+            FillListViewDescription(CurrentTour);
         }
 
-        private void FillListViewDescription(string Name)
+        private void FillListViewDescription(Tour CurrentTour)
         {
-            foreach (Description description in mediaManager.GetDescription(Name))
-            {
-                Description.Add(description);
-            }
+            Description=tourManager.GetDescription(Description, CurrentTour.TourID);
+            CurrentTour.Description = Description;
             log.Info("Fill ListView with Description");
         }
 
-        private void FillLogs(string Name)
+        private void FillLogs(Tour CurrentTour)
         {
-            foreach (Logs item in db.GetLogs(Name))
-            {
-                Logs.Add(item);
-            }
+            Logs=db.GetLogs(Logs, CurrentTour.TourID);
+            CurrentTour.Logs = Logs;
             log.Info("Fill ListView with Logs");
         }
 
@@ -284,16 +284,16 @@ namespace TourPlanner.ViewModels
             AddLogs = new ObservableCollection<Logs>();
             AddLogs.Add(new Logs()
             {
-                Report = AddReport,
-                Weather = AddWeather,
-                Time = AddTime.ToString(),
-                Date = AddDate.ToString(),
-                Highway = AddHighway.ToString(),
-                Distance = AddDistance.ToString(),
-                Access = AddAccess.ToString(),
-                Rating = AddRating.ToString(),
-                Animals = AddAnimals.ToString(),
-                Cost = AddCost.ToString()
+                Report = ReportProperty,
+                Weather = WeatherProperty,
+                Time = TimeProperty.ToString(),
+                Date = DateProperty.ToString(),
+                Highway = HighwayProperty.ToString(),
+                Distance = DistanceProperty.ToString(),
+                Access = AccessProperty.ToString(),
+                Rating = RatingProperty.ToString(),
+                Animals = AnimalsProperty.ToString(),
+                Cost = CostProperty.ToString()
             });
             db.InsertLog(AddLogs, Name);
             log.Info("Add Logs to Route");
@@ -303,16 +303,16 @@ namespace TourPlanner.ViewModels
             ChangeLogs = new ObservableCollection<Logs>();
             ChangeLogs.Add(new Logs()
             {
-                Report = ChangeReport,
-                Weather = ChangeWeather,
-                Time = ChangeTime.ToString(),
-                Date = ChangeDate.ToString(),
-                Highway = ChangeHighway.ToString(),
-                Distance = ChangeDistance.ToString(),
-                Access = ChangeAccess.ToString(),
-                Rating = ChangeRating.ToString(),
-                Animals = ChangeAnimals.ToString(),
-                Cost = ChangeCost.ToString()
+                Report = ReportProperty,
+                Weather = WeatherProperty,
+                Time = TimeProperty.ToString(),
+                Date = ChangeDateProperty.ToString(),
+                Highway = HighwayProperty.ToString(),
+                Distance = DistanceProperty.ToString(),
+                Access = AccessProperty.ToString(),
+                Rating = RatingProperty.ToString(),
+                Animals = AnimalsProperty.ToString(),
+                Cost = CostProperty.ToString()
             });
             db.ChangeLog(ChangeLogs, ChangeID);
             log.Info("Change Log from Route");
@@ -325,34 +325,20 @@ namespace TourPlanner.ViewModels
         private void UpdateLogs()
         {
             Logs.Clear();
-            FillLogs(CurrentTour.Name);
+            FillLogs(CurrentTour);
         }
         private void UpdateDescription()
         {
             Description.Clear();
-            FillListViewDescription(CurrentTour.Name);
+            FillListViewDescription(CurrentTour);
         }
-        private void ReportOneTour(Tour CurrentTour, ObservableCollection<Logs> CurrentLogs, ObservableCollection<Description> CurrentDescription)
+        private void PrintOneTour(Tour CurrentTour)
         {
-            //CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
-            reportHandler.PrintOneReport(CurrentTour, CurrentLogs, CurrentDescription);
+            reportHandler.PrintOneTour(CurrentTour);
         }
-        private void ReportAllTours()
+        private void PrintAllTours()
         {
-            ObservableCollection<Logs> ReportLogs = new();
-            ObservableCollection<Description> ReportDescription = new();
-            foreach (Tour tour in mediaManager.GetTours(folder))
-            {
-                foreach (Logs item in db.GetLogs(tour.Name))
-                {
-                    ReportLogs.Add(item);
-                }
-                foreach (Description description in mediaManager.GetDescription(tour.Name))
-                {
-                    ReportDescription.Add(description);
-                }
-            }
-            reportHandler.PrintSummaryReport(Tours, ReportLogs, ReportDescription);
+            reportHandler.PrintTourSummary(Tours);
         }
     }
 }

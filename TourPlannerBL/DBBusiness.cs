@@ -27,10 +27,13 @@ namespace TourPlannerBL
         {
             dbIn.DeleteRoute(Name);
         }
-        public ObservableCollection<Logs> GetLogs(string Name)
+        public ObservableCollection<Logs> GetLogs(ObservableCollection<Logs> Logs, int ID)
         {
-            int ID = dbOut.GetRouteID(Name);
-            return dbOut.GetLogs(ID);
+            foreach (Logs log in dbOut.GetLogs(ID))
+            {
+                Logs.Add(log);
+            }
+            return Logs;
         }
         public void InsertTourDescription(string distance, string totalTime, string highway, string access, string routeName)
         {

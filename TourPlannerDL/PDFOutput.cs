@@ -16,7 +16,7 @@ namespace TourPlannerDL
         private readonly int headerSize=20;
         private readonly int fontSize=12;
 
-        public void PrintOneReport(Tour SingleTour, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+        public void PrintOneReport(Tour SingleTour)
         {
             System.IO.Directory.CreateDirectory(ReportPath);
             string FileName = $"{SingleTour.Name}.pdf";
@@ -29,15 +29,16 @@ namespace TourPlannerDL
 
             File.Add(new Paragraph($"Tour Report For {SingleTour.Name}").SetFontSize(headerSize));
             File.Add(new Paragraph($"Description").SetFontSize(headerSize));
-            File.Add(CreateDescriptionTable(Description, 4));
+            File.Add(CreateDescriptionTable(SingleTour.Description, 4));
             File.Add(new Paragraph($"Map").SetFontSize(headerSize));
             File.Add(Map);
             File.Add(new Paragraph($"Your Logs").SetFontSize(headerSize));
-            File.Add(CreateLogTable(Logs, 10));
+            File.Add(CreateLogTable(SingleTour.Logs, 10));
 
             File.Close();
         }
-        public void PrintSummaryReport(ObservableCollection<Tour> Tours, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+
+        public void PrintSummaryReport(ObservableCollection<Tour> Tours)
         {
             System.IO.Directory.CreateDirectory(ReportPath);
             string FileLocation = $@"{ReportPath}\SummaryReport.pdf";
@@ -54,19 +55,17 @@ namespace TourPlannerDL
             {
                 File.Add(new Paragraph($"Tour Report For {tours.Name}").SetFontSize(headerSize));
                 File.Add(new Paragraph($"Description").SetFontSize(headerSize));
-                File.Add(CreateDescriptionTable(Description, 4));
+                File.Add(CreateDescriptionTable(tours.Description, 4));
 
                 File.Add(new Paragraph($"Your Logs").SetFontSize(headerSize));
 
-                foreach (Logs log in Logs)
+                foreach (Logs log in tours.Logs)
                 {
-                    if (tours.TourID == log.TourID)
-                    {
-                        SummaryDistance += Convert.ToDecimal(log.Distance);
-                        SummaryTime += Convert.ToDecimal(log.Time);
-                    }
+
+                    SummaryDistance += Convert.ToDecimal(log.Distance);
+                    SummaryTime += Convert.ToDecimal(log.Time);
                 }
-                File.Add(CreateLogTable(Logs, 10));
+                File.Add(CreateLogTable(tours.Logs, 10));
             }
             File.Add(new Paragraph($"Summary").SetFontSize(headerSize));
             File.Add(new Paragraph($"Total Time: {SummaryTime} Minutes").SetFontSize(fontSize));
@@ -116,7 +115,6 @@ namespace TourPlannerDL
                 LogTable.AddCell(log.Animals);
                 LogTable.AddCell(log.Highway);
             }
-            //LogTable.GetNumberOfRows
             return LogTable;
         }
     }

@@ -21,17 +21,18 @@ namespace TourPlannerDL
             db = DBConn.Instance();
         }
 
-        public IEnumerable<Tour> GetRoutes(MediaFolder folder)
+        public ObservableCollection<Tour> GetRoutes()
         {
-            List<Tour> resultList = new List<Tour>();
-            using (var cmd = new NpgsqlCommand($"SELECT routename, \"routeID\" FROM routes;", db.conn))
+            ObservableCollection<Tour> resultList = new();
+            using (var cmd = new NpgsqlCommand($"SELECT \"routeID\", routename FROM routes;", db.conn))
             {
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    resultList.Add(new Tour() { Name = reader.GetString(0),
-                    ImagePath= $@"{ImagePath}{reader.GetString(0)}.jpg",
-                    TourID=reader.GetInt32(1)
+                    resultList.Add(new Tour() { 
+                        TourID=reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        ImagePath= $@"{ImagePath}{reader.GetString(1)}.jpg"
                     });
                 }
                 reader.Close();
@@ -71,8 +72,7 @@ namespace TourPlannerDL
                 while (reader.Read())
                 {
                     resultList.Add(new Logs() {
-                        TourID=ID,
-                        LogID= reader.GetInt32(0),
+                        LogID = reader.GetInt32(0),
                         Report= reader.GetString(2), 
                         Weather = reader.GetString(3),
                         Time = reader.GetString(4),
@@ -102,7 +102,6 @@ namespace TourPlannerDL
                 {
                     resultList.Add(new Description()
                     {
-                        TourID=ID,
                         Distance = reader.GetString(2),
                         Time = reader.GetString(3),
                         Highway = reader.GetString(4),

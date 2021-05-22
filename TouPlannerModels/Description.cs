@@ -8,7 +8,6 @@ namespace TourPlannerModels
 {
     public class Description
     {
-        public int TourID { get; set; }
         public string Time { get; set; }
         public string Distance { get; set; }
         public string Highway { get; set; }

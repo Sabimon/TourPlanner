@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace TourPlannerModels 
 {
@@ -7,5 +6,7 @@ namespace TourPlannerModels
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public int TourID { get; set; }
+        public ObservableCollection<Logs> Logs { get; set; }
+        public ObservableCollection<Description> Description { get; set; }
     }
 }

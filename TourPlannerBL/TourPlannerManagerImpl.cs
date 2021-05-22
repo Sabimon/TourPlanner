@@ -7,38 +7,35 @@ using System.Collections.ObjectModel;
 namespace TourPlannerBL {
     internal class TourPlannerManagerImpl : TourPlannerManager {
         DBOutput db = new DBOutput();
-        public IEnumerable<Tour> GetTours(MediaFolder folder) {
-            return db.GetRoutes(folder);
+        public ObservableCollection<Tour> GetTours(ObservableCollection<Tour> AllTours) {
+            foreach (Tour tour in db.GetRoutes())
+            {
+                AllTours.Add(tour);
+            }
+            return AllTours;
         }
 
-        public ObservableCollection<Description> GetDescription(string Name)
+        public ObservableCollection<Description> GetDescription(ObservableCollection<Description> Description, int ID)
         {
-            int ID;
-            ID = db.GetRouteID(Name);
-            return db.GetDescription(ID);
+            foreach (Description description in db.GetDescription(ID))
+            {
+                Description.Add(description);
+            }
+            return Description;
         }
 
-        public MediaFolder GetMediaFolder(string url) {
+        public MediaFolder GetMediaFolder() {
             // usally located somewhere on the disk
             return new MediaFolder();
         }
 
-        public IEnumerable<Tour> SearchForTours(string itemName, MediaFolder folder, bool caseSensitive = false) {
-            IEnumerable<Tour> items = GetTours(folder);
+        /*public IEnumerable<Tour> SearchForTours(string itemName, MediaFolder folder, bool caseSensitive = false) {
+            IEnumerable<Tour> items = GetTours();
 
             if (caseSensitive) {
                 return items.Where(x => x.Name.Contains(itemName)); //sucht nach items & lambda ist auch da
             }
             return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
-        }
-        /*public IEnumerable<MediaItem> SearchForDescription(string tourName, MediaFolder folder2, bool caseSensitive = false){
-            ObservableCollection<Description> tours = GetDescription();
-
-            if (caseSensitive)
-            {
-                return tours.Where(x => x.Name.Contains(tourName)); //sucht nach items & lambda ist auch da
-            }
-            return tours.Where(x => x.Name.ToLower().Contains(tourName.ToLower()));
         }*/
     }
 }
