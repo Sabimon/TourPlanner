@@ -137,7 +137,7 @@ namespace TourPlanner.ViewModels
                     RaisePropertyChangedEvent(nameof(CurrentTour));
                     RaisePropertyChangedEvent(nameof(Logs));
                     RaisePropertyChangedEvent(nameof(SelectedTourMapImage));
-                    UpdateLogs();
+                    UpdateLogs(CurrentTour);
                     UpdateDescription();
                 }
             }
@@ -203,7 +203,7 @@ namespace TourPlanner.ViewModels
                 http.FindRoute(CurrentTour.Name);
                 await http.GetAndSaveImage(CurrentTour.Name);
                 CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
-                UpdateLogs();
+                UpdateLogs(CurrentTour);
                 UpdateDescription();
             });
             this.DeleteRoute = new RelayCommand(o =>
@@ -216,21 +216,18 @@ namespace TourPlanner.ViewModels
             this.ResetZoomCommand = new RelayCommand((_) => Scale = Unity, (_) => Scale != Unity);
             this.AddLog = new RelayCommand(o =>
             {
-                AddLogDB(CurrentTour.Name);
-                Logs.Clear();
-                FillLogs(CurrentTour);
+                AddLogDB(CurrentTour.TourID);
+                UpdateLogs(CurrentTour);
             });
             this.ChangeLog = new RelayCommand(o =>
             {
                 ChangeLogDB(ChangeID);
-                Logs.Clear();
-                FillLogs(CurrentTour);
+                UpdateLogs(CurrentTour);
             });
             this.DeleteLog = new RelayCommand(o =>
             {
                 DeleteLogDB(DeleteID);
-                Logs.Clear();
-                FillLogs(CurrentTour);
+                UpdateLogs(CurrentTour);
             });
             this.PrintCurrentTourAsPDF = new RelayCommand(o =>
             {
@@ -242,7 +239,9 @@ namespace TourPlanner.ViewModels
             });
             this.ImportTour = new RelayCommand(o =>
             {
-                
+                jsonHandler.ImportTour(CurrentTour);
+                UpdateLogs(CurrentTour);
+                UpdateDescription();
             });
             this.ExportTour = new RelayCommand(o =>
             {
@@ -280,7 +279,7 @@ namespace TourPlanner.ViewModels
             log.Info("Fill ListView with Logs");
         }
 
-        private void AddLogDB(string Name)
+        private void AddLogDB(int ID)
         {
             AddLogs = new ObservableCollection<Logs>();
             AddLogs.Add(new Logs()
@@ -296,7 +295,7 @@ namespace TourPlanner.ViewModels
                 Animals = AnimalsProperty.ToString(),
                 Cost = CostProperty.ToString()
             });
-            db.InsertLog(AddLogs, Name);
+            db.InsertLog(AddLogs, ID);
             log.Info("Add Logs to Route");
         }
         private void ChangeLogDB(string ChangeID)
@@ -323,7 +322,7 @@ namespace TourPlanner.ViewModels
             db.DeleteLog(DeleteID);
             log.Info("Delete Log from Route");
         }
-        private void UpdateLogs()
+        private void UpdateLogs(Tour CurrentTour)
         {
             Logs.Clear();
             FillLogs(CurrentTour);

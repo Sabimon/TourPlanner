@@ -18,9 +18,8 @@ namespace TourPlannerBL
         {
             dbIn.InsertNewRoute(FromDest, ToDest);
         }
-        public void InsertLog(ObservableCollection<Logs> AddLogs, string Name)
+        public void InsertLog(ObservableCollection<Logs> AddLogs, int ID)
         {
-            int ID = dbOut.GetRouteID(Name);
             dbIn.InsertTourLogs(AddLogs, ID);
         }
         public void DeleteRoute(string Name)
@@ -35,12 +34,12 @@ namespace TourPlannerBL
             }
             return Logs;
         }
-        public void InsertTourDescription(string distance, string totalTime, string highway, string access, string routeName)
+        public void InsertTourDescription(ObservableCollection<Description> Description, string routeName)
         {
             int ID = dbOut.GetRouteID(routeName);
             if (dbOut.CountRouteIDInDescription(ID) < 1) //no description added yet
             {
-                dbIn.InsertTourDescription(distance, totalTime, highway, access, ID);
+                dbIn.InsertTourDescription(Description, ID);
             }
         }
         public void ChangeLog(ObservableCollection<Logs> ChangeLogs, string ChangeID)
@@ -52,6 +51,10 @@ namespace TourPlannerBL
         {
             int ID = Convert.ToInt32(DeleteID);
             dbIn.DeleteLog(ID);
+        }
+        public int GetRouteID(string TourName)
+        {
+            return dbOut.GetRouteID(TourName);
         }
     }
 }

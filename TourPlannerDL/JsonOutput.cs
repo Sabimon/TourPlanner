@@ -16,5 +16,16 @@ namespace TourPlannerDL
             string output = JsonConvert.SerializeObject(SingleTour);
             Task filetask = File.WriteAllTextAsync($"{ExportPath}{SingleTour.Name}.json", output);
         }
+
+        public Tour ImportTour(Tour SingleTour)
+        {
+            string FilePath = $"{ExportPath}{SingleTour.Name}.json";
+            if (File.Exists(FilePath))
+            {
+                string json = File.ReadAllText(FilePath);
+                SingleTour = JsonConvert.DeserializeObject<Tour>(json);
+            }
+            return SingleTour;
+        }
     }
 }

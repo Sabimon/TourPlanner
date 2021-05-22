@@ -54,16 +54,16 @@ namespace TourPlannerDL
             }
             log.Info("Log inserted to DB");
         }
-        public void InsertTourDescription(string distance, string totalTime, string highway, string access, int ID)
+        public void InsertTourDescription(ObservableCollection<Description> Description, int ID)
         {
             using (var cmd = new NpgsqlCommand($"INSERT INTO description (\"routeID\", distance, " +
-                $"total_time, highway, access, descriptions) VALUES (@a, @b, @c, @d, @e)", db.conn))
+                $"total_time, highway, access) VALUES (@a, @b, @c, @d, @e)", db.conn))
             {
                 cmd.Parameters.AddWithValue("a", ID);
-                cmd.Parameters.AddWithValue("b", distance);
-                cmd.Parameters.AddWithValue("c", totalTime);
-                cmd.Parameters.AddWithValue("d", highway);
-                cmd.Parameters.AddWithValue("e", access);
+                cmd.Parameters.AddWithValue("b", Description[0].Distance);
+                cmd.Parameters.AddWithValue("c", Description[0].Time);
+                cmd.Parameters.AddWithValue("d", Description[0].Highway);
+                cmd.Parameters.AddWithValue("e", Description[0].Access);
                 cmd.ExecuteNonQuery();
             }
             log.Info("Description inserted to DB");
