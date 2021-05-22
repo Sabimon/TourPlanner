@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
-using System.Collections.ObjectModel;
 using TourPlannerModels;
+using TourPlannerDL;
 
 namespace TourPlannerBL
 {
     public class JsonHandler
     {
         DBBusiness db = new();
+        JsonOutput jsonOutput = new();
         public void DeserializeAPIResponse(string json, string routeName)
         {
             var jsonData = JObject.Parse(json);
@@ -17,11 +18,11 @@ namespace TourPlannerBL
             var narratives = jsonData["route"]["legs"]["origNarrative"].ToString();
             db.InsertTourDescription(distance, totalTime, highway, access, routeName);
         }
-        public void ImportTour(Tour SingleTour, ObservableCollection<Logs> Logs, ObservableCollection<Description> Description)
+        public void ExportTour(Tour SingleTour)
         {
-
+            jsonOutput.ExportTour(SingleTour);
         }
-        public void ExportTour()
+        public void ImportTour()
         {
 
         }

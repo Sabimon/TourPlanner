@@ -847,3 +847,10 @@
 2021-05-22 15:44:19,135 [1] INFO TourPlanner.ViewModels.FolderViewModel - Add Logs to Route
 2021-05-22 15:44:19,139 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
 2021-05-22 15:44:19,139 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-22 16:07:59,778 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-22 16:07:59,806 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-22 16:07:59,807 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-22 16:08:18,962 [1] INFO TourPlannerDL.DBOutput - LogList filled from DB
+2021-05-22 16:08:18,962 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
+2021-05-22 16:08:18,966 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
+2021-05-22 16:08:18,967 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description

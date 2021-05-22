@@ -18,6 +18,7 @@ namespace TourPlanner.ViewModels
         private DBBusiness db = new();
         private StringHandler strHandler = new();
         private ReportHandler reportHandler = new();
+        private JsonHandler jsonHandler = new();
         private Tour currentTour;
         private MediaFolder folder;
         private string fromDest;
@@ -245,7 +246,7 @@ namespace TourPlanner.ViewModels
             });
             this.ExportTour = new RelayCommand(o =>
             {
-                
+                jsonHandler.ExportTour(CurrentTour);
             });
             InitListViewTour();
         }
