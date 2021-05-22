@@ -239,7 +239,7 @@ namespace TourPlanner.ViewModels
             });
             this.ImportTour = new RelayCommand(o =>
             {
-                jsonHandler.ImportTour(CurrentTour);
+                CurrentTour=jsonHandler.ImportTour(CurrentTour);
                 UpdateLogs(CurrentTour);
                 UpdateDescription();
             });

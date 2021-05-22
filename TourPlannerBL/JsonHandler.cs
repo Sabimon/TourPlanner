@@ -30,7 +30,7 @@ namespace TourPlannerBL
         {
             jsonOutput.ExportTour(SingleTour);
         }
-        public void ImportTour(Tour SingleTour)
+        public Tour ImportTour(Tour SingleTour)
         {
             SingleTour =jsonOutput.ImportTour(SingleTour);
             if (SingleTour != null)
@@ -48,6 +48,7 @@ namespace TourPlannerBL
                     db.InsertTourDescription(SingleTour.Description, SingleTour.Name);
                 }
             }
+            return SingleTour;
         }
     }
 }
