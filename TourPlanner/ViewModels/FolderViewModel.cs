@@ -21,6 +21,7 @@ namespace TourPlanner.ViewModels
         private JsonHandler jsonHandler = new();
         private Tour currentTour;
         private MediaFolder folder;
+        private string searchString;
         private string fromDest;
         private string toDest;
         private string report;
@@ -36,8 +37,10 @@ namespace TourPlanner.ViewModels
         //Code for zoom commands snacked from: https://www.carlosjanderson.com/let-users-zoom-in-or-out-of-a-wpf-view/
 
         public ICommand AddRoute { get; set; }
-        public ICommand SearchRoute { get; set; }
+        public ICommand ChangeRoute { get; set; }
         public ICommand DeleteRoute { get; set; }
+        public ICommand TextSearch { get; set; }
+        public ICommand ResetSearch { get; set; }
         public ICommand ZoomOutCommand { get; set; }
         public ICommand ZoomInCommand { get; set; }
         public ICommand ResetZoomCommand { get; set; }
@@ -49,6 +52,7 @@ namespace TourPlanner.ViewModels
         public ICommand ImportTour { get; set; }
         public ICommand ExportTour { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
+        public ObservableCollection<Tour> ResultTours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
         public ObservableCollection<Logs> ChangeLogs { get; set; }
@@ -63,6 +67,18 @@ namespace TourPlanner.ViewModels
                 {
                     _scale = value;
                     RaisePropertyChangedEvent(nameof(Scale));
+                }
+            }
+        }
+        public string SearchString
+        {
+            get { return searchString; }
+            set
+            {
+                if (searchString != value && strHandler.StringValidation(value) == true)
+                {
+                    searchString = value;
+                    RaisePropertyChangedEvent(nameof(SearchString));
                 }
             }
         }
@@ -181,12 +197,16 @@ namespace TourPlanner.ViewModels
         {
             this.tourManager = TourPlannerManagerFactory.GetFactoryManager();
             Tours = new ObservableCollection<Tour>();
+            ResultTours = new ObservableCollection<Tour>();
             Logs = new ObservableCollection<Logs>();
             Description = new ObservableCollection<Description>();
             folder = tourManager.GetMediaFolder();
-            this.AddRoute = new RelayCommand(o =>
+            this.AddRoute = new RelayCommand(async o =>
             {
                 db.InsertNewRoute(FromDest, ToDest);
+                string Name = $"{FromDest}-{ToDest}";
+                http.FindRoute(Name);
+                await http.GetAndSaveImage(Name);
                 Tours.Clear();
                 FillListViewTours();//update Item List
             }, (_) =>
@@ -197,19 +217,23 @@ namespace TourPlanner.ViewModels
                 }
                 return false;
             });
-            this.SearchRoute = new RelayCommand(async o =>
+            this.ChangeRoute = new RelayCommand(o =>
             {
-                Logs.Clear();
-                http.FindRoute(CurrentTour.Name);
-                await http.GetAndSaveImage(CurrentTour.Name);
-                CurrentTour.ImagePath = $@"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\MapResponses\{CurrentTour.Name}.jpg";
-                UpdateLogs(CurrentTour);
-                UpdateDescription();
+                //not done yet
             });
             this.DeleteRoute = new RelayCommand(o =>
             {
                 db.DeleteRoute(CurrentTour.Name);
                 Tours.Remove(CurrentTour);
+            });
+            this.TextSearch = new RelayCommand(o =>
+            {
+                ResultTours = tourManager.SearchForTours(SearchString);
+                FillTourListWithSearchResult(ResultTours);
+            });
+            this.ResetSearch = new RelayCommand(o =>
+            {
+                InitListViewTour();
             });
             this.ZoomInCommand = new RelayCommand((_) => Scale += ScaleStep, (_) => Scale < MaximumScale);
             this.ZoomOutCommand = new RelayCommand((_) => Scale -= ScaleStep, (_) => Scale > MinimumScale);
@@ -257,6 +281,7 @@ namespace TourPlanner.ViewModels
 
         private void FillListViewTours()
         {
+            Tours.Clear();
             Tours = tourManager.GetTours(Tours);
             log.Info("Fill ListView with Tours");
         }
@@ -264,7 +289,14 @@ namespace TourPlanner.ViewModels
         {
             FillListViewDescription(CurrentTour);
         }
-
+        private void FillTourListWithSearchResult(ObservableCollection<Tour> ResultTours)
+        {
+            Tours.Clear();
+            foreach (Tour tour in ResultTours)
+            {
+                Tours.Add(tour);
+            }
+        }
         private void FillListViewDescription(Tour CurrentTour)
         {
             Description=tourManager.GetDescription(Description, CurrentTour.TourID);

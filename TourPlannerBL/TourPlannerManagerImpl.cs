@@ -29,13 +29,18 @@ namespace TourPlannerBL {
             return new MediaFolder();
         }
 
-        /*public IEnumerable<Tour> SearchForTours(string itemName, MediaFolder folder, bool caseSensitive = false) {
-            IEnumerable<Tour> items = GetTours();
-
-            if (caseSensitive) {
-                return items.Where(x => x.Name.Contains(itemName)); //sucht nach items & lambda ist auch da
+        public ObservableCollection<Tour> SearchForTours(string tourName) {
+            ObservableCollection<Tour> AllTours = new();
+            AllTours = GetTours(AllTours);
+            ObservableCollection<Tour> ResultTours = new();
+            foreach (Tour tour in AllTours)
+            {
+                if (tour.Name.ToLower().Contains(tourName.ToLower()))
+                {
+                    ResultTours.Add(tour);
+                }
             }
-            return items.Where(x => x.Name.ToLower().Contains(itemName.ToLower()));
-        }*/
+            return ResultTours;
+        }
     }
 }

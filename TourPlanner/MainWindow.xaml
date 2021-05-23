@@ -34,6 +34,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -63,24 +64,29 @@
                 <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
             </MenuItem>
         </Menu>
-        <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="From:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Label Margin="0" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Content="To:" />
-        <TextBox Margin="5" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="2" Grid.Column="8" Command="{Binding AddRoute}" Content="Add Tour" />
-        <Button Margin="5" Grid.Row="3" Grid.Column="0" Command="{Binding SearchRoute}" Content="Search" />
-        <Button Margin="5" Grid.Row="3" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
-        <ListBox Margin="5" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="14" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
-        <TabControl Grid.Row="3" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="8" Margin="0,0,0,0">
+        <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Search" />
+        <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Text="{Binding SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Command="{Binding TextSearch}" Content="Search" />
+        <Button Margin="5" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="2" Command="{Binding ResetSearch}" Content="Reset Search" />
+        <Label Margin="0" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Tours" />
+        <Label Margin="0" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Content="From:" />
+        <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Margin="0" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Right" Content="To:" />
+        <TextBox Margin="5" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button Margin="5" Grid.Row="3" Grid.Column="9" Command="{Binding AddRoute}" Content="Add Tour" />
+        <Button Margin="5" Grid.Row="4" Grid.Column="0" Command="{Binding ChangeRoute}" Content="Change" />
+        <Button Margin="5" Grid.Row="4" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
+        <ListBox Margin="5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="14" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+        <TabControl Grid.Row="4" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="8" Margin="0,0,0,0">
             <TabItem Header="Route">
-                <Image Margin="5" Grid.Row="5" Grid.Column="2" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
+                <Image Margin="5" Grid.Row="6" Grid.Column="2" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >
                     <Image.RenderTransform>
                         <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                     </Image.RenderTransform>
                 </Image>
             </TabItem>
             <TabItem Header="Description">
-                <DataGrid Margin="5" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listDescription" ItemsSource="{Binding Description}" AutoGenerateColumns="False">
+                <DataGrid Margin="5" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" Grid.RowSpan="5" Name="listDescription" ItemsSource="{Binding Description}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Total Time" Binding="{Binding Time}"/>
                         <DataGridTextColumn Header="Distance" Binding="{Binding Distance}" />
@@ -90,13 +96,13 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-        <Button Margin="5" Grid.Row="5" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
-        <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
-        <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
+        <Button Margin="5" Grid.Row="6" Grid.Column="11" Command="{Binding ZoomInCommand}" Content="Zoom in" />
+        <Button Margin="5" Grid.Row="7" Grid.Column="11" Command="{Binding ZoomOutCommand}" Content="Zoom out" />
+        <Button Margin="5" Grid.Row="8" Grid.Column="11" Command="{Binding ResetZoomCommand}" Content="Reset" />
 
-        <GridSplitter Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" ></GridSplitter>
+        <GridSplitter Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="9" HorizontalAlignment="Stretch" ></GridSplitter>
 
-        <TabControl Grid.Row="9" Grid.Column="2" Grid.RowSpan="13" Grid.ColumnSpan="9" Margin="0,0,0,0">
+        <TabControl Grid.Row="10" Grid.Column="2" Grid.RowSpan="13" Grid.ColumnSpan="9" Margin="0,0,0,0">
             <TabItem Header="All Logs">
                 <Grid>
                     <Grid.RowDefinitions>
