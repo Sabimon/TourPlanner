@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using TourPlannerBL;
 using TourPlannerModels;
 using TourPlannerDL;
 using System.Configuration;
@@ -20,15 +19,7 @@ namespace TourPlannerTest
         {
             DBConn db = DBConn.Instance();
             Assert.IsNotNull(db);
-        }
-        [Test]
-        public void GetRoutesNotNull()
-        {
-            DBOutput dbOut = new DBOutput();
-            TourPlannerManager tourManager = TourPlannerManagerFactory.GetFactoryManager();
-            MediaFolder folder = tourManager.GetMediaFolder();
-            Assert.IsNotNull(dbOut.GetRoutes());
-        }
+        }       
         [Test]
         public void ConnStringNotNull()
         {

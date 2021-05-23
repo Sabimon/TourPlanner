@@ -71,7 +71,7 @@ namespace TourPlanner.ViewModels
             get { return fromDest; }
             set
             {
-                if ((fromDest != value))
+                if (fromDest != value && strHandler.StringValidation(value) == true)
                 {
                     fromDest = value;
                     RaisePropertyChangedEvent(nameof(FromDest));
@@ -83,7 +83,7 @@ namespace TourPlanner.ViewModels
             get { return toDest; }
             set
             {
-                if ((toDest != value))
+                if (toDest != value && strHandler.StringValidation(value) == true)
                 {
                     toDest = value;
                     RaisePropertyChangedEvent(nameof(ToDest));
@@ -95,7 +95,7 @@ namespace TourPlanner.ViewModels
             get { return report; }
             set
             {
-                if (report != value || strHandler.StringValidation(ReportProperty) ==true)
+                if (report != value && strHandler.StringValidation(value) ==true)
                 {
                     report = value;
                     RaisePropertyChangedEvent(nameof(ReportProperty));
@@ -107,7 +107,7 @@ namespace TourPlanner.ViewModels
             get { return weather; }
             set
             {
-                if (weather != value || strHandler.StringValidation(WeatherProperty) == true)
+                if (weather != value && strHandler.StringValidation(value) == true)
                 {
                     weather = value;
                     RaisePropertyChangedEvent(nameof(WeatherProperty));
