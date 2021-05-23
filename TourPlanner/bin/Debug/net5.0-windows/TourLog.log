@@ -1335,3 +1335,26 @@
 2021-05-23 13:12:14,530 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
 2021-05-23 13:12:14,530 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
 2021-05-23 13:12:21,510 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:26:34,992 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-23 16:26:35,020 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:26:35,021 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-23 16:26:45,442 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:26:55,465 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:26:55,466 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-23 16:27:03,024 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:27:08,164 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:27:22,818 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-23 16:27:22,850 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:27:22,851 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-23 16:27:29,045 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:27:30,993 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:27:35,209 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:19,670 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-05-23 16:28:19,713 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:19,713 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours
+2021-05-23 16:28:25,595 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:27,391 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:29,035 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:34,560 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:36,325 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-05-23 16:28:43,710 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB

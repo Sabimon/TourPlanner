@@ -12,6 +12,13 @@ namespace TourPlannerBL {
             {
                 AllTours.Add(tour);
             }
+            if (AllTours == null)
+            {
+                AllTours.Add(new Tour()
+                {
+                    Name="Tours empty"
+                });
+            }
             return AllTours;
         }
 
@@ -29,9 +36,7 @@ namespace TourPlannerBL {
             return new MediaFolder();
         }
 
-        public ObservableCollection<Tour> SearchForTours(string tourName) {
-            ObservableCollection<Tour> AllTours = new();
-            AllTours = GetTours(AllTours);
+        public ObservableCollection<Tour> SearchForTours(string tourName, ObservableCollection<Tour> AllTours) {
             ObservableCollection<Tour> ResultTours = new();
             foreach (Tour tour in AllTours)
             {
@@ -39,6 +44,13 @@ namespace TourPlannerBL {
                 {
                     ResultTours.Add(tour);
                 }
+            }
+            if (ResultTours == null)
+            {
+                ResultTours.Add(new Tour()
+                {
+                    Name = "No Tour found"
+                });
             }
             return ResultTours;
         }

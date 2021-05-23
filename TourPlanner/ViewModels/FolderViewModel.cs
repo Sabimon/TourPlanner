@@ -228,7 +228,8 @@ namespace TourPlanner.ViewModels
             });
             this.TextSearch = new RelayCommand(o =>
             {
-                ResultTours = tourManager.SearchForTours(SearchString);
+                Tours.Clear();
+                ResultTours = tourManager.SearchForTours(SearchString, tourManager.GetTours(Tours));
                 FillTourListWithSearchResult(ResultTours);
             });
             this.ResetSearch = new RelayCommand(o =>

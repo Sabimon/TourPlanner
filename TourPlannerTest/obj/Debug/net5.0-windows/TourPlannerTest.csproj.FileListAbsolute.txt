@@ -147,3 +147,5 @@ C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-window
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\BouncyCastle.Crypto.dll
 C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\testhost.dll.config
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\Castle.Core.dll
+C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerTest\bin\Debug\net5.0-windows\Moq.dll

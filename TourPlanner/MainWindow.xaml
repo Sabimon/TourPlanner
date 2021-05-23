@@ -51,15 +51,27 @@
         </Grid.ColumnDefinitions>
         <TextBlock Margin="5" Text="TourPlanner App" Grid.ColumnSpan="12" />
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="0">
-            <MenuItem Header="Options">
-                <MenuItem Header="_Save Current Tour" Command="{Binding PrintCurrentTourAsPDF}" />
-                <MenuItem Header="_Save Tour Summary" Command="{Binding PrintAllToursAsPDF}"/>
+            <MenuItem Header="File">
+                <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
+                <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="1">
-            <MenuItem Header="Files">
+            <MenuItem Header="Edit">
+                <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
+                <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
+            </MenuItem>
+        </Menu>
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="2">
+            <MenuItem Header="Options">
+                <MenuItem Header="_Save Current Tour" Command="{Binding PrintCurrentTourAsPDF}" />
+                <MenuItem Header="_Save Tour Summary" Command="{Binding PrintAllToursAsPDF}"/>
+            </MenuItem>
+        </Menu>
+        <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="3">
+            <MenuItem Header="Help">
                 <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
                 <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
             </MenuItem>
