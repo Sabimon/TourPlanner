@@ -228,8 +228,7 @@ namespace TourPlanner.ViewModels
             });
             this.TextSearch = new RelayCommand(o =>
             {
-                Tours.Clear();
-                ResultTours = tourManager.SearchForTours(SearchString, tourManager.GetTours(Tours));
+                ResultTours = tourManager.SearchForTours(SearchString, Tours);
                 FillTourListWithSearchResult(ResultTours);
             });
             this.ResetSearch = new RelayCommand(o =>
@@ -293,6 +292,7 @@ namespace TourPlanner.ViewModels
         private void FillTourListWithSearchResult(ObservableCollection<Tour> ResultTours)
         {
             Tours.Clear();
+            Logs.Clear();
             foreach (Tour tour in ResultTours)
             {
                 Tours.Add(tour);

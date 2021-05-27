@@ -36,13 +36,23 @@ namespace TourPlannerBL {
             return new MediaFolder();
         }
 
-        public ObservableCollection<Tour> SearchForTours(string tourName, ObservableCollection<Tour> AllTours) {
+        public ObservableCollection<Tour> SearchForTours(string Input, ObservableCollection<Tour> AllTours) {
             ObservableCollection<Tour> ResultTours = new();
+            ObservableCollection<Logs> Logs = new();
             foreach (Tour tour in AllTours)
             {
-                if (tour.Name.ToLower().Contains(tourName.ToLower()))
+                if (tour.Name.ToLower().Contains(Input.ToLower()))
                 {
                     ResultTours.Add(tour);
+                }
+                Logs = db.GetLogs(tour.TourID);
+                foreach(Logs log in Logs)
+                {
+                    if (log.Report.ToLower().Contains(Input.ToLower())
+                        || log.Weather.ToLower().Contains(Input.ToLower()))
+                    {
+                        ResultTours.Add(tour);
+                    }
                 }
             }
             if (ResultTours == null)
