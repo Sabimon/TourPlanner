@@ -22,6 +22,7 @@ namespace TourPlanner.ViewModels
         private Tour currentTour;
         private MediaFolder folder;
         private string searchString;
+        private string newRouteName;
         private string fromDest;
         private string toDest;
         private string report;
@@ -37,7 +38,7 @@ namespace TourPlanner.ViewModels
         //Code for zoom commands snacked from: https://www.carlosjanderson.com/let-users-zoom-in-or-out-of-a-wpf-view/
 
         public ICommand AddRoute { get; set; }
-        public ICommand ChangeRoute { get; set; }
+        public ICommand ChangeRouteName { get; set; }
         public ICommand DeleteRoute { get; set; }
         public ICommand TextSearch { get; set; }
         public ICommand ResetSearch { get; set; }
@@ -79,6 +80,18 @@ namespace TourPlanner.ViewModels
                 {
                     searchString = value;
                     RaisePropertyChangedEvent(nameof(SearchString));
+                }
+            }
+        }
+        public string NewRouteName
+        {
+            get { return newRouteName; }
+            set
+            {
+                if (newRouteName != value && strHandler.StringValidation(value) == true)
+                {
+                    newRouteName = value;
+                    RaisePropertyChangedEvent(nameof(NewRouteName));
                 }
             }
         }
@@ -141,6 +154,7 @@ namespace TourPlanner.ViewModels
         public bool AccessProperty { get; set; }
         public string ChangeID { get; set; }
         public string DeleteID { get; set; }
+        public string ChangeRoute { get; set; }
 
         public Tour CurrentTour
         {
@@ -217,9 +231,10 @@ namespace TourPlanner.ViewModels
                 }
                 return false;
             });
-            this.ChangeRoute = new RelayCommand(o =>
+            this.ChangeRouteName = new RelayCommand(o =>
             {
-                //not done yet
+                db.ChangeRouteName(NewRouteName, ChangeRoute);
+                FillListViewTours();
             });
             this.DeleteRoute = new RelayCommand(o =>
             {

@@ -85,10 +85,61 @@
         <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding FromDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Margin="0" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Right" Content="To:" />
         <TextBox Margin="5" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Text="{Binding ToDest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <Button Margin="5" Grid.Row="3" Grid.Column="9" Command="{Binding AddRoute}" Content="Add Tour" />
-        <Button Margin="5" Grid.Row="4" Grid.Column="0" Command="{Binding ChangeRoute}" Content="Change" />
-        <Button Margin="5" Grid.Row="4" Grid.Column="1" Command="{Binding DeleteRoute}" Content="Delete" />
-        <ListBox Margin="5" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="14" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+        <Button Margin="0" Grid.Row="3" Grid.Column="9" Command="{Binding AddRoute}" Content="Add Tour" />
+        <TabControl Grid.Row="4" Grid.Column="0" Grid.RowSpan="14" Grid.ColumnSpan="2" Margin="0,0,0,0">
+            <TabItem Header="All Routes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox Margin="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" Name="listMediaItems" ItemsSource="{Binding Tours}" SelectedItem="{Binding CurrentTour}" DisplayMemberPath="Name" />
+                    <Button Margin="0" Grid.Row="13" Grid.Column="0" Command="{Binding DeleteRoute}" Content="Delete" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Change Route">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Margin="5,5,5,5" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Path=Tours}"
+                    DisplayMemberPath="Name"
+                    SelectedValuePath="Name"
+                    SelectedValue="{Binding ChangeRoute}"/>
+                    <Label Margin="0" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Content="New Name:" />
+                    <TextBox Margin="5" Grid.Row="2" Grid.Column="0" Text="{Binding NewRouteName}"></TextBox>
+                    <Button Margin="5,5,5,5" Grid.Row="3" Grid.Column="0" Command="{Binding ChangeRouteName}" Content="Change Name" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
         <TabControl Grid.Row="4" Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="8" Margin="0,0,0,0">
             <TabItem Header="Route">
                 <Image Margin="5" Grid.Row="6" Grid.Column="2" Source="{Binding SelectedTourMapImage}" Stretch="UniformToFill" x:Name="ImageView" RenderTransformOrigin="0.5,0.5" >

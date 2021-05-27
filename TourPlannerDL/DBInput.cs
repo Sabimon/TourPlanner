@@ -98,5 +98,15 @@ namespace TourPlannerDL
             }
             log.Info("Log deleted from DB");
         }
+        public void ChangeRouteName(string Input, string RouteName)
+        {
+            using (var cmd = new NpgsqlCommand($"UPDATE routes SET routename=(@a) WHERE routename=(@b)", db.conn))
+            {
+                cmd.Parameters.AddWithValue("a", Input);
+                cmd.Parameters.AddWithValue("b", RouteName);
+                cmd.ExecuteNonQuery();
+            }
+            log.Info("Route Name Changed in DB");
+        }
     }
 }

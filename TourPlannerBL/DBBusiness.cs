@@ -56,5 +56,9 @@ namespace TourPlannerBL
         {
             return dbOut.GetRouteID(TourName);
         }
+        public void ChangeRouteName(string Input, string RouteName)
+        {
+            dbIn.ChangeRouteName(Input, RouteName);
+        }
     }
 }
