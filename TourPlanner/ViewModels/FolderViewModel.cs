@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System;
 using System.Data;
 using log4net;
+using System.Linq;
 
 namespace TourPlanner.ViewModels
 {
@@ -19,12 +20,14 @@ namespace TourPlanner.ViewModels
         private StringHandler strHandler = new();
         private ReportHandler reportHandler = new();
         private JsonHandler jsonHandler = new();
+        private FileHandler fileHandler = new();
         private Tour currentTour;
         private MediaFolder folder;
         private string searchString;
         private string newRouteName;
         private string fromDest;
         private string toDest;
+        private string selectedImportTour;
         private string report;
         private string weather;
         private DataTable logDataTable;
@@ -54,6 +57,7 @@ namespace TourPlanner.ViewModels
         public ICommand ExportTour { get; set; }
         public ObservableCollection<Tour> Tours { get; set; }
         public ObservableCollection<Tour> ResultTours { get; set; }
+        public ObservableCollection<Tour> ImportableTours { get; set; }
         public ObservableCollection<Logs> Logs { get; set; }
         public ObservableCollection<Logs> AddLogs { get; set; }
         public ObservableCollection<Logs> ChangeLogs { get; set; }
@@ -76,10 +80,22 @@ namespace TourPlanner.ViewModels
             get { return searchString; }
             set
             {
-                if (searchString != value && strHandler.StringValidation(value) == true)
+                if (searchString != value && strHandler.StringValidationWithDigits(value) == true)
                 {
                     searchString = value;
                     RaisePropertyChangedEvent(nameof(SearchString));
+                }
+            }
+        }
+        public string SelectedImportTour
+        {
+            get { return selectedImportTour; }
+            set
+            {
+                if (selectedImportTour != value)
+                {
+                    selectedImportTour = value;
+                    RaisePropertyChangedEvent(nameof(SelectedImportTour));
                 }
             }
         }
@@ -100,7 +116,7 @@ namespace TourPlanner.ViewModels
             get { return fromDest; }
             set
             {
-                if (fromDest != value && strHandler.StringValidation(value) == true)
+                if (fromDest != value && strHandler.StringValidationWithDigits(value) == true)
                 {
                     fromDest = value;
                     RaisePropertyChangedEvent(nameof(FromDest));
@@ -112,7 +128,7 @@ namespace TourPlanner.ViewModels
             get { return toDest; }
             set
             {
-                if (toDest != value && strHandler.StringValidation(value) == true)
+                if (toDest != value && strHandler.StringValidationWithDigits(value) == true)
                 {
                     toDest = value;
                     RaisePropertyChangedEvent(nameof(ToDest));
@@ -212,6 +228,7 @@ namespace TourPlanner.ViewModels
             this.tourManager = TourPlannerManagerFactory.GetFactoryManager();
             Tours = new ObservableCollection<Tour>();
             ResultTours = new ObservableCollection<Tour>();
+            ImportableTours = new ObservableCollection<Tour>();
             Logs = new ObservableCollection<Logs>();
             Description = new ObservableCollection<Description>();
             folder = tourManager.GetMediaFolder();
@@ -278,7 +295,10 @@ namespace TourPlanner.ViewModels
             });
             this.ImportTour = new RelayCommand(o =>
             {
-                CurrentTour=jsonHandler.ImportTour(CurrentTour);
+                Tour SelectedTour = new();
+                SelectedTour.Name = "Wien-Graz";
+                CurrentTour=jsonHandler.ImportTour(SelectedTour);
+                FillListViewTours();
                 UpdateLogs(CurrentTour);
                 UpdateDescription();
             });
@@ -287,6 +307,7 @@ namespace TourPlanner.ViewModels
                 jsonHandler.ExportTour(CurrentTour);
             });
             InitListViewTour();
+            FillImportableTours();
         }
 
         public void InitListViewTour()
@@ -299,6 +320,10 @@ namespace TourPlanner.ViewModels
             Tours.Clear();
             Tours = tourManager.GetTours(Tours);
             log.Info("Fill ListView with Tours");
+        }
+        private void FillImportableTours()
+        {
+            ImportableTours = fileHandler.FillImportableTours();
         }
         public void InitListViewDescription(Tour CurrentTour)
         {

@@ -45,9 +45,7 @@ namespace TourPlannerDL
             }
             catch (HttpRequestException e)
             {
-                Debug.WriteLine("Exception Caught!!");
-                Debug.WriteLine($"Message :{e.Message} ");
-                log.Info($"MapQuest Connection failed, Error Message: {e.Message}");
+                log.Error($"MapQuest Connection failed, Error Message: {e.Message}");
                 return e.Message;
             }
         }
@@ -61,21 +59,26 @@ namespace TourPlannerDL
             }
             catch (HttpRequestException e)
             {
-                Debug.WriteLine("Exception Caught!!");
-                Debug.WriteLine("Message :{0} ", e.Message);
-                log.Info($"MapQuest Response failed, Error Message: {e.Message}");
+                log.Error($"MapQuest Response failed, Error Message: {e.Message}");
                 return e.Message;
             }
         }
 
         public async Task GetAndSaveImage(string fromDestination, string toDestination)
         {
-            System.IO.Directory.CreateDirectory(MapPath);
-            string fileName = fromDestination + "-" + toDestination;
-            string fileLocation = $@"{MapPath}\{fileName}.jpg";
-            using WebClient client = new();
-            await client.DownloadFileTaskAsync(new Uri($"https://www.mapquestapi.com/staticmap/v5/map?key=V5j8RGvth4UydnpUgMg2RYyVNpE12fJy&size=1920,1080&start=Wien&end=Graz&format=jpg"), fileLocation);
-            log.Info($"MapQuest Map Image Response");
+            try
+            {
+                System.IO.Directory.CreateDirectory(MapPath);
+                string fileName = fromDestination + "-" + toDestination;
+                string fileLocation = $@"{MapPath}\{fileName}.jpg";
+                using WebClient client = new();
+                await client.DownloadFileTaskAsync(new Uri($"https://www.mapquestapi.com/staticmap/v5/map?key=V5j8RGvth4UydnpUgMg2RYyVNpE12fJy&size=1920,1080&start=Wien&end=Graz&format=jpg"), fileLocation);
+                log.Info($"MapQuest Map Image Response");
+            }
+            catch
+            {
+                log.Error($"MapQuest Map Image Response not working");
+            }
         }
     }
 }

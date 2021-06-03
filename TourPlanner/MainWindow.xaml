@@ -53,15 +53,15 @@
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="0">
             <MenuItem Header="File">
                 <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
+                <MenuItem Header="_Tours"
+                          ItemsSource="{Binding Path=ImportableTours}" DisplayMemberPath="Name">
+                </MenuItem>
                 <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
-                <Separator />
-                <MenuItem Header="_Exit" />
             </MenuItem>
         </Menu>
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="1">
             <MenuItem Header="Edit">
-                <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
-                <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
+                <MenuItem Header="_Edit"/>
             </MenuItem>
         </Menu>
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="2">
@@ -72,8 +72,8 @@
         </Menu>
         <Menu DockPanel.Dock="Top" Margin="0" Grid.Row="1" Grid.Column="3">
             <MenuItem Header="Help">
-                <MenuItem Header="_Export Tour" Command="{Binding ExportTour}"/>
-                <MenuItem Header="_Import Tour" Command="{Binding ImportTour}"/>
+                <MenuItem Header="_Contact" />
+                <MenuItem Header="_Help" />
             </MenuItem>
         </Menu>
         <Label Margin="0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Search" />

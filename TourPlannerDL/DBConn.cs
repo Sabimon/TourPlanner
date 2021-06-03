@@ -26,7 +26,7 @@ namespace TourPlannerDL
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                log.Info("DB Connection failed");
+                log.Error("DB Connection failed");
                 throw;
             }
         }

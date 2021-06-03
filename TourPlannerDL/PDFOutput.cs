@@ -4,6 +4,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using log4net;
 using System;
 using System.Collections.ObjectModel;
 using TourPlannerModels;
@@ -13,6 +14,7 @@ namespace TourPlannerDL
     public class PDFOutput
     {
         public static string ReportPath = @"C:\Users\Lenovo\source\repos\TourPlanner\TourPlannerDL\Reports\";
+        private static readonly ILog log = LogManager.GetLogger(typeof(PDFOutput));
         private readonly int headerSize=20;
         private readonly int fontSize=12;
 
@@ -36,6 +38,7 @@ namespace TourPlannerDL
             File.Add(CreateLogTable(SingleTour.Logs, 10));
 
             File.Close();
+            log.Info($"Print Tour Report to PDF");
         }
 
         public void PrintSummaryReport(ObservableCollection<Tour> Tours)
@@ -71,6 +74,7 @@ namespace TourPlannerDL
             File.Add(new Paragraph($"Total Time: {SummaryTime} Minutes").SetFontSize(fontSize));
             File.Add(new Paragraph($"Total Distance: {SummaryDistance} KM").SetFontSize(fontSize));
             File.Close();
+            log.Info($"Print Tour Summary to PDF");
         }
 
         public Table CreateDescriptionTable(ObservableCollection<Description> Description, int Size)

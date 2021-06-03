@@ -30,5 +30,17 @@ namespace TourPlannerTest
             string TestString = "Rainy";
             Assert.IsTrue(strHandler.StringValidation(TestString));
         }
+        [Test]
+        public void StringValidationWithDigitsTestWrongInput()
+        {
+            string TestString = "This-Test";
+            Assert.IsFalse(strHandler.StringValidationWithDigits(TestString));
+        }
+        [Test]
+        public void StringValidationWithDigitsTestCorrectInput()
+        {
+            string TestString = "1200Vienna";
+            Assert.IsTrue(strHandler.StringValidationWithDigits(TestString));
+        }
     }
 }
