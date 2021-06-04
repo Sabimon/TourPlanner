@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TouPlannerModels\TourPlannerModels.csproj" />
+    <ProjectReference Include="..\TourPlannerDL\TourPlannerDL.csproj" />
+  </ItemGroup>
+
+</Project>
