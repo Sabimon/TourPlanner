@@ -1,0 +1,64 @@
+-- Table: public.routes
+
+-- DROP TABLE public.routes;
+
+CREATE TABLE public.routes
+(
+    "routeID" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999 CACHE 1 ),
+    routename text COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT routes_pkey PRIMARY KEY ("routeID")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.routes
+    OWNER to postgres;
+
+-- Table: public.description
+
+-- DROP TABLE public.description;
+
+
+CREATE TABLE public.description
+(
+    "descriptionID" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999 CACHE 1 ),
+    "routeID" integer NOT NULL,
+    distance text COLLATE pg_catalog."default" NOT NULL,
+    total_time text COLLATE pg_catalog."default" NOT NULL,
+    highway text COLLATE pg_catalog."default" NOT NULL,
+    access text COLLATE pg_catalog."default" NOT NULL,
+    directions text COLLATE pg_catalog."default",
+    CONSTRAINT description_pkey PRIMARY KEY ("descriptionID")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.description
+    OWNER to postgres;
+
+
+-- Table: public.logs
+
+-- DROP TABLE public.logs;
+
+CREATE TABLE public.logs
+(
+    "logID" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999 CACHE 1 ),
+    "routeID" integer NOT NULL,
+    report text COLLATE pg_catalog."default",
+    weather text COLLATE pg_catalog."default",
+    total_time text COLLATE pg_catalog."default",
+    date text COLLATE pg_catalog."default",
+    distance text COLLATE pg_catalog."default",
+    highway text COLLATE pg_catalog."default",
+    access text COLLATE pg_catalog."default",
+    rating text COLLATE pg_catalog."default",
+    animals text COLLATE pg_catalog."default",
+    cost text COLLATE pg_catalog."default",
+    CONSTRAINT logs_pkey PRIMARY KEY ("logID")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.logs
+    OWNER to postgres;

@@ -11,7 +11,7 @@ namespace TourPlanner.ViewModels
         public RelayCommand(Action<object> execute)
             : this(execute, null)
         {
-            //ich bin mir nicht sicher was hier passiert
+            
         }
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute)
@@ -43,7 +43,6 @@ namespace TourPlanner.ViewModels
         // </returns>
         public bool CanExecute(object parameter)
         {
-            //versteh nicht ganz was die Kurzform macht
             return canExecutePredicate == null ? true : canExecutePredicate(parameter);
         }
 

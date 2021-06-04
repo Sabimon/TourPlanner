@@ -1616,3 +1616,6 @@
 2021-06-03 12:59:52,746 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Logs
 2021-06-03 12:59:52,746 [1] INFO TourPlannerDL.DBOutput - Get Description from DB
 2021-06-03 12:59:52,746 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Description
+2021-06-03 14:40:16,095 [1] INFO TourPlannerDL.DBConn - DB Connection success
+2021-06-03 14:40:16,138 [1] INFO TourPlannerDL.DBOutput - RouteList filled from DB
+2021-06-03 14:40:16,138 [1] INFO TourPlanner.ViewModels.FolderViewModel - Fill ListView with Tours

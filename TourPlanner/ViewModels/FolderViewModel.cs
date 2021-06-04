@@ -8,7 +8,6 @@ using System.Windows.Media.Imaging;
 using System;
 using System.Data;
 using log4net;
-using System.Linq;
 
 namespace TourPlanner.ViewModels
 {
